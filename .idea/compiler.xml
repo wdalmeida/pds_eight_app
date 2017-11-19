@@ -6,11 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="eight-app" />
+        <module name="front-web" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="eight-app" target="1.8" />
+      <module name="front-web" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
