@@ -9,6 +9,7 @@
 
     <modules>
         <module>frontweb</module>
+        <module>rest-account-services</module>
     </modules>
 
     <properties>
@@ -21,15 +22,25 @@
         <spring.version>1.5.8.RELEASE</spring.version>
     </properties>
     
-    <parent>
+  <!--  <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>1.5.8.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+        <relativePath/>
+    </parent> -->
 
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>1.5.8.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -118,9 +129,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.version}</version>
             </plugin>
         </plugins>
     </build>
 
 </project>
->>>>>>> master
