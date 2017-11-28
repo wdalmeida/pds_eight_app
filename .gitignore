@@ -119,5 +119,4 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 *.iml
-
-ideal/
+/back-end/src/main/resources/application-warren.properties
