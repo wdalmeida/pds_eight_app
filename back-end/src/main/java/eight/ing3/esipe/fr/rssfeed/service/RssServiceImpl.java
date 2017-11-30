@@ -28,7 +28,7 @@ public class RssServiceImpl implements RssService {
     public RSSFeed getOne(int id) {
         String url="http://bfmbusiness.bfmtv.com/rss/info/flux-rss/flux-toutes-les-actualites/";
         logger.debug("Get news : " + id);
-        SyndFeed rss = RSSReader.read(url);
+        SyndFeed rss = new RSSReader().read(url);
         SyndEntry se = rss.getEntries().get(id);
         RSSFeed rf = new RSSFeed(se.getTitle(),se.getLink(),se.getDescription().getValue());
         return  rf;
