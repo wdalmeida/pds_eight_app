@@ -24,7 +24,7 @@ public class RSSReader {
      * @param url URL corresponding to the feed to read
      * @return SyndFeed
      */
-    public static SyndFeed read(String url){
+    public SyndFeed read(String url){
         SyndFeed feed =null;
         logger.debug("What is in url ? ==>"+url);
         try {

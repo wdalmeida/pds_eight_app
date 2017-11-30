@@ -32,7 +32,7 @@ public class RSSController {
      * @return RSSFeed in JSON with HTTP status 200 or only HTTP status 500
      */
     @GetMapping("/rss/{id}")
-    public ResponseEntity<RSSFeed> getOne(@PathVariable int id) {
+    public  ResponseEntity<RSSFeed> getOne(@PathVariable int id) {
         RSSFeed rss = rssService.getOne(id);
         return (rss!=null) ?
                 new ResponseEntity<>(rss, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
