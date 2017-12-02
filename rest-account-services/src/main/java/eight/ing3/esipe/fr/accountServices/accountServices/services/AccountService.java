@@ -30,6 +30,7 @@ public class AccountService implements IAccountService {
     }
 
 
+    @Override
     public UserDto getUserById(String userId) throws GenericException {
 
         UserEntity userEntity = userRepository.findOne(Long.parseLong(userId));
@@ -53,7 +54,7 @@ public class AccountService implements IAccountService {
        }
 
 
-
+    @Override
     public List<AccountDto> accountEntitiesToAccountDtoList(List<AccountEntity> accountEntities){
         return accountEntities
                 .stream()
