@@ -1,4 +1,4 @@
-package eight.ing3.esipe.fr.accountServices.services;
+package eight.ing3.esipe.fr.accountServices.accountServices.services;
 
 
 import dto.AccountDto;
@@ -41,6 +41,7 @@ public class AccountService implements IAccountService {
 
 
     public UserDto getUserById(String userId){
+        System.out.print("userId entity"+ userId);
         UserEntity userEntity = userRepository.findOne(Long.parseLong(userId));
         System.out.print(userEntity.getFirstName());
        return UserDto.builder()
@@ -68,6 +69,7 @@ public class AccountService implements IAccountService {
     @Override
     public List<AccountDto> getAllAccount(String userId) {
 
+        System.out.println("valeur userId dans service"+userId);
         return getUserById(userId).getAccountDtoList();
     }
 

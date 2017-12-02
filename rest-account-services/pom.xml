@@ -17,6 +17,11 @@
 	<packaging>jar</packaging>
 	<name>rest-account-services</name>
 
+	<properties>
+		<start-class>eight.ing3.esipe.fr.accountServices.RestAccountServicesApplication</start-class>
+	</properties>
+
+
 
 	<dependencies>
 		<dependency>
@@ -31,6 +36,28 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.44</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+
+		</dependency>
+
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<scope>provided</scope>
@@ -41,8 +68,21 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>eight.ing3.esipe.fr</groupId>
+			<artifactId>models</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.0</version>
+		</dependency>
+
 	</dependencies>
 
+	<!--
 	<build>
 		<plugins>
 			<plugin>
@@ -51,6 +91,6 @@
 			</plugin>
 		</plugins>
 	</build>
-
+-->
 
 </project>
