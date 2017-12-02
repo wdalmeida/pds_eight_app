@@ -1,4 +1,4 @@
-package eight.ing3.esipe.fr.restaccountservices.models;
+package dto;
 
 
 import lombok.AllArgsConstructor;
@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -18,24 +17,24 @@ import java.util.List;
 public class AccountDto {
 
 
-    private Long accountNumber;
+    private String accountNumber;
 
     private String type;
 
     private int balance;
 
-    private static List<AccountDto> accountList;
+    //private static List<AccountDto> accountList;
 
-    static {
+   /* static {
         accountList = new ArrayList<>();
         AccountDto a1 = new AccountDto(Long.parseLong("1"),"CCP",200);
         AccountDto a2 = new AccountDto(Long.parseLong("2"),"LivretA",400);
         accountList.add(a1);
         accountList.add(a2);
     }
+*/
 
-
-    public static List<AccountDto> getAccountList() {
-        return accountList;
+  //  public static List<AccountDto> getAccountList() {
+        //return accountList;
     }
-}
+
