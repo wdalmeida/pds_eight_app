@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/eight-app.iml" filepath="$PROJECT_DIR$/eight-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/authentication-services/authentication-services.iml" filepath="$PROJECT_DIR$/authentication-services/authentication-services.iml" />
       <module fileurl="file://$PROJECT_DIR$/frontweb/front-web.iml" filepath="$PROJECT_DIR$/frontweb/front-web.iml" />
-      <module fileurl="file://$PROJECT_DIR$/frontweb/front-web.iml" filepath="$PROJECT_DIR$/frontweb/front-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/models/models.iml" filepath="$PROJECT_DIR$/models/models.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rest-account-services/rest-account-services.iml" filepath="$PROJECT_DIR$/rest-account-services/rest-account-services.iml" />
     </modules>
   </component>
 </project>
