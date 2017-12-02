@@ -1,4 +1,4 @@
-package eight.ing3.esipe.fr.accountServices.accountServices.services;
+package eight.ing3.esipe.fr.accountServices.services;
 
 
 
