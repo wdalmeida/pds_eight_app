@@ -1,0 +1,10 @@
+# configuration de l'transfers.application Web avec Spring Boot
+server:
+  port: 8080
+  contextPath: /transfers
+# MVC
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/pages/
+      suffix: .jsp

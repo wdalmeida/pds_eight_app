@@ -1,0 +1,56 @@
+package model;
+
+import java.time.LocalDate;
+
+public class TransferModel {
+
+    private String sendingIBAN;
+
+    private double amount;
+
+    private String beneficiaryIban;
+
+    private LocalDate valueDate;
+
+    private String wording;
+
+    public String getSendingIBAN() {
+        return this.sendingIBAN;
+    }
+
+    public void setSendingIBAN(String sendingIBAN) {
+        this.sendingIBAN = sendingIBAN;
+    }
+
+    public double getAmount() {
+        return this.amount;
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public String getBeneficiaryIban() {
+        return this.beneficiaryIban;
+    }
+
+    public void setBeneficiaryIban(String beneficiaryIban) {
+        this.beneficiaryIban = beneficiaryIban;
+    }
+
+    public LocalDate getValueDate() {
+        return this.valueDate;
+    }
+
+    public void setValueDate(LocalDate valueDate) {
+        this.valueDate = valueDate;
+    }
+
+    public String getWording() {
+        return this.wording;
+    }
+
+    public void setWording(String wording) {
+        this.wording = wording;
+    }
+}
