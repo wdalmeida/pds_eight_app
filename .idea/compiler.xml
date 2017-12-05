@@ -7,11 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="front-web" />
+        <module name="RecupMouvement" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="eight-app" target="1.8" />
+      <module name="eight-bank" target="1.8" />
       <module name="front-web" target="1.8" />
+      <module name="RecupMouvement" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -6,9 +6,9 @@
     <packaging>pom</packaging>
     <name>BEM application</name>
 
-
     <modules>
         <module>frontweb</module>
+        <module>RecupMouvement</module>
     </modules>
 
     <properties>
@@ -19,14 +19,9 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <lombok.version>1.16.18</lombok.version>
         <spring.version>1.5.8.RELEASE</spring.version>
+        
     </properties>
-    
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.8.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
+
 
     <dependencyManagement>
         <dependencies>
@@ -73,7 +68,7 @@
             <dependency>
                 <groupId>org.apache.logging.log4j</groupId>
                 <artifactId>log4j-core</artifactId>
-                <version>2.9.1</version>
+                <version>1.10.0</version>
             </dependency>
 
             <dependency>
