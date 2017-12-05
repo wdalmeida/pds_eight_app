@@ -17,6 +17,7 @@
         <module>back-end</module>
         <module>notify-client-transaction</module>
         <module>applicationweb</module>
+        <module>RecupMouvement</module>
     </modules>
 
     <properties>
@@ -123,6 +124,12 @@
                 <artifactId>postgresql</artifactId>
                 <version>42.1.4</version>
                 <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-core</artifactId>
+                <version>1.10.0</version>
             </dependency>
 
             <dependency>
