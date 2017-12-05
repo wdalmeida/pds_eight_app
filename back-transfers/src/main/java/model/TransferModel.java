@@ -1,5 +1,7 @@
 package model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.time.LocalDate;
 
 public class TransferModel {
@@ -10,6 +12,7 @@ public class TransferModel {
 
     private String beneficiaryIban;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate valueDate;
 
     private String wording;
@@ -52,5 +55,16 @@ public class TransferModel {
 
     public void setWording(String wording) {
         this.wording = wording;
+    }
+
+    @Override
+    public String toString() {
+        return "TransferModel{" +
+                "sendingIBAN='" + sendingIBAN + '\'' +
+                ", amount=" + amount +
+                ", beneficiaryIban='" + beneficiaryIban + '\'' +
+                ", valueDate=" + valueDate +
+                ", wording='" + wording + '\'' +
+                '}';
     }
 }
