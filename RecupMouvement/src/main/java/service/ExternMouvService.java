@@ -12,11 +12,11 @@ import repository.ExternMouvInter;
 @Service
 public class ExternMouvService {
 
-    @Autowired
+/*    @Autowired
     KafkaAutoConfiguration kafka;
 
     @Autowired
-    ExternMouvInter externMouvInter;
+    ExternMouvInter externMouvInter;*/
 
 
     public void read(){
