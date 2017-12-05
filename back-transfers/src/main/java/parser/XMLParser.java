@@ -16,7 +16,7 @@ import org.w3c.dom.Element;
 
 public class XMLParser {
 
-    public byte[] convertToSCTFormat(String sendingIBAN, double amount, String beneficiaryIban, LocalDate valueDate, String wording) {
+    public static byte[] convertToSCTFormat(String sendingIBAN, double amount, String beneficiaryIban, LocalDate valueDate, String wording) {
 
         try {
 
@@ -117,7 +117,7 @@ public class XMLParser {
 
             Element instdAmt = doc.createElement("InstdAmt");
             instdAmt.appendChild(doc.createTextNode("10.00"));
-            instdAmt.setAttribute("ccy", "EUR");
+            instdAmt.setAttribute("Ccy", "EUR");
             amt.appendChild(instdAmt);
 
             Element cdtr = doc.createElement("Cdtr");
