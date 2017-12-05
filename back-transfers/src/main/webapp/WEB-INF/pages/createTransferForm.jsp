@@ -20,7 +20,7 @@
         <form:input path="beneficiaryIban" id="beneficiaryIban" size="30"/>
         <form:errors path="beneficiaryIban"/><br/>
         <form:label path="valueDate" for="valueDate">Date de valeur</form:label>
-        <form:input path="valueDate" id="valueDate" size="30"/>
+        <form:input type="date" path="valueDate" id="valueDate" size="30"/>
         <form:errors path="valueDate"/><br/>
         <form:label path="wording" for="wording">Libellé</form:label>
         <form:input path="wording" id="wording" size="30"/>
