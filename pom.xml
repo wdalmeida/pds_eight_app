@@ -6,6 +6,7 @@
     <packaging>pom</packaging>
     <name>BEM application</name>
 
+
     <modules>
         <module>frontweb</module>
         <module>rest-account-services</module>

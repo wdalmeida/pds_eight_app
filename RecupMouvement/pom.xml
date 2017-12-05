@@ -17,7 +17,6 @@
 
 
     <dependencies>
-
         <dependency>
             <groupId>com.fasterxml.jackson.dataformat</groupId>
             <artifactId>jackson-dataformat-xml</artifactId>
@@ -32,6 +31,11 @@
             <artifactId>spring-kafka</artifactId>
             <version>1.1.0.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -53,15 +57,30 @@
             <artifactId>spring-boot-test</artifactId>
             <version>1.4.2.RELEASE</version>
         </dependency>
-    </dependencies>
-
         <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
      <!--   <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.5</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>1.5.8.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-commons-core</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+        <!- https://mvnrepository.com/artifact/org.springframework.data/spring-data-jpa -->
+        <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-mongodb</artifactId>
             <version>2.0.2.RELEASE</version>
         </dependency>
-       <dependency>
+        <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-mongodb</artifactId>
             <version>1.0.0.RELEASE</version>
@@ -70,9 +89,9 @@
             <groupId>org.mongodb</groupId>
             <artifactId>mongo-java-driver</artifactId>
             <version>3.5.0</version>
-        </dependency>-->
-
-    <!--<build>
+        </dependency>
+    </dependencies>
+    <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -80,5 +99,5 @@
             </plugin>
         </plugins>
 
-    </build>-->
+    </build>
 </project>
