@@ -18,6 +18,8 @@
         <module>applicationweb</module>
         <module>stock-market-api-gateway</module>
         <module>RecupMouvement</module>
+	    <module>rest-account-services</module>
+	    <module>notify-client-transaction</module>
     </modules>
 
     <properties>
