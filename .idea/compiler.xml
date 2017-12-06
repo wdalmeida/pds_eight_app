@@ -7,12 +7,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="front-web" />
+        <module name="notify-client-transaction" />
         <module name="rest-account-services" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="eight-bank" target="1.8" />
       <module name="front-web" target="1.8" />
+      <module name="notify-client-transaction" target="1.8" />
       <module name="rest-account-services" target="1.8" />
     </bytecodeTargetLevel>
   </component>
