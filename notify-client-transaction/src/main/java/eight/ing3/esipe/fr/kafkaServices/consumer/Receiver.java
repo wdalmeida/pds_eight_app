@@ -1,10 +1,5 @@
 package eight.ing3.esipe.fr.kafkaServices.consumer;
 
-import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.List;
-import java.util.concurrent.CountDownLatch;
-
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import eight.ing3.esipe.fr.entities.Transaction;
@@ -14,6 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 public class Receiver {
 
