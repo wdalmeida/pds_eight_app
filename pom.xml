@@ -9,6 +9,8 @@
 
     <modules>
         <module>frontweb</module>
+        <module>back-end</module>
+        <module>back-transfers</module>
     </modules>
 
     <properties>
@@ -19,22 +21,42 @@
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <lombok.version>1.16.18</lombok.version>
         <spring.version>1.5.8.RELEASE</spring.version>
+        <rome.version>1.8.0</rome.version>
     </properties>
-    
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.8.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
-    </parent>
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>1.5.8.RELEASE</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>${spring.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
 
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${spring.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+
+            </dependency>
+
+            <dependency>
+                <groupId>com.rometools</groupId>
+                <artifactId>rome</artifactId>
+                <version>${rome.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
 
             <dependency>
@@ -42,6 +64,7 @@
                 <artifactId>spring-boot-starter-aop</artifactId>
                 <version>${spring.version}</version>
                 <scope>provided</scope>
+                <type>pom</type>
             </dependency>
 
             <dependency>
@@ -55,6 +78,8 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-thymeleaf</artifactId>
                 <version>${spring.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
 
             <dependency>
@@ -62,31 +87,41 @@
                 <artifactId>spring-boot-devtools</artifactId>
                 <version>${spring.version}</version>
                 <optional>true</optional>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
 
             <dependency>
                 <groupId>org.postgresql</groupId>
                 <artifactId>postgresql</artifactId>
                 <version>42.1.4</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.logging.log4j</groupId>
-                <artifactId>log4j-core</artifactId>
-                <version>2.9.1</version>
+                <type>pom</type>
             </dependency>
 
             <dependency>
                 <groupId>org.webjars</groupId>
                 <artifactId>bootstrap</artifactId>
                 <version>3.3.5</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
 
             <dependency>
                 <groupId>org.webjars</groupId>
                 <artifactId>jquery</artifactId>
                 <version>2.1.4</version>
+                <scope>import</scope>
+                <type>pom</type>
             </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.7.25</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
 
             <!-- TEST -->
             <dependency>
@@ -109,7 +144,6 @@
                 <version>1.10.19</version>
                 <scope>test</scope>
             </dependency>
-
         </dependencies>
     </dependencyManagement>
 
@@ -118,6 +152,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>${spring.version}</version>
             </plugin>
         </plugins>
     </build>
