@@ -8,12 +8,14 @@ import com.rometools.rome.io.FeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 
 /**
  * @author Warren D'ALMEIDA
  *
  */
+@Component
 public class RSSReader {
 
     private static final Logger logger = Logger.getLogger(RSSReader.class);
@@ -29,8 +31,11 @@ public class RSSReader {
         logger.debug("What is in url ? ==>"+url);
         try {
             URL feedUrl = new URL(url);
+            logger.debug("JAVA.URL = " + feedUrl.toString());
             SyndFeedInput input = new SyndFeedInput();
-            feed= input.build(new XmlReader(feedUrl));
+            XmlReader xml = new XmlReader(feedUrl);
+            logger.debug("XML = " + xml.getEncoding());
+            feed = input.build(xml);
         } catch (FeedException | IOException e) {
             e.printStackTrace();
         }

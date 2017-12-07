@@ -1,55 +1,66 @@
 package eight.ing3.esipe.fr.rssfeed.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import eight.ing3.esipe.fr.rssfeed.bean.RSSFeed;
-import eight.ing3.esipe.fr.rssfeed.service.RssService;
-import eight.ing3.esipe.fr.rssfeed.service.RssServiceImpl;
+import eight.ing3.esipe.fr.rssfeed.service.IRssService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.times;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringRunner.class)
+@WebMvcTest(RSSController.class)
 public class RSSControllerTest {
 
-    @Mock
-    RssService rssService;
+    @Autowired
+    MockMvc mockMvc;
 
-    @InjectMocks
-    RSSController rssController;
+    @Autowired
+    ObjectMapper objectMapper;
+
+    @MockBean
+    IRssService IRssService;
 
     @Test
-    public void getOneNotNull() {
+    public void getOneNotNull() throws Exception {
         RSSFeed rss = new RSSFeed("t","t","t");
-        int id = 0;
-        ResponseEntity<RSSFeed> expected =  new ResponseEntity<>(rss, HttpStatus.OK) ;
+        int id = 1;
+        String expectedJson = objectMapper.writeValueAsString(rss);
 
-        when(rssService.getOne(id)).thenReturn(rss);
-        ResponseEntity<RSSFeed> result =rssController.getOne(id);
+        //When
+        when(IRssService.getOne(id)).thenReturn(rss);
 
 
-        verify(rssService,times(1)).getOne(id);
-        assertEquals(expected,result);
+        //Verify
+        mockMvc.perform(get("http://localhost/rss/"+id))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType("application/json;charset=UTF-8"))
+                .andExpect(content().json(expectedJson));
+
+        verify(IRssService,times(1)).getOne(id);
     }
 
     @Test
-    public void getOneNull(){
-        int id = 0;
-        ResponseEntity<RSSFeed> expected =  new ResponseEntity<>(HttpStatus.NO_CONTENT) ;
+    public void getOneNull() throws Exception {
+        int id = 1;
 
-        when(rssService.getOne(id)).thenReturn(null);
-        ResponseEntity<RSSFeed> result =rssController.getOne(id);
+        //When
+        when(IRssService.getOne(id)).thenReturn(null);
 
-
-        verify(rssService,times(1)).getOne(id);
-        assertEquals(expected,result);
+        //Then
+        mockMvc.perform(get("http://localhost/rss/"+id))
+                .andExpect(status().isNoContent());
+        verify(IRssService,times(1)).getOne(id);
     }
 
 }
