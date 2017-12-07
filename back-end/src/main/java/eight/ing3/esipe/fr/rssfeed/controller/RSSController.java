@@ -2,7 +2,7 @@ package eight.ing3.esipe.fr.rssfeed.controller;
 
 
 import eight.ing3.esipe.fr.rssfeed.bean.RSSFeed;
-import eight.ing3.esipe.fr.rssfeed.service.RssService;
+import eight.ing3.esipe.fr.rssfeed.service.IRssService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class RSSController {
     private static final Logger logger = LoggerFactory.getLogger(RSSController.class);
 
     @Autowired
-    private RssService rssService;
+    private IRssService IRssService;
 
     /**
      * Method to get a news on the BFM feed
@@ -33,7 +33,8 @@ public class RSSController {
      */
     @GetMapping("/rss/{id}")
     public  ResponseEntity<RSSFeed> getOne(@PathVariable int id) {
-        RSSFeed rss = rssService.getOne(id);
+        logger.debug("Get news : " + id);
+        RSSFeed rss = IRssService.getOne(id);
         return (rss!=null) ?
                 new ResponseEntity<>(rss, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

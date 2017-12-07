@@ -6,6 +6,7 @@ import eight.ing3.esipe.fr.rssfeed.bean.RSSFeed;
 import eight.ing3.esipe.fr.rssfeed.utilty.RSSReader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -14,9 +15,13 @@ import org.springframework.stereotype.Service;
  * @author Warren D'ALMEIDA
  */
 @Service
-public class RssServiceImpl implements RssService {
+public class RssServiceImpl implements IRssService {
 
     private static final Logger logger = LoggerFactory.getLogger(RssServiceImpl.class);
+
+    @Autowired
+    private RSSReader reader;
+
 
     /**
      * Convert the feed to one object
@@ -27,8 +32,8 @@ public class RssServiceImpl implements RssService {
     @Override
     public RSSFeed getOne(int id) {
         String url="http://bfmbusiness.bfmtv.com/rss/info/flux-rss/flux-toutes-les-actualites/";
-        logger.debug("Get news : " + id);
-        SyndFeed rss = new RSSReader().read(url);
+        logger.debug("Service news : " + id);
+        SyndFeed rss = reader.read(url);
         SyndEntry se = rss.getEntries().get(id);
         RSSFeed rf = new RSSFeed(se.getTitle(),se.getLink(),se.getDescription().getValue());
         return  rf;

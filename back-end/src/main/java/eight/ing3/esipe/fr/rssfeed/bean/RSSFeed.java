@@ -37,4 +37,13 @@ public class RSSFeed {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "RSSFeed{" +
+                "title='" + title + '\'' +
+                ", link='" + link + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
