@@ -2,15 +2,14 @@ package eight.ing3.esipe.fr.accountServices.accountServices.services;
 
 
 import dto.AccountDto;
+import dto.AccountType;
 import dto.CredentialDto;
 import dto.UserDto;
+import eight.ing3.esipe.fr.accountServices.GenericException;
 import entity.AccountEntity;
 import entity.UserEntity;
-import org.dozer.DozerBeanMapper;
-import org.dozer.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.AccountRepository;
 import repository.UserRepository;
 
 import java.util.List;
@@ -20,46 +19,48 @@ import java.util.stream.Collectors;
 public class AccountService implements IAccountService {
 
 
-    private final Mapper dozer;
-
-  /*  @Override
-    public List<AccountDto> getAllAccount(String UserId) {
-        return null;
-    }
-*/
-    private final AccountRepository accountRepository;
     private final UserRepository userRepository;
 
 
 
     @Autowired
-    public AccountService(AccountRepository accountRepository, UserRepository userRepository) {
+    public AccountService(UserRepository userRepository) {
         this.userRepository = userRepository;
-        this.accountRepository = accountRepository;
-        this.dozer = new DozerBeanMapper();
+
     }
 
 
-    public UserDto getUserById(String userId){
-        System.out.print("userId entity"+ userId);
+    public UserDto getUserById(String userId) throws GenericException {
+
         UserEntity userEntity = userRepository.findOne(Long.parseLong(userId));
-        System.out.print(userEntity.getFirstName());
-       return UserDto.builder()
-                .credential(CredentialDto.builder().userId(String.valueOf(userEntity.getUserId())).password(userEntity.getPassword()).build())
-        .firstName(userEntity.getFirstName())
-                .lastName(userEntity.getLastName())
-                .accountDtoList(accountEntitiesToAccountDtoList(userEntity.getAccounts()))
-                .build() ;
-        //return dozer.map(userEntity,UserDto.class);
-    }
+
+
+        if(userEntity == null) {
+
+                throw new GenericException("No user found with this id " + userId);
+        }
+        else {
+            return UserDto.builder()
+                    .credential(CredentialDto.builder().userId(String.valueOf(userEntity.getUserId())).password(userEntity.getPassword()).build())
+                    .firstName(userEntity.getFirstName())
+                    .lastName(userEntity.getLastName())
+                    .accountDtoList(accountEntitiesToAccountDtoList(userEntity.getAccounts()))
+                    .build();
+        }
+
+
+
+       }
+
+
 
     public List<AccountDto> accountEntitiesToAccountDtoList(List<AccountEntity> accountEntities){
         return accountEntities
                 .stream()
                 .map(
                         a -> AccountDto.builder()
-                                .accountNumber(String.valueOf(a.getAccountNumber()))
-                                .type(a.getType())
+                                .accountNumber(a.getAccountNumber())
+                                .type(AccountType.valueOf(a.getType()))
                                 .balance(a.getBalance())
                                 .build()
                 )
@@ -67,10 +68,11 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public List<AccountDto> getAllAccount(String userId) {
+    public List<AccountDto> getAllAccount(String userId) throws GenericException {
 
-        System.out.println("valeur userId dans service"+userId);
+
         return getUserById(userId).getAccountDtoList();
+
     }
 
 

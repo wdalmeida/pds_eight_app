@@ -19,22 +19,10 @@ public class AccountDto {
 
     private String accountNumber;
 
-    private String type;
+    private AccountType type;
 
     private int balance;
 
-    //private static List<AccountDto> accountList;
 
-   /* static {
-        accountList = new ArrayList<>();
-        AccountDto a1 = new AccountDto(Long.parseLong("1"),"CCP",200);
-        AccountDto a2 = new AccountDto(Long.parseLong("2"),"LivretA",400);
-        accountList.add(a1);
-        accountList.add(a2);
-    }
-*/
-
-  //  public static List<AccountDto> getAccountList() {
-        //return accountList;
     }
 

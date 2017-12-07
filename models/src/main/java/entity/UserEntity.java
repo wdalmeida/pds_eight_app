@@ -11,7 +11,7 @@ import java.util.List;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
     long userId;
 
     @Column (name = "password")
@@ -25,7 +25,12 @@ public class UserEntity {
     @OneToMany(mappedBy = "user")
     private List<AccountEntity> accounts;
 
+    public UserEntity(){};
 
-
-
+    public UserEntity(String password, String firstName, String lastName, List<AccountEntity> accounts) {
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.accounts = accounts;
+    }
 }

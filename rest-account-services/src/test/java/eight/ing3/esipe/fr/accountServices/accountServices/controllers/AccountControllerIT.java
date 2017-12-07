@@ -16,27 +16,36 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = RestAccountServicesApplication.class)
-@ActiveProfiles("test")
+//@ActiveProfiles("test")
 public class AccountControllerIT {
 	
 	TestRestTemplate restTemplate = new TestRestTemplate();
-/*	@Autowired
-	private TestRestTemplate restTemplate;
-	*/
+
 	
 	
 	@Test
 	public void test() throws JSONException{
 		
 		HttpHeaders headers = new HttpHeaders();
-        headers.add(HttpHeaders.AUTHORIZATION, "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxIiwiZmlyc3ROYW1lIjoiYW50aG9ueSIsImxhc3ROYW1lIjoicGVyYXVsdCIsImlhdCI6MTUxMjYwMTE1M30._CE4PvFBpQ76V3V3ybyCTA6cZOMLqx4bHteM23v8YUAGzYCORti_NBS74i6weQrlPPfM6Ehc8f2IjZ-WePYkpw");
-		
-		//HttpEntity<String> entity = new HttpEntity<String>(null, headers);
+        headers.add(HttpHeaders.AUTHORIZATION, "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTYiLCJmaXJzdE5hbWUiOiJwZXJhdWx0IiwibGFzdE5hbWUiOiJhbnRob255IiwiaWF0IjoxNTEyNjU5MjM2fQ.abjq-jI9ar2tvfrJUjPLb2laJywQ2vLXrKBFzvvaHsP8KhDeCF7Kx8Mw17k-FkQmlQha6R83pg5riO_6GJOjPA");
 		
 		ResponseEntity<String> response = restTemplate.exchange("http://localhost:8181/accounts", HttpMethod.GET,new HttpEntity<>(headers),String.class);
 		System.out.println(response);
-		
-		JSONAssert.assertEquals("dummy", response.getBody(), false);
+
+		String expectedJson = "[\n" +
+				"    {\n" +
+				"        \"accountNumber\": \"123456U\",\n" +
+				"        \"type\": \"CCB\",\n" +
+				"        \"balance\": 200\n" +
+				"    },\n" +
+				"    {\n" +
+				"        \"accountNumber\": \"123456D\",\n" +
+				"        \"type\": \"PEL\",\n" +
+				"        \"balance\": 100\n" +
+				"    }\n" +
+				"]";
+
+		JSONAssert.assertEquals(expectedJson, response.getBody(), false);
 		
 		
 		

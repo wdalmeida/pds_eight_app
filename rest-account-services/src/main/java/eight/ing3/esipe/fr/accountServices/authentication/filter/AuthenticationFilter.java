@@ -50,6 +50,7 @@ public class AuthenticationFilter extends GenericFilterBean {
         try {
             Claims claims = /*jwtService.verifyToken(jwtToken)*/  Jwts.parser().setSigningKey("MTIzc2Z2MWU2djFlcnYxOThlcjF2NXYxOWU4YjFlNjViMTY1ZWYxYnY5OGU0ZmI".getBytes()).parseClaimsJws(jwtToken).getBody();
             System.out.println(claims.getSubject());
+            httpServletRequest.setAttribute("userId",claims.getSubject());
             httpServletRequest.setAttribute("claims",claims);
             System.out.println(httpServletRequest.toString());
         }

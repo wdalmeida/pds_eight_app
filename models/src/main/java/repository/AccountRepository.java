@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
 
-public interface AccountRepository extends CrudRepository<AccountEntity,Long> {
+public interface AccountRepository extends CrudRepository<AccountEntity,String> {
 
 }
