@@ -9,7 +9,6 @@
 
     <modules>
         <module>frontweb</module>
-        <module>back-end</module>
         <module>back-transfers</module>
     </modules>
 
