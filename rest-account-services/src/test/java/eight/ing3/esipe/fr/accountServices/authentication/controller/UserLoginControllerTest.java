@@ -88,8 +88,7 @@ public class UserLoginControllerTest {
         when(userLoginServiceMock.checkCredentials(trueCredentialDto)).thenReturn(userDto);
         when(jwtServiceMock.createToken(userDto)).thenReturn("fakeToken");
 
-        /*mockMvc.perform(post("/auth").content(mapper.writeValueAsString(trueCredentialDto)).contentType(MediaType.APPLICATION_JSON_UTF8)).andDo(print())
-                .andExpect(status().isOk());*/
+
         mockMvc.perform(rq).andDo(print())
         .andExpect(status().isOk())
         .andExpect(content().string("fakeToken"));

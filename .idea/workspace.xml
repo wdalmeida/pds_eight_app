@@ -3,19 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="0ddb9b4a-7969-47e8-b1b8-ffda80a0ec0b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/src/main/java/dto/AccountDto.java" afterPath="$PROJECT_DIR$/models/src/main/java/dto/AccountDto.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/src/main/java/entity/AccountEntity.java" afterPath="$PROJECT_DIR$/models/src/main/java/entity/AccountEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/src/main/java/entity/UserEntity.java" afterPath="$PROJECT_DIR$/models/src/main/java/entity/UserEntity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/src/main/java/repository/AccountRepository.java" afterPath="$PROJECT_DIR$/models/src/main/java/repository/AccountRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/src/main/java/repository/UserRepository.java" afterPath="$PROJECT_DIR$/models/src/main/java/repository/UserRepository.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-account-services/pom.xml" afterPath="$PROJECT_DIR$/rest-account-services/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountController.java" afterPath="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/accountServices/services/AccountService.java" afterPath="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/accountServices/services/AccountService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/accountServices/services/IAccountService.java" afterPath="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/accountServices/services/IAccountService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/authentication/controller/UserLoginController.java" afterPath="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/authentication/controller/UserLoginController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/authentication/filter/AuthenticationFilter.java" afterPath="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/authentication/filter/AuthenticationFilter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-account-services/src/main/resources/application-test.properties" afterPath="$PROJECT_DIR$/rest-account-services/src/main/resources/application-test.properties" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-account-services/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/rest-account-services/src/main/resources/application.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerIT.java" afterPath="$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerIT.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/authentication/controller/UserLoginControllerTest.java" afterPath="$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/authentication/controller/UserLoginControllerTest.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerIT.java" afterPath="$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerITest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/frontweb/target/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -39,38 +30,18 @@
       <file leaf-file-name="application.properties" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+            <state relative-caret-position="51">
+              <caret line="3" column="66" lean-forward="false" selection-start-line="3" selection-start-column="66" selection-end-line="3" selection-end-column="66" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AccountService.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AccountService.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/accountServices/services/AccountService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
+            <state relative-caret-position="102">
               <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserDto.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/src/main/java/dto/UserDto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccountController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -79,31 +50,61 @@
       <file leaf-file-name="UserEntity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/src/main/java/entity/UserEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="468">
-              <caret line="29" column="22" lean-forward="false" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
+            <state relative-caret-position="183">
+              <caret line="29" column="105" lean-forward="true" selection-start-line="29" selection-start-column="105" selection-end-line="29" selection-end-column="105" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application-test.properties" pinned="false" current-in-tab="false">
+      <file leaf-file-name="application-test.properties" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/resources/application-test.properties">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="187">
+              <caret line="11" column="28" lean-forward="true" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="RestAccountServicesApplication.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/RestAccountServicesApplication.java">
+      <file leaf-file-name="data.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/resources/data.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+            <state relative-caret-position="85">
+              <caret line="5" column="32" lean-forward="false" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccountControllerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="546">
+              <caret line="42" column="13" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
               <folding>
-                <element signature="e#1240#1241#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AccountServiceTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/services/AccountServiceTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="731">
+              <caret line="62" column="44" lean-forward="false" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserLoginControllerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/authentication/controller/UserLoginControllerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -111,28 +112,18 @@
       <file leaf-file-name="AccountEntity.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/src/main/java/entity/AccountEntity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
+            <state relative-caret-position="268">
               <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest-account-services/pom.xml">
+      <file leaf-file-name="AccountControllerITest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerITest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AccountControllerIT.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerIT.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="21" column="45" lean-forward="true" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+            <state relative-caret-position="374">
+              <caret line="35" column="37" lean-forward="true" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -175,7 +166,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/authentication-services/src/main/java/service/IUserLoginService.java" />
         <option value="$PROJECT_DIR$/authentication-services/src/main/java/service/UserLoginService.java" />
         <option value="$PROJECT_DIR$/models/src/main/java/modelsconverter/DozerMapper.java" />
         <option value="$PROJECT_DIR$/authentication-services/src/main/java/controller/UserLoginController.java" />
@@ -207,7 +197,6 @@
         <option value="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/GenericException.java" />
         <option value="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountController.java" />
         <option value="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/TestContext.java" />
-        <option value="$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/authentication/controller/UserLoginControllerTest.java" />
         <option value="$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/ApplicationTest.java" />
         <option value="$PROJECT_DIR$/rest-account-services/src/test/resources/userAndAccountData.xml" />
         <option value="$PROJECT_DIR$/models/src/main/java/dto/AccountType.java" />
@@ -217,15 +206,17 @@
         <option value="$PROJECT_DIR$/models/src/main/java/repository/AccountRepository.java" />
         <option value="$PROJECT_DIR$/models/src/main/java/dto/CredentialDto.java" />
         <option value="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/accountServices/services/AccountService.java" />
-        <option value="$PROJECT_DIR$/rest-account-services/src/main/resources/application-test.properties" />
         <option value="$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerTest.java" />
-        <option value="$PROJECT_DIR$/rest-account-services/src/main/resources/data.sql" />
         <option value="$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/services/AccountServiceTest.java" />
         <option value="$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/authentication/controller/UserLoginController.java" />
-        <option value="$PROJECT_DIR$/rest-account-services/src/main/resources/application.properties" />
         <option value="$PROJECT_DIR$/rest-account-services/pom.xml" />
         <option value="$PROJECT_DIR$/models/src/main/java/entity/AccountEntity.java" />
+        <option value="$PROJECT_DIR$/rest-account-services/src/main/resources/data.sql" />
+        <option value="$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/authentication/controller/UserLoginControllerTest.java" />
         <option value="$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerIT.java" />
+        <option value="$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerITest.java" />
+        <option value="$PROJECT_DIR$/rest-account-services/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/rest-account-services/src/main/resources/application-test.properties" />
       </list>
     </option>
   </component>
@@ -248,9 +239,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="width" value="1932" />
-    <option name="height" value="1048" />
+    <option name="x" value="-7" />
+    <option name="width" value="1546" />
+    <option name="height" value="830" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -270,7 +261,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -509,8 +499,9 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -567,8 +558,8 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.AccountControllerIT">
-    <configuration name="AccountControllerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.AccountControllerITest.test">
+    <configuration name="AccountControllerITest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
           <option name="PATTERN" value="eight.ing3.esipe.fr.accountServices.accountServices.controllers.*" />
@@ -579,9 +570,34 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="eight.ing3.esipe.fr.accountServices.accountServices.controllers" />
-      <option name="MAIN_CLASS_NAME" value="eight.ing3.esipe.fr.accountServices.accountServices.controllers.AccountControllerIT" />
+      <option name="MAIN_CLASS_NAME" value="eight.ing3.esipe.fr.accountServices.accountServices.controllers.AccountControllerITest" />
       <option name="METHOD_NAME" />
       <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="AccountControllerITest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="eight.ing3.esipe.fr.accountServices.accountServices.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="rest-account-services" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="eight.ing3.esipe.fr.accountServices.accountServices.controllers" />
+      <option name="MAIN_CLASS_NAME" value="eight.ing3.esipe.fr.accountServices.accountServices.controllers.AccountControllerITest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -655,31 +671,6 @@
       <option name="SPRING_BOOT_MAIN_CLASS" value="eight.ing3.esipe.fr.accountServices.RestAccountServicesApplication" />
       <module name="rest-account-services" />
       <envs />
-    </configuration>
-    <configuration name="UserLoginControllerTest.signInAttemptFail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="eight.ing3.esipe.fr.accountServices.authentication.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <module name="rest-account-services" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="eight.ing3.esipe.fr.accountServices.authentication.controller" />
-      <option name="MAIN_CLASS_NAME" value="eight.ing3.esipe.fr.accountServices.authentication.controller.UserLoginControllerTest" />
-      <option name="METHOD_NAME" value="signInAttemptFail" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="singleModule" />
-      </option>
-      <envs />
-      <patterns />
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
@@ -803,19 +794,19 @@
       <item index="0" class="java.lang.String" itemvalue="Spring Boot.FrontApplication" />
       <item index="1" class="java.lang.String" itemvalue="Spring Boot.RestAccountServicesApplication" />
       <item index="2" class="java.lang.String" itemvalue="Spring Boot.App" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.UserLoginControllerTest.signInAttemptFail" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.All in rest-account-services" />
-      <item index="5" class="java.lang.String" itemvalue="JUnit.AccountControllerIT" />
-      <item index="6" class="java.lang.String" itemvalue="JUnit.AccountServiceTest.getUserById" />
-      <item index="7" class="java.lang.String" itemvalue="JUnit.eight.ing3.esipe.fr.accountServices in rest-account-services" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.All in rest-account-services" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.AccountControllerITest" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.AccountServiceTest.getUserById" />
+      <item index="6" class="java.lang.String" itemvalue="JUnit.eight.ing3.esipe.fr.accountServices in rest-account-services" />
+      <item index="7" class="java.lang.String" itemvalue="JUnit.AccountControllerITest.test" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.AccountControllerIT" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.eight.ing3.esipe.fr.accountServices in rest-account-services" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.AccountControllerITest.test" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.AccountControllerITest" />
         <item index="2" class="java.lang.String" itemvalue="JUnit.All in rest-account-services" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.AccountServiceTest.getUserById" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.UserLoginControllerTest.signInAttemptFail" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.eight.ing3.esipe.fr.accountServices in rest-account-services" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.AccountServiceTest.getUserById" />
       </list>
     </recent_temporary>
   </component>
@@ -857,47 +848,48 @@
       <workItem from="1512594569440" duration="529000" />
       <workItem from="1512595165859" duration="10735000" />
       <workItem from="1512635713273" duration="3325000" />
-      <workItem from="1512651828879" duration="9374000" />
+      <workItem from="1512651828879" duration="10653000" />
+      <workItem from="1512675268787" duration="5515000" />
     </task>
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="AccountControllerIT - 2017.12.07 at 14h 49m 08s.xml">
+    <history-entry file="AccountControllerIT - 2017.12.07 at 22h 56m 59s.xml">
       <configuration name="AccountControllerIT" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AccountControllerIT - 2017.12.07 at 16h 18m 56s.xml">
+    <history-entry file="AccountControllerIT - 2017.12.07 at 22h 57m 23s.xml">
       <configuration name="AccountControllerIT" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AccountServiceTest_getUserById - 2017.12.07 at 02h 13m 31s.xml">
-      <configuration name="AccountServiceTest.getUserById" configurationId="JUnit" />
+    <history-entry file="AccountControllerIT - 2017.12.07 at 23h 14m 08s.xml">
+      <configuration name="AccountControllerIT" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="AccountServiceTest_getUserById - 2017.12.07 at 02h 19m 53s.xml">
-      <configuration name="AccountServiceTest.getUserById" configurationId="JUnit" />
+    <history-entry file="AccountControllerIT - 2017.12.07 at 23h 24m 23s.xml">
+      <configuration name="AccountControllerIT" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_rest-account-services - 2017.12.07 at 01h 02m 12s.xml">
+    <history-entry file="AccountControllerIT - 2017.12.07 at 23h 28m 54s.xml">
+      <configuration name="AccountControllerIT" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="AccountControllerIT_test - 2017.12.07 at 23h 29m 29s.xml">
+      <configuration name="AccountControllerIT.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="All_in_rest-account-services - 2017.12.07 at 22h 39m 29s.xml">
       <configuration name="All in rest-account-services" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_rest-account-services - 2017.12.07 at 01h 04m 07s.xml">
+    <history-entry file="All_in_rest-account-services - 2017.12.07 at 22h 40m 40s.xml">
       <configuration name="All in rest-account-services" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_rest-account-services - 2017.12.07 at 01h 57m 29s.xml">
+    <history-entry file="All_in_rest-account-services - 2017.12.07 at 23h 05m 46s.xml">
       <configuration name="All in rest-account-services" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="All_in_rest-account-services - 2017.12.07 at 02h 02m 18s.xml">
-      <configuration name="All in rest-account-services" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_rest-account-services - 2017.12.07 at 09h 36m 05s.xml">
-      <configuration name="All in rest-account-services" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="eight_ing3_esipe_fr_accountServices_in_rest-account-services - 2017.12.07 at 14h 21m 22s.xml">
+    <history-entry file="eight_ing3_esipe_fr_accountServices_in_rest-account-services - 2017.12.07 at 22h 54m 56s.xml">
       <configuration name="eight.ing3.esipe.fr.accountServices in rest-account-services" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="127850000" />
+    <option name="totallyTimeSpent" value="134644000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -906,27 +898,27 @@
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5197368" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5190275" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4232456" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.422833" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6607516" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -943,18 +935,18 @@
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3541226" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5190275" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.6607516" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35095137" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.422833" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2375" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="SonarLint" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980973" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -1086,7 +1078,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1094,10 +1085,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="5" column="23" lean-forward="false" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
-          <folding>
-            <element signature="e#141#142#0" expanded="false" />
-            <element signature="e#171#172#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1105,14 +1092,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="22" column="63" lean-forward="false" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/authentication/controller/UserLoginControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="91" column="46" lean-forward="false" selection-start-line="91" selection-start-column="46" selection-end-line="91" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1143,10 +1122,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="22" column="38" lean-forward="false" selection-start-line="22" selection-start-column="38" selection-end-line="22" selection-end-column="38" />
-          <folding>
-            <element signature="e#679#680#0" expanded="false" />
-            <element signature="e#732#733#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1169,17 +1144,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1197">
-          <caret line="92" column="51" lean-forward="false" selection-start-line="92" selection-start-column="51" selection-end-line="92" selection-end-column="51" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/resources/data.sql" />
     <entry file="file://$PROJECT_DIR$/models/src/main/java/repository/AccountRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -1188,21 +1152,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/services/AccountServiceTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="903">
-          <caret line="62" column="44" lean-forward="false" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/src/main/java/dto/AccountType.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" column="12" lean-forward="false" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1214,14 +1167,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/resources/data.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="23" lean-forward="false" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/resources/data.sql" />
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="910">
@@ -1234,7 +1180,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="6" column="83" lean-forward="false" selection-start-line="6" selection-start-column="83" selection-end-line="6" selection-end-column="83" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1243,62 +1188,22 @@
         <state relative-caret-position="294">
           <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
-            <element signature="e#1240#1241#0" expanded="true" />
+            <element signature="e#1240#1241#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rest-account-services/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
+        <state relative-caret-position="714">
           <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/src/main/java/entity/AccountEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/resources/application.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/resources/application-test.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerIT.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="21" column="45" lean-forward="true" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/src/main/java/entity/UserEntity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="29" column="22" lean-forward="false" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/src/main/java/dto/UserDto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
+        <state relative-caret-position="238">
           <caret line="20" column="29" lean-forward="false" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
           <folding />
         </state>
@@ -1306,7 +1211,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
+        <state relative-caret-position="289">
           <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
           <folding />
         </state>
@@ -1314,8 +1219,82 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/java/eight/ing3/esipe/fr/accountServices/accountServices/services/AccountService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
+        <state relative-caret-position="102">
           <caret line="18" column="13" lean-forward="false" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/resources/data.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="32" lean-forward="false" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/src/main/java/entity/AccountEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/src/main/java/entity/UserEntity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="29" column="105" lean-forward="true" selection-start-line="29" selection-start-column="105" selection-end-line="29" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/authentication/controller/UserLoginControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/services/AccountServiceTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="62" column="44" lean-forward="false" selection-start-line="62" selection-start-column="44" selection-end-line="62" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="42" column="13" lean-forward="false" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest-account-services/src/test/java/eight/ing3/esipe/fr/accountServices/accountServices/controllers/AccountControllerITest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="35" column="37" lean-forward="true" selection-start-line="35" selection-start-column="37" selection-end-line="35" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="66" lean-forward="false" selection-start-line="3" selection-start-column="66" selection-end-line="3" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rest-account-services/src/main/resources/application-test.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="28" lean-forward="true" selection-start-line="11" selection-start-column="28" selection-end-line="11" selection-end-column="28" />
           <folding />
         </state>
       </provider>

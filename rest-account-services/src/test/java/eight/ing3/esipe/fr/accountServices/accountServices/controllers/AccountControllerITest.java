@@ -12,19 +12,20 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = RestAccountServicesApplication.class)
-//@ActiveProfiles("test")
-public class AccountControllerIT {
+@SpringBootTest(classes = RestAccountServicesApplication.class,webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
+@ActiveProfiles("test")
+public class AccountControllerITest {
 	
 	TestRestTemplate restTemplate = new TestRestTemplate();
 
 	
 	
 	@Test
-	public void test() throws JSONException{
+	public void ShouldReturnExpectedAccountList_withThisToken() throws JSONException{
 		
 		HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.AUTHORIZATION, "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTYiLCJmaXJzdE5hbWUiOiJwZXJhdWx0IiwibGFzdE5hbWUiOiJhbnRob255IiwiaWF0IjoxNTEyNjU5MjM2fQ.abjq-jI9ar2tvfrJUjPLb2laJywQ2vLXrKBFzvvaHsP8KhDeCF7Kx8Mw17k-FkQmlQha6R83pg5riO_6GJOjPA");
