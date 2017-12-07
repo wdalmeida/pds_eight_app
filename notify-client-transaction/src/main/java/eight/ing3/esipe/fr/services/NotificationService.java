@@ -24,6 +24,9 @@ public class NotificationService {
 
 
     @Autowired
+    Notification notification = new Notification();
+
+    @Autowired
     private XmlMapper xmlMapper;
 
     @Autowired
