@@ -6,21 +6,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>eight.ing3.esipe.fr</groupId>
     <artifactId>back-transfers</artifactId>
-    <packaging>war</packaging>
-    <name>back-transfers</name>
-
-    <properties>
-        <java.version>1.8</java.version>
-        <maven.compile.source>${java.version}</maven.compile.source>
-        <maven.compile.target>${java.version}</maven.compile.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.5.8.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <artifactId>eight-bank</artifactId>
+        <groupId>eight.ing3.esipe.fr</groupId>
+        <version>1.0.0-SNAPSHOT</version>
     </parent>
 
     <dependencies>
