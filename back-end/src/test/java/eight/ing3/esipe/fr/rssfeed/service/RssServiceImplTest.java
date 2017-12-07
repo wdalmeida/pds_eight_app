@@ -11,6 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -42,17 +43,26 @@ public class RssServiceImplTest {
         String title="Title";
         String link="Link :";
         String description="Description";
+        String imgUrl = "http://localhost/img.png";
 
         SyndContent descriptionContent = new SyndContentImpl();
         descriptionContent.setType("text/plain");
         descriptionContent.setValue(description);
 
+        SyndEnclosure enclosure = new SyndEnclosureImpl();
+        enclosure.setUrl(imgUrl);
+        enclosure.setType("img");
+
+        List<SyndEnclosure> syndEnclosureList = new ArrayList<>();
+        syndEnclosureList.add(enclosure);
+
         entri = new SyndEntryImpl();
         entri.setTitle(title);
         entri.setDescription(descriptionContent);
         entri.setLink(link);
+        entri.setEnclosures(syndEnclosureList);
         entries.add(entri);
-        RSSFeed expected = new RSSFeed(title,link,description);
+        RSSFeed expected = new RSSFeed(title,link,description,imgUrl);
         int id = 1;
 
         //WHEN
@@ -75,6 +85,9 @@ public class RssServiceImplTest {
 
         assertEquals(expected.getDescription(),result.getDescription());
         logger.debug("Expected desciption was "+expected.getDescription()+"| Result is "+ result.getDescription());
+
+        assertEquals(expected.getImg(),result.getImg());
+        logger.debug("Expected image url was "+expected.getImg()+"| Result is "+ result.getImg());
 
     }
 }

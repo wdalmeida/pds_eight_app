@@ -35,7 +35,7 @@ public class RssServiceImpl implements IRssService {
         logger.debug("Service news : " + id);
         SyndFeed rss = reader.read(url);
         SyndEntry se = rss.getEntries().get(id);
-        RSSFeed rf = new RSSFeed(se.getTitle(),se.getLink(),se.getDescription().getValue());
+        RSSFeed rf = new RSSFeed(se.getTitle(),se.getLink(),se.getDescription().getValue(),se.getEnclosures().get(0).getUrl());
         return  rf;
     }
 }
