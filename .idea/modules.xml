@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/frontweb/front-web.iml" filepath="$PROJECT_DIR$/frontweb/front-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/notify-client-transaction/notify-client-transaction.iml" filepath="$PROJECT_DIR$/notify-client-transaction/notify-client-transaction.iml" />
       <module fileurl="file://$PROJECT_DIR$/rest-account-services/rest-account-services.iml" filepath="$PROJECT_DIR$/rest-account-services/rest-account-services.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RecupMouvement/RecupMouvement.iml" filepath="$PROJECT_DIR$/RecupMouvement/RecupMouvement.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eight-bank.iml" filepath="$PROJECT_DIR$/eight-bank.iml" />
     </modules>
   </component>
 </project>
