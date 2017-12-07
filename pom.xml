@@ -13,6 +13,7 @@
         <module>models</module>
         <module>authentication-services</module>
         <module>back-transfers</module>
+        <module>front-transfers</module>
     </modules>
 
     <properties>
