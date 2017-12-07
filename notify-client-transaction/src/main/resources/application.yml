@@ -1,13 +1,8 @@
 kafka:
   bootstrap-servers: localhost:9092
   topic:
-    helloworld: helloworld.t
+    transactionQueue: transactionQueue.t
 
-
-# Spring Documentation: https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-sql.html
-# Spring database configuration for 1 default database
-# Spring default DataSource implementation is [tomcat-jdbc](https://tomcat.apache.org/tomcat-8.0-doc/jdbc-pool.html)
-#       If you use the spring-boot-starter-jdbc or spring-boot-starter-data-jpa ‘starters’ you will automatically get a dependency to tomcat-jdbc.
 spring :
   datasource :
     url : jdbc:postgresql://localhost:5432/Test

@@ -1,4 +1,4 @@
-package eight.ing3.esipe.fr.bean;
+package eight.ing3.esipe.fr.entities;
 
 import java.util.Date;
 

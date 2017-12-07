@@ -1,4 +1,4 @@
-package eight.ing3.esipe.fr.bean;
+package eight.ing3.esipe.fr.entities;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -8,7 +8,12 @@ import java.util.Date;
 public class Notification {
 
         @Id
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        @SequenceGenerator(name="notification_id_notification_seq",
+                          sequenceName="notification_id_notification_seq",
+                          allocationSize=1)
+        @GeneratedValue(strategy = GenerationType.SEQUENCE,
+                        generator = "notification_id_notification_seq")
+        @Column(name = "id_notification")
         int idNotification;
         @Column (name = "idaccount")
         Integer idAccount;
@@ -76,14 +81,13 @@ public class Notification {
         public void setDetails(String details) {
                 this.details = details;
         }
-    DateTransaction dateTransaction;
+
+
         public Date getDate() {
-            date = new Date(dateTransaction.getYear(), dateTransaction.getMonth(), dateTransaction.getDay());
                 return date;
         }
 
         public void setDate(Date date) {
-            date = new Date(dateTransaction.getYear(), dateTransaction.getMonth(), dateTransaction.getDay());
                 this.date = date;
         }
 
