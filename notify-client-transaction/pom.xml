@@ -8,11 +8,11 @@
     <name>notify-client-transaction</name>
 
 
-  <parent>
-    <groupId>eight.ing3.esipe.fr</groupId>
-    <artifactId>eight-bank</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
-  </parent>
+    <parent>
+        <groupId>eight.ing3.esipe.fr</groupId>
+        <artifactId>eight-bank</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
 
     <properties>
         <java.version>1.8</java.version>
