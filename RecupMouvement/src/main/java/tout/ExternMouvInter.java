@@ -1,4 +1,4 @@
-package repository;
+package tout;
 
 import org.springframework.stereotype.Repository;
 
