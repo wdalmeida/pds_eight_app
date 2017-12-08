@@ -47,18 +47,17 @@ public class NotificationService {
     @Transactional
     public void createNotification(Double amount, Timestamp date, String details,
                                    Integer idAccount, String label, String recipient, String status, String typeTransaction) {
-        //Notification notification = new Notification();
-        //notification.setIdNotification(id_notification);
-        Notification notification = new Notification();
-        notification.setAmount(amount);
-        notification.setDate(date);
-        notification.setDetails(details);
-        notification.setIdAccount(idAccount);
-        notification.setLabel(label);
-        notification.setRecipient(recipient);
-        notification.setStatus(status);
-        notification.setTypeTransac(typeTransaction);
+       //Notification notification = new Notification();
+       //notification.setIdNotification(id_notification);
+       notification.setAmount(amount);
+       notification.setDate(date);
+       notification.setDetails(details);
+       notification.setIdAccount(idAccount);
+       notification.setLabel(label);
+       notification.setRecipient(recipient);
+       notification.setStatus(status);
+       notification.setTypeTransac(typeTransaction);
 
-        notificationRepository.save(notification);
+       //notificationRepository.save(notification);
     }
 }
