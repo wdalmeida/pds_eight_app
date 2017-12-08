@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
@@ -21,7 +22,6 @@ import java.util.List;
 @Service("notificationRepository")
 public class NotificationService {
 
-    Notification notification = new Notification();
 
     @Autowired
     private XmlMapper xmlMapper;
@@ -36,12 +36,12 @@ public class NotificationService {
     private String topicName;
 
     @PostConstruct
-    private void testNotificationRepository(){
+    private void testNotificationRepository() {
         System.out.println(this.notificationRepository + " test");
     }
 
     @Bean
-    public XmlMapper getXmlMapper(){
+    public XmlMapper getXmlMapper() {
         return new XmlMapper();
     }
 
@@ -57,20 +57,22 @@ public class NotificationService {
         this.sender.send(topicName, xml);
     }
 
-    @RequestMapping("notification")
+
+    @Transactional
     public void createNotification(Double amount, Timestamp date, String details,
                                    Integer idAccount, String label, String recipient, String status, String typeTransaction) {
-       //Notification notification = new Notification();
-       //notification.setIdNotification(id_notification);
-       notification.setAmount(amount);
-       notification.setDate(date);
-       notification.setDetails(details);
-       notification.setIdAccount(idAccount);
-       notification.setLabel(label);
-       notification.setRecipient(recipient);
-       notification.setStatus(status);
-       notification.setTypeTransac(typeTransaction);
+        //Notification notification = new Notification();
+        //notification.setIdNotification(id_notification);
+        Notification notification = new Notification();
+        notification.setAmount(amount);
+        notification.setDate(date);
+        notification.setDetails(details);
+        notification.setIdAccount(idAccount);
+        notification.setLabel(label);
+        notification.setRecipient(recipient);
+        notification.setStatus(status);
+        notification.setTypeTransac(typeTransaction);
 
-       //notificationRepository.save(notification);
+        notificationRepository.save(notification);
     }
 }

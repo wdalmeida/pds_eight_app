@@ -1,8 +1,9 @@
-package eight.ing3.esipe.fr.kafkaServices.consumer;
+package eight.ing3.esipe.fr.configs;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import eight.ing3.esipe.fr.kafkaServices.consumer.Receiver;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;

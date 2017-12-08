@@ -1,8 +1,9 @@
-package eight.ing3.esipe.fr.kafkaServices.producer;
+package eight.ing3.esipe.fr.configs;
 
 import java.util.HashMap;
 import java.util.Map;
 
+import eight.ing3.esipe.fr.kafkaServices.producer.Sender;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
