@@ -1,9 +1,6 @@
 server :
   port : 42400
-
-  spring :
-    data :
-      mongodb :
-        host : localhost
-        port : 27017
-        database : file_xml
+kafka:
+  bootstrap-servers: localhost:9092
+  topic:
+    transactionQueue: transactionQueue.t
