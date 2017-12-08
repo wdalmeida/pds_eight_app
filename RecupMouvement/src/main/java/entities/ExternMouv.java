@@ -1,5 +1,6 @@
 package entities;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 //import org.springframework.data.annotation.Id;
@@ -14,27 +15,16 @@ import java.util.UUID;
 //@Document(collection = "file_xml")
 public class ExternMouv {
 
-  // @Id
-    private String uuid;
-
     private String originPath;
     private String targetPath;
 
     public ExternMouv() {
     }
 
-    public ExternMouv(String uuid, String originPath, String targetPath) {
-        this.uuid = uuid;
+    public ExternMouv( String originPath, String targetPath) {
+
         this.originPath = originPath;
         this.targetPath = targetPath;
-    }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
     }
 
     public String getOriginPath() {
@@ -52,4 +42,5 @@ public class ExternMouv {
     public void setTargetPath(String targetPath) {
         this.targetPath = targetPath;
     }
+
 }
