@@ -8,6 +8,7 @@ import java.util.concurrent.CountDownLatch;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import eight.ing3.esipe.fr.entities.Transaction;
+import eight.ing3.esipe.fr.repositories.NotificationRepository;
 import eight.ing3.esipe.fr.services.NotificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,9 @@ public class Receiver {
 
   @Autowired
   private XmlMapper xmlMapper;
+
+  @Autowired
+  private NotificationRepository notificationRepository;
 
   public CountDownLatch getLatch() {
     return latch;
