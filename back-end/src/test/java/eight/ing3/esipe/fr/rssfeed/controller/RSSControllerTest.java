@@ -51,7 +51,7 @@ public class RSSControllerTest {
     }
 
     @Test
-    public void getOneNull() throws Exception {
+    public void getOneWithContentNull() throws Exception {
         int id = 1;
 
         //When

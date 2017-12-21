@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
+import com.rometools.rome.io.ParsingFeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import org.apache.log4j.Logger;
@@ -34,13 +35,12 @@ public class RSSReader {
             logger.debug("JAVA.URL = " + feedUrl.toString());
             SyndFeedInput input = new SyndFeedInput();
             XmlReader xml = new XmlReader(feedUrl);
-            logger.debug("XML = " + xml.getEncoding());
             feed = input.build(xml);
         } catch (FeedException | IOException e) {
             e.printStackTrace();
         }
 
-        logger.debug("What is in feed ? ==>"+feed);
+        //logger.debug("What is in feed ? ==>"+feed.getFeedType());
 
         return feed;
     }
