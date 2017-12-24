@@ -38,6 +38,7 @@ public class RssServiceImpl implements IRssService {
         String desc = se.getDescription().getValue();
         if(desc.contains("<br")) {
             desc = desc.substring(0, desc.indexOf("<br"));
+            desc= desc.trim();
             logger.debug("Delete Html ");
         }
         RSSFeed rf = new RSSFeed(se.getTitle(),se.getLink(),desc,se.getEnclosures().get(0).getUrl());

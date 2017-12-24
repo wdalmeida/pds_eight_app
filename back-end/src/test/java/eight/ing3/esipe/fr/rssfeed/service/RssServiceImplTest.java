@@ -79,16 +79,16 @@ public class RssServiceImplTest {
         logger.debug("All the method have been called one time");
 
         assertEquals(expected.getTitle(),result.getTitle());
-        logger.debug("Expected title was "+expected.getTitle()+"| Result is "+ result.getTitle());
+        logger.debug("Expected title was "+expected.getTitle()+" | Result is "+ result.getTitle());
 
         assertEquals(expected.getLink(),result.getLink());
-        logger.debug("Expected link was "+expected.getLink()+"| Result is "+ result.getLink());
+        logger.debug("Expected link was "+expected.getLink()+" | Result is "+ result.getLink());
 
         assertEquals(expected.getDescription(),result.getDescription());
-        logger.debug("Expected description was "+expected.getDescription()+"| Result is "+ result.getDescription());
+        logger.debug("Expected description was "+expected.getDescription()+" | Result is "+ result.getDescription());
 
         assertEquals(expected.getImgLink(),result.getImgLink());
-        logger.debug("Expected image url was "+expected.getImgLink()+"| Result is "+ result.getImgLink());
+        logger.debug("Expected image url was "+expected.getImgLink()+" | Result is "+ result.getImgLink());
 
     }
 
@@ -96,9 +96,9 @@ public class RssServiceImplTest {
     public void getOneWithHTML() {
         String title="Title";
         String link="Link :";
-        String description="Description with <br <img .../>";
+        String description="Description with    <br <img .../>";
         String imgUrl = "http://localhost/img.png";
-        String expectDesc ="Description with ";
+        String expectDesc ="Description with";
 
         SyndContent descriptionContent = new SyndContentImpl();
         descriptionContent.setType("text/plain");
