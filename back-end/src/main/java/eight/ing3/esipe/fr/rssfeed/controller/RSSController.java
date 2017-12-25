@@ -1,10 +1,6 @@
 package eight.ing3.esipe.fr.rssfeed.controller;
 
 
-import com.fasterxml.jackson.core.JsonFactory;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import eight.ing3.esipe.fr.rssfeed.bean.RSSFeed;
 import eight.ing3.esipe.fr.rssfeed.service.IRssService;
 import org.slf4j.Logger;
@@ -17,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /**
  * Controller to access RSS Feed

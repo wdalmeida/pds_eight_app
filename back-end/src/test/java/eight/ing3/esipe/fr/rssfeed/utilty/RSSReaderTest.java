@@ -1,8 +1,9 @@
 package eight.ing3.esipe.fr.rssfeed.utilty;
 
 import com.rometools.rome.feed.synd.*;
-import com.rometools.rome.io.*;
-import jdk.internal.util.xml.impl.ReaderUTF8;
+import com.rometools.rome.io.FeedException;
+import com.rometools.rome.io.SyndFeedOutput;
+import com.rometools.rome.io.XmlReader;
 import org.apache.log4j.Logger;
 import org.junit.After;
 import org.junit.Before;
@@ -13,22 +14,20 @@ import org.mockito.Mock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
-import java.io.*;
-import java.net.MalformedURLException;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.net.URL;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.*;
 import static org.powermock.api.mockito.PowerMockito.verifyNew;
 import static org.powermock.api.mockito.PowerMockito.whenNew;
 
@@ -66,7 +65,7 @@ public class RSSReaderTest {
     @Test
     public void readShouldWorks() throws Exception {
         DateFormat DATE_PARSER = new SimpleDateFormat("yyyy-MM-dd");
-        List entries = new ArrayList();
+        List<SyndEntry> entries = new ArrayList();
         SyndEntry entry;
         SyndContent description;
         feed.setTitle("Sample Feed (created with ROME)");

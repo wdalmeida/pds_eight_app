@@ -1,15 +1,15 @@
 package eight.ing3.esipe.fr.rssfeed.utilty;
 
 
-import java.io.IOException;
-import java.net.URL;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.FeedException;
-import com.rometools.rome.io.ParsingFeedException;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.net.URL;
 
 
 /**
