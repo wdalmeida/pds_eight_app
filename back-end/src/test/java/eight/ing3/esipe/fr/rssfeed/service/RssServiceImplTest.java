@@ -3,7 +3,6 @@ package eight.ing3.esipe.fr.rssfeed.service;
 import com.rometools.rome.feed.synd.*;
 import eight.ing3.esipe.fr.rssfeed.bean.RSSFeed;
 import eight.ing3.esipe.fr.rssfeed.utilty.RSSReader;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
