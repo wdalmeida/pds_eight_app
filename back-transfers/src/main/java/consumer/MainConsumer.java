@@ -1,13 +1,6 @@
-package controller;
+package consumer;
 
 import model.TransferModel;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import parser.XMLParser;
 
 import java.io.BufferedReader;
@@ -20,23 +13,12 @@ import java.net.URL;
 import java.time.LocalDate;
 import org.apache.log4j.Logger;
 
-import javax.validation.Valid;
 
-@Controller
-public class MainController {
+public class MainConsumer {
 
-    private static Logger logger = Logger.getLogger(MainController.class);
+    private static Logger logger = Logger.getLogger(MainConsumer.class);
 
-    @RequestMapping(value="/submit", method={RequestMethod.GET})
-    public ModelAndView getTransferForm() {
-        ModelAndView mav = new ModelAndView("createTransferForm");
-        mav.addObject("transferModel", new TransferModel());
-        logger.info("Transfer form displayed...");
-        return mav;
-    }
-
-    @RequestMapping(value="/submit", method={RequestMethod.POST})
-    public ModelAndView submitTransfer(@Valid @ModelAttribute("transferModel") TransferModel transferModel, BindingResult bindingResult) {
+    public void consumer(TransferModel transferModel) {
 
         logger.info(transferModel.toString());
 
@@ -45,8 +27,6 @@ public class MainController {
         String beneficiaryIban = transferModel.getBeneficiaryIban();
         LocalDate valueDate = transferModel.getValueDate();
         String wording = transferModel.getWording();
-
-        ModelAndView mav = new ModelAndView("response");
 
         try {
 
@@ -62,7 +42,7 @@ public class MainController {
             os.flush();
 
             if (conn.getResponseCode() == HttpURLConnection.HTTP_BAD_GATEWAY) {
-                mav.addObject("message", "La connexion a echoue (erreur 502)");
+                logger.warn("La connexion a echoue (erreur 502)");
                 throw new RuntimeException("Connection failed : HTTP error code : "
                         + conn.getResponseCode());
             }
@@ -76,18 +56,15 @@ public class MainController {
                 while ((output = br.readLine()) != null) {
                     logger.info(output);
                 }
-                mav.addObject("message", "Virement correctement envoyé");
+                logger.info("Virement correctement envoyé");
 
             }
             conn.disconnect();
 
         } catch (MalformedURLException e) {
-            return new ModelAndView("reponse").addObject("message", "La requête a echouee");
+            logger.warn("La requête a echoue");
         } catch (IOException e) {
-            return new ModelAndView("reponse").addObject("message", "La requête a echouee");
+            logger.warn("La requête a echoue");
         }
-        return mav;
-
-
     }
 }
