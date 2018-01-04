@@ -2,9 +2,3 @@
 server:
   port: 8081
   contextPath: /transfers
-# MVC
-spring:
-  mvc:
-    view:
-      prefix: /WEB-INF/pages/
-      suffix: .jsp

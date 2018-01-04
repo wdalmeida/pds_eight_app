@@ -121,3 +121,5 @@ $RECYCLE.BIN/
 *.iml
 
 idea/
+.idea
+.idea/
