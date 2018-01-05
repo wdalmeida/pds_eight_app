@@ -32,11 +32,9 @@ public class UserLoginController {
     @RequestMapping(value = "/auth",method = RequestMethod.POST/*,consumes = "application/json;charset=UTF-8"*/)
     public ResponseEntity<?> signInAttempt(@RequestBody CredentialDto credential){
 
-        System.out.println(credential.toString());
 
         UserDto userDto = userLoginService.checkCredentials(credential);
 
-        System.out.println(userDto.toString());
 
       if(userDto.getCredential().getPassword().equals(credential.getPassword())){
           String jwtToken = jwtService.createToken(userDto);
