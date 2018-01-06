@@ -12,13 +12,43 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import org.apache.log4j.Logger;
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.apache.kafka.clients.consumer.ConsumerRecords;
+import org.apache.kafka.clients.consumer.KafkaConsumer;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Properties;
 
 public class MainConsumer {
 
     private static Logger logger = Logger.getLogger(MainConsumer.class);
 
-    public void consumer(TransferModel transferModel) {
+    public static void consume(){
+
+        Properties consumerProperties = new Properties();
+        consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:8082");
+        consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "my-group");
+        consumerProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+        consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "deserializer.TransferDeserializer");
+        consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+
+        try (KafkaConsumer<String, TransferModel> consumer = new KafkaConsumer<>(consumerProperties)) {
+            consumer.subscribe(Collections.singletonList("Transfer"));
+            while (true) {
+                ConsumerRecords<String, TransferModel> messages = consumer.poll(100);
+                for (ConsumerRecord<String, TransferModel> message : messages) {
+                    System.out.println("Transfer received " + message.value().toString());
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void submit(TransferModel transferModel) {
 
         logger.info(transferModel.toString());
 
