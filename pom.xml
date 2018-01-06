@@ -154,6 +154,21 @@
                 <type>pom</type>
             </dependency>
 
+            <dependency>
+                <groupId>org.apache.kafka</groupId>
+                <artifactId>kafka-clients</artifactId>
+                <version>0.10.1.1</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>com.fasterxml.jackson.core</groupId>
+                <artifactId>jackson-databind</artifactId>
+                <version>2.9.3</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
 
             <!-- TEST -->
             <dependency>
