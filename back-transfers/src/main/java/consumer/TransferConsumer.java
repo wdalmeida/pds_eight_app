@@ -1,7 +1,10 @@
 package consumer;
 
 import model.TransferModel;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import parser.XMLParser;
 
 import java.io.BufferedReader;
@@ -18,30 +21,61 @@ import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 
-import java.util.Collection;
+import javax.annotation.PostConstruct;
 import java.util.Collections;
 import java.util.Properties;
 
 @Component
-public class MainConsumer {
+public class TransferConsumer {
 
-    private static Logger logger = Logger.getLogger(MainConsumer.class);
+    private static Logger logger = Logger.getLogger(TransferConsumer.class);
 
-    public static void consume(){
+    private Properties consumerProperties;
 
-        Properties consumerProperties = new Properties();
-        consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
-        consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "my-group");
-        consumerProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
-        consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "deserializer.TransferDeserializer");
-        consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
+    @Value("${consumer.properties.bootstrap_servers_config}")
+    private String bootstrap_servers_config;
+
+    @Value("${consumer.properties.group_id_config}")
+    private String group_id_config;
+
+    @Value("${consumer.properties.auto_offset_reset_config}")
+    private String auto_offset_reset_config;
+
+    @Value("${consumer.properties.value_deserializer_class_config}")
+    private String value_deserializer_class_config;
+
+    @Value("${consumer.properties.key_deserializer_class_config}")
+    private String key_deserializer_class_config;
+
+    @Value("${consumer.properties.topic}")
+    private String topic;
+
+    public TransferConsumer(){
+
+    }
+
+    @PostConstruct
+    public void init() {
+        consumerProperties = new Properties();
+        consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrap_servers_config);
+        consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, group_id_config);
+        consumerProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, auto_offset_reset_config);
+        consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, value_deserializer_class_config);
+        consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, key_deserializer_class_config);
+        consumeTransfer();
+    }
+
+    public void consumeTransfer() {
 
         try (KafkaConsumer<String, TransferModel> consumer = new KafkaConsumer<>(consumerProperties)) {
-            consumer.subscribe(Collections.singletonList("transfers"));
+            consumer.subscribe(Collections.singletonList(topic));
             while (true) {
                 ConsumerRecords<String, TransferModel> messages = consumer.poll(100);
                 for (ConsumerRecord<String, TransferModel> message : messages) {
                     System.out.println("Transfer received " + message.value().toString());
+                    TransferSubmiter transferSubmiter = new TransferSubmiter(message.value());
+                    new Thread(transferSubmiter).start();
+                    logger.info("submitter launched with transfer received");
                 }
             }
         } catch (Exception e) {
@@ -50,53 +84,62 @@ public class MainConsumer {
 
     }
 
-    public void submit(TransferModel transferModel) {
+    protected class TransferSubmiter implements Runnable {
 
-        logger.info(transferModel.toString());
+        final TransferModel transferModel;
 
-        String sendingIBAN = transferModel.getSendingIBAN();
-        double amount = transferModel.getAmount();
-        String beneficiaryIban = transferModel.getBeneficiaryIban();
-        LocalDate valueDate = transferModel.getValueDate();
-        String wording = transferModel.getWording();
+        public TransferSubmiter(TransferModel transferModel) {
+            this.transferModel = transferModel;
+        }
 
-        try {
+        public void run() {
 
-            //url of externalBank api
-            URL url = new URL("http://int.eight.inside.esiag.info:9191/externalBank/submit/");
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setDoOutput(true);
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/xml");
-            OutputStream os = conn.getOutputStream();
-            byte[] xmlFile = XMLParser.convertToSCTFormat(sendingIBAN,amount,beneficiaryIban,valueDate,wording);
-            os.write(xmlFile);
-            os.flush();
+            logger.info(transferModel.toString());
 
-            if (conn.getResponseCode() == HttpURLConnection.HTTP_BAD_GATEWAY) {
-                logger.warn("La connexion a echoue (erreur 502)");
-                throw new RuntimeException("Connection failed : HTTP error code : "
-                        + conn.getResponseCode());
-            }
+            String sendingIBAN = transferModel.getSendingIBAN();
+            double amount = transferModel.getAmount();
+            String beneficiaryIban = transferModel.getBeneficiaryIban();
+            LocalDate valueDate = transferModel.getValueDate();
+            String wording = transferModel.getWording();
 
-            if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                BufferedReader br = new BufferedReader(new InputStreamReader(
-                        (conn.getInputStream())));
+            try {
 
-                String output;
-                System.out.println("Output from Server .... \n");
-                while ((output = br.readLine()) != null) {
-                    logger.info(output);
+                //url of externalBank api
+                URL url = new URL("http://int.eight.inside.esiag.info:9191/externalBank/submit/");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setDoOutput(true);
+                conn.setRequestMethod("POST");
+                conn.setRequestProperty("Content-Type", "application/xml");
+                OutputStream os = conn.getOutputStream();
+                byte[] xmlFile = XMLParser.convertToSCTFormat(sendingIBAN, amount, beneficiaryIban, valueDate, wording);
+                os.write(xmlFile);
+                os.flush();
+
+                if (conn.getResponseCode() == HttpURLConnection.HTTP_BAD_GATEWAY) {
+                    logger.warn("La connexion a echoue (erreur 502)");
+                    throw new RuntimeException("Connection failed : HTTP error code : "
+                            + conn.getResponseCode());
                 }
-                logger.info("Virement correctement envoyé");
 
+                if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                    BufferedReader br = new BufferedReader(new InputStreamReader(
+                            (conn.getInputStream())));
+
+                    String output;
+                    System.out.println("Output from Server .... \n");
+                    while ((output = br.readLine()) != null) {
+                        logger.info(output);
+                    }
+                    logger.info("Virement correctement envoyé");
+
+                }
+                conn.disconnect();
+
+            } catch (MalformedURLException e) {
+                logger.warn("La requête a echoue");
+            } catch (IOException e) {
+                logger.warn("La requête a echoue");
             }
-            conn.disconnect();
-
-        } catch (MalformedURLException e) {
-            logger.warn("La requête a echoue");
-        } catch (IOException e) {
-            logger.warn("La requête a echoue");
         }
     }
 }
