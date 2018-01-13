@@ -1,4 +1,8 @@
-# configuration de l'transfers.application Web avec Spring Boot
-server:
-  port: 8081
-  contextPath: /transfers
+consumer:
+ properties:
+  bootstrap_servers_config: localhost:9092
+  group_id_config: transfersGroup
+  auto_offset_reset_config: earliest
+  value_deserializer_class_config: deserializer.TransferDeserializer
+  key_deserializer_class_config: org.apache.kafka.common.serialization.StringDeserializer
+  topic: transfers
