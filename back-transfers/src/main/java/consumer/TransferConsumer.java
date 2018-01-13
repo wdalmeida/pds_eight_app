@@ -1,6 +1,7 @@
 package consumer;
 
 import model.TransferModel;
+import org.springframework.stereotype.Component;
 import parser.XMLParser;
 
 import java.io.BufferedReader;
@@ -21,6 +22,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Properties;
 
+@Component
 public class MainConsumer {
 
     private static Logger logger = Logger.getLogger(MainConsumer.class);
@@ -28,14 +30,14 @@ public class MainConsumer {
     public static void consume(){
 
         Properties consumerProperties = new Properties();
-        consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:8082");
+        consumerProperties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         consumerProperties.put(ConsumerConfig.GROUP_ID_CONFIG, "my-group");
         consumerProperties.put(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
         consumerProperties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "deserializer.TransferDeserializer");
         consumerProperties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");
 
         try (KafkaConsumer<String, TransferModel> consumer = new KafkaConsumer<>(consumerProperties)) {
-            consumer.subscribe(Collections.singletonList("Transfer"));
+            consumer.subscribe(Collections.singletonList("transfers"));
             while (true) {
                 ConsumerRecords<String, TransferModel> messages = consumer.poll(100);
                 for (ConsumerRecord<String, TransferModel> message : messages) {
