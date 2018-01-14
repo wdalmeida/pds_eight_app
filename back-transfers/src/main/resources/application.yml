@@ -6,3 +6,5 @@ consumer:
   value_deserializer_class_config: deserializer.TransferDeserializer
   key_deserializer_class_config: org.apache.kafka.common.serialization.StringDeserializer
   topic: transfers
+externalBank:
+ url: http://int.eight.inside.esiag.info:9191/externalBank/submit/

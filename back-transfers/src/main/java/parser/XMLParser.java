@@ -109,7 +109,7 @@ public class XMLParser {
             cdtTrfTxInf.appendChild(pmtId);
 
             Element endToEndId = doc.createElement("EndToEndId");
-            endToEndId.appendChild(doc.createTextNode("endtoend"));
+            endToEndId.appendChild(doc.createTextNode(wording));
             pmtId.appendChild(endToEndId);
 
             Element amt = doc.createElement("Amt");
