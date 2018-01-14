@@ -18,6 +18,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import org.apache.log4j.Logger;
+import producer.TransferProducer;
 
 import javax.validation.Valid;
 
@@ -37,9 +38,9 @@ public class TransferController {
     @RequestMapping(value="/submit", method={RequestMethod.POST})
     public ModelAndView submitTransfer(@Valid @ModelAttribute("transferModel") TransferModel transferModel, BindingResult bindingResult) {
         logger.info(transferModel.toString());
+        new TransferProducer().sendTransfer(transferModel);
         ModelAndView mav = new ModelAndView("response");
         return mav;
-
 
     }
 }
