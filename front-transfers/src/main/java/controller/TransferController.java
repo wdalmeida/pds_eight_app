@@ -20,8 +20,6 @@ import java.time.LocalDate;
 import org.apache.log4j.Logger;
 import producer.TransferProducer;
 
-import javax.validation.Valid;
-
 @Controller
 public class TransferController {
 
@@ -36,7 +34,7 @@ public class TransferController {
     }
 
     @RequestMapping(value="/submit", method={RequestMethod.POST})
-    public ModelAndView submitTransfer(@Valid @ModelAttribute("transferModel") TransferModel transferModel, BindingResult bindingResult) {
+    public ModelAndView submitTransfer(@ModelAttribute("transferModel") TransferModel transferModel, BindingResult bindingResult) {
         logger.info(transferModel.toString());
         new TransferProducer().sendTransfer(transferModel);
         ModelAndView mav = new ModelAndView("response");
