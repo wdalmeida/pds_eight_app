@@ -50,6 +50,9 @@ public class TransferConsumer {
     @Value("${consumer.properties.topic}")
     private String topic;
 
+    @Value("${externalBank.url}")
+    private String urlExternalBank;
+
     public TransferConsumer(){
 
     }
@@ -94,7 +97,7 @@ public class TransferConsumer {
 
         public void run() {
 
-            logger.info(transferModel.toString());
+            logger.info("transfer to submit :" + transferModel.toString());
 
             String sendingIBAN = transferModel.getSendingIBAN();
             double amount = transferModel.getAmount();
@@ -105,7 +108,7 @@ public class TransferConsumer {
             try {
 
                 //url of externalBank api
-                URL url = new URL("http://int.eight.inside.esiag.info:9191/externalBank/submit/");
+                URL url = new URL(urlExternalBank);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setDoOutput(true);
                 conn.setRequestMethod("POST");
