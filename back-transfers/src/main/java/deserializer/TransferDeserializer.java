@@ -7,9 +7,6 @@ import org.apache.kafka.common.serialization.Deserializer;
 import java.text.SimpleDateFormat;
 import java.util.Map;
 
-/**
- * Created by Tom on 06/01/2018.
- */
 public class TransferDeserializer implements Deserializer<TransferModel> {
 
     @Override

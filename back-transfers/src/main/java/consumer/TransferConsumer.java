@@ -24,6 +24,7 @@ import org.apache.kafka.clients.consumer.KafkaConsumer;
 import javax.annotation.PostConstruct;
 import java.util.Collections;
 import java.util.Properties;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Component
 public class TransferConsumer {
@@ -53,6 +54,10 @@ public class TransferConsumer {
     @Value("${externalBank.url}")
     private String urlExternalBank;
 
+    private AtomicBoolean stopConsumingThread = new AtomicBoolean(false);
+
+    private AtomicBoolean stopped = new AtomicBoolean(false);
+
     public TransferConsumer(){
 
     }
@@ -72,19 +77,28 @@ public class TransferConsumer {
 
         try (KafkaConsumer<String, TransferModel> consumer = new KafkaConsumer<>(consumerProperties)) {
             consumer.subscribe(Collections.singletonList(topic));
-            while (true) {
+            while (!stopConsumingThread.get()) {
                 ConsumerRecords<String, TransferModel> messages = consumer.poll(100);
                 for (ConsumerRecord<String, TransferModel> message : messages) {
-                    System.out.println("Transfer received " + message.value().toString());
+                    logger.info("Transfer received " + message.value().toString());
                     TransferSubmiter transferSubmiter = new TransferSubmiter(message.value());
                     new Thread(transferSubmiter).start();
                     logger.info("submitter launched with transfer received");
                 }
             }
+            stopped.set(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void stop() {
+        stopConsumingThread.set(true);
+    }
+
+    public boolean isStopped() {
+        return stopped.get();
     }
 
     protected class TransferSubmiter implements Runnable {
