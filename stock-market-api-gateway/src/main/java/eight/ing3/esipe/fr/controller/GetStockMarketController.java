@@ -1,5 +1,6 @@
 package eight.ing3.esipe.fr.controller;
 
+import eight.ing3.esipe.fr.provider.MockMarketStockProvider;
 import eight.ing3.esipe.fr.utils.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,9 @@ public class GetStockMarketController {
     @Autowired
     private Properties properties;
 
+    @Autowired
+    private MockMarketStockProvider marketStockProvider;
+
     @RequestMapping("/")
     public String index() {
 
@@ -35,9 +39,14 @@ public class GetStockMarketController {
             @PathVariable String targetCurrency
     ) {
 
-        logger.info(codeCompany);
-        logger.info(srcCurrency);
-        logger.info(targetCurrency);
+        marketStockProvider.setCodeCompany(codeCompany);
+        marketStockProvider.setSrcCurrency(srcCurrency);
+        marketStockProvider.setTargetCurrency(targetCurrency);
+
+        String urlRequest = marketStockProvider.getUrlRequest();
+
+
+        logger.info("URL request : " + urlRequest);
 
         String response = "[]";
 
