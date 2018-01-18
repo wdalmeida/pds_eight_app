@@ -1,13 +1,14 @@
 package deserializer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import dto.TransferDto;
 import model.TransferModel;
 import org.apache.kafka.common.serialization.Deserializer;
 
 import java.text.SimpleDateFormat;
 import java.util.Map;
 
-public class TransferDeserializer implements Deserializer<TransferModel> {
+public class TransferDeserializer implements Deserializer<TransferDto> {
 
     @Override
     public void close() {
@@ -20,12 +21,12 @@ public class TransferDeserializer implements Deserializer<TransferModel> {
     }
 
     @Override
-    public TransferModel deserialize(String arg0, byte[] arg1) {
+    public TransferDto deserialize(String arg0, byte[] arg1) {
         ObjectMapper mapper = new ObjectMapper();
         mapper.setDateFormat(new SimpleDateFormat("yyyy-MM-dd"));
-        TransferModel transfer = null;
+        TransferDto transfer = null;
         try {
-            transfer = mapper.readValue(arg1, TransferModel.class);
+            transfer = mapper.readValue(arg1, TransferDto.class);
         } catch (Exception e) {
 
             e.printStackTrace();

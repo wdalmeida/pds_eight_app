@@ -1,5 +1,6 @@
 package consumer;
 
+import dto.TransferDto;
 import model.TransferModel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -75,11 +76,11 @@ public class TransferConsumer {
 
     public void consumeTransfer() {
 
-        try (KafkaConsumer<String, TransferModel> consumer = new KafkaConsumer<>(consumerProperties)) {
+        try (KafkaConsumer<String, TransferDto> consumer = new KafkaConsumer<>(consumerProperties)) {
             consumer.subscribe(Collections.singletonList(topic));
             while (!stopConsumingThread.get()) {
-                ConsumerRecords<String, TransferModel> messages = consumer.poll(100);
-                for (ConsumerRecord<String, TransferModel> message : messages) {
+                ConsumerRecords<String, TransferDto> messages = consumer.poll(100);
+                for (ConsumerRecord<String, TransferDto> message : messages) {
                     logger.info("Transfer received " + message.value().toString());
                     TransferSubmiter transferSubmiter = new TransferSubmiter(message.value());
                     new Thread(transferSubmiter).start();
@@ -103,21 +104,21 @@ public class TransferConsumer {
 
     protected class TransferSubmiter implements Runnable {
 
-        final TransferModel transferModel;
+        final TransferDto transferDto;
 
-        public TransferSubmiter(TransferModel transferModel) {
-            this.transferModel = transferModel;
+        public TransferSubmiter(TransferDto transferDto) {
+            this.transferDto = transferDto;
         }
 
         public void run() {
 
-            logger.info("transfer to submit :" + transferModel.toString());
+            logger.info("transfer to submit :" + transferDto.toString());
 
-            String sendingIBAN = transferModel.getSendingIBAN();
-            double amount = transferModel.getAmount();
-            String beneficiaryIban = transferModel.getBeneficiaryIban();
-            LocalDate valueDate = transferModel.getValueDate();
-            String wording = transferModel.getWording();
+            String sendingIBAN = transferDto.getSendingIBAN();
+            double amount = transferDto.getAmount();
+            String beneficiaryIban = transferDto.getBeneficiaryIban();
+            LocalDate valueDate = transferDto.getValueDate();
+            String wording = transferDto.getWording();
 
             try {
 

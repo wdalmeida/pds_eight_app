@@ -1,6 +1,3 @@
-server:
-  port: 8081
-  contextPath: /transfers
 producer:
  properties:
   bootstrap_servers_config: localhost:9092
@@ -9,3 +6,6 @@ producer:
   value_serializer_class_config: serializer.TransferSerializer
   key_serializer_class_config: org.apache.kafka.common.serialization.StringSerializer
   topic: transfers
+server:
+  port: 8081
+  contextPath: /transfers
