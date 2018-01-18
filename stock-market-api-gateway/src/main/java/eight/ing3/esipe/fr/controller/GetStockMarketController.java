@@ -39,6 +39,7 @@ public class GetStockMarketController {
             @PathVariable String targetCurrency
     ) {
 
+        //build the provider
         marketStockProvider.setCodeCompany(codeCompany);
         marketStockProvider.setSrcCurrency(srcCurrency);
         marketStockProvider.setTargetCurrency(targetCurrency);
