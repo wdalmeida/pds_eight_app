@@ -12,6 +12,7 @@
         <module>rest-account-services</module>
         <module>models</module>
         <module>authentication-services</module>
+        <module>stock-market-api-gateway</module>
     </modules>
 
     <properties>
