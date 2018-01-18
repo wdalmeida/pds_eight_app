@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by Vyach on 18/01/2018.
@@ -49,8 +50,10 @@ public class GetStockMarketController {
 
         logger.info("URL request : " + urlRequest);
 
-        String response = "[]";
+        RestTemplate restTemplate = new RestTemplate();
+        String response = restTemplate.getForObject(urlRequest, String.class);
 
-        return response;
+
+        return response.toString();
     }
 }
