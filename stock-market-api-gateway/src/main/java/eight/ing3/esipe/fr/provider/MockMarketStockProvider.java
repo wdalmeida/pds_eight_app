@@ -17,19 +17,21 @@ public class MockMarketStockProvider implements IMarketStockProvider {
     @Autowired
     private Properties properties;
 
+    //default parameters
     private String codeCompany = "OR";
     private String srcCurrency = "USD";
     private String targetCurrency = "EUR";
 
+    /**
+     * Build the request
+     * @return
+     */
     @Override
     public String getUrlRequest() {
-
-        logger.info(this.properties.getStockMarketUrl());
-
         return this.properties.getStockMarketUrl() +
-                "companies/" + codeCompany +
-                "/fromcurrency/" + srcCurrency +
-                "/tocurrency/" + targetCurrency;
+                this.properties.getMockStockMarketCompanyCode() + "/" + codeCompany +
+                "/" + this.properties.getMockStockMarketSrcCurrency() + "/" + srcCurrency +
+                "/" + this.properties.getMockStockMarketTargetCurrency() + "/" + targetCurrency;
     }
 
     @Override
