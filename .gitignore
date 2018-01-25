@@ -72,10 +72,10 @@ buildNumber.properties
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
 .idea
-.idea/**
 # Gradle:
 .idea/**/gradle.xml
 .idea/**/libraries
+/.idea/modules.xml
 
 # CMake
 cmake-build-debug/
