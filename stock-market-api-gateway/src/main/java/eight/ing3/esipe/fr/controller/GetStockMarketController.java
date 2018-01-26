@@ -48,6 +48,7 @@ public class GetStockMarketController {
         String urlRequest = marketStockProvider.getUrlRequest();
 
 
+
         logger.info("URL request : " + urlRequest);
 
         RestTemplate restTemplate = new RestTemplate();
