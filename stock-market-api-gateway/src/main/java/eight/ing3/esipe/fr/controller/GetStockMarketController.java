@@ -1,10 +1,11 @@
 package eight.ing3.esipe.fr.controller;
 
-import eight.ing3.esipe.fr.provider.MockMarketStockProvider;
+import eight.ing3.esipe.fr.provider.IMarketStockProvider;
 import eight.ing3.esipe.fr.utils.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -23,7 +24,8 @@ public class GetStockMarketController {
     private Properties properties;
 
     @Autowired
-    private MockMarketStockProvider marketStockProvider;
+    @Qualifier("provider_a")
+    private IMarketStockProvider marketStockProviderA;
 
     @RequestMapping("/")
     public String index() {
@@ -41,11 +43,11 @@ public class GetStockMarketController {
     ) {
 
         //build the provider
-        marketStockProvider.setCodeCompany(codeCompany);
-        marketStockProvider.setSrcCurrency(srcCurrency);
-        marketStockProvider.setTargetCurrency(targetCurrency);
+        marketStockProviderA.setCodeCompany(codeCompany);
+        marketStockProviderA.setSrcCurrency(srcCurrency);
+        marketStockProviderA.setTargetCurrency(targetCurrency);
 
-        String urlRequest = marketStockProvider.getUrlRequest();
+        String urlRequest = marketStockProviderA.getUrlRequest();
 
 
 

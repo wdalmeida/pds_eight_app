@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 /**
  * Created by Vyach on 18/01/2018.
  */
-@Component
-public class MockMarketStockProvider implements IMarketStockProvider {
+@Component(value = "provider_a")
+public class MockMarketStockProviderA implements IMarketStockProvider {
 
-    private final Logger logger = LoggerFactory.getLogger(MockMarketStockProvider.class);
+    private final Logger logger = LoggerFactory.getLogger(MockMarketStockProviderA.class);
 
     @Autowired
     private Properties properties;
