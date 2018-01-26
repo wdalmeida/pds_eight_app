@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * Created by Vyach on 18/01/2018.
@@ -21,6 +22,8 @@ public class MockMarketStockProviderA implements IMarketStockProvider {
     private String codeCompany = "OR";
     private String srcCurrency = "USD";
     private String targetCurrency = "EUR";
+
+    private String response;
 
     /**
      * Build the request
@@ -64,4 +67,13 @@ public class MockMarketStockProviderA implements IMarketStockProvider {
         this.targetCurrency = targetCurrency;
     }
 
+    @Override
+    public String handlingResponse(String urlRequest) {
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        response = restTemplate.getForObject(urlRequest, String.class);
+
+        return response;
+    }
 }

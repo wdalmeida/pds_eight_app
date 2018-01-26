@@ -12,4 +12,6 @@ public interface IMarketStockProvider {
     public void setCodeCompany(String codeCompany);
     public void setSrcCurrency(String srcCurrency);
     public void setTargetCurrency(String targetCurrency);
+
+    public String handlingResponse(String urlRequest);
 }
