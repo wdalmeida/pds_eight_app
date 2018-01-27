@@ -1,34 +1,22 @@
 package entity;
 
 import lombok.Data;
+import repository.TransferRepository;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
 @Entity(name = "transfer")
 public class TransferEntity {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private String sendingIBAN;
-
-    private double amount;
-
+    @Column(name = "beneficiaryIban")
     private String beneficiaryIban;
 
-    private LocalDate valueDate;
-
-    private String wording;
-
-    @Override
-    public String toString() {
-        return "TransferModel{" +
-                "sendingIBAN='" + sendingIBAN + '\'' +
-                ", amount=" + amount +
-                ", beneficiaryIban='" + beneficiaryIban + '\'' +
-                ", valueDate=" + valueDate +
-                ", wording='" + wording + '\'' +
-                '}';
-    }
+    @OneToOne
+    private TransactionEntity TransactionEntity;
 }
