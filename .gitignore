@@ -120,3 +120,6 @@ $RECYCLE.BIN/
 *.iml
 
 .idea
+
+*.project
+*.classpath

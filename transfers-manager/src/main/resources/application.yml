@@ -15,4 +15,5 @@ spring:
   username: postgres
   password: root
   driver-class-name: org.postgresql.Driver
-  spring.jpa.generate-ddl: true
+ jpa:
+  generate-ddl: true

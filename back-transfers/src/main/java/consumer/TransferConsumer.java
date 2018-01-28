@@ -1,11 +1,8 @@
 package consumer;
 
 import dto.TransferDto;
-import model.TransferModel;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 import parser.XMLParser;
 
 import java.io.BufferedReader;
@@ -21,6 +18,7 @@ import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
+import repository.TransferRepository;
 
 import javax.annotation.PostConstruct;
 import java.util.Collections;
@@ -59,6 +57,8 @@ public class TransferConsumer {
 
     private AtomicBoolean stopped = new AtomicBoolean(false);
 
+    private TransferRepository transferRepository;
+
     public TransferConsumer(){
 
     }
@@ -82,6 +82,7 @@ public class TransferConsumer {
                 ConsumerRecords<String, TransferDto> messages = consumer.poll(100);
                 for (ConsumerRecord<String, TransferDto> message : messages) {
                     logger.info("Transfer received " + message.value().toString());
+                    //save in database
                     TransferSubmiter transferSubmiter = new TransferSubmiter(message.value());
                     new Thread(transferSubmiter).start();
                     logger.info("submitter launched with transfer received");

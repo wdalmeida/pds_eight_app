@@ -13,7 +13,7 @@
         <module>models</module>
         <module>authentication-services</module>
         <module>back-transfers</module>
-        <module>front-transfers</module>
+        <module>transfers-manager</module>
     </modules>
 
     <properties>
@@ -44,24 +44,6 @@
                 <version>${spring.version}</version>
                 <scope>import</scope>
                 <type>pom</type>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>1.5.8.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-
-
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-                <version>${spring.version}</version>
-                <scope>import</scope>
-                <type>pom</type>
-
             </dependency>
 
             <dependency>
