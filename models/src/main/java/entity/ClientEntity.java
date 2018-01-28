@@ -1,8 +1,12 @@
 package entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
-@Entity(name="client")
+@Data
+@Entity
+@Table(name="client")
 public class ClientEntity {
 
     @Id

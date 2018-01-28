@@ -1,9 +1,13 @@
 package entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Entity(name="Transaction")
+@Data
+@Entity
+@Table(name="transaction")
 public class TransactionEntity {
 
     @Id
@@ -20,7 +24,7 @@ public class TransactionEntity {
     private String wording;
 
     @ManyToOne
-    private AccountEntity accountEntity;
+    private AccounEntity accountEntity;
 
     @Column(name="Read")
     private boolean read;

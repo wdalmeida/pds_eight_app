@@ -5,7 +5,8 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Data
-@Entity(name = "Connection")
+@Entity
+@Table(name = "connection")
 public class UseEntity {
 
     @Id
