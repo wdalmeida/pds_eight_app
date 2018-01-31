@@ -2,13 +2,13 @@ package eight.ing3.esipe.fr.controller;
 
 import dto.TransferDto;
 import entity.AccounEntity;
+import entity.BeneficiaryAccountEntity;
 import model.TransferModel;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @RequestMapping("/transfers")
 @Controller
@@ -29,24 +31,37 @@ public class TransferController {
     @Value("${transfers.manager.account.url}")
     private String transferManagerAccountUrl;
 
+    @Value("${transfers.manager.beneficiaryaccount.url}")
+    private String transferManagerBeneficiaryAccountUrl;
+
     @RequestMapping(value="/create", method={RequestMethod.GET})
     public ModelAndView getSendingAccountSelectionForm() {
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity responseEntity = restTemplate.getForEntity(transferManagerAccountUrl, AccounEntity.class);
-        logger.info(responseEntity.toString());
-        return null;
-    }
-
-    /*@RequestMapping(value="/create", method={RequestMethod.GET})
-    public ModelAndView getBeneficiaryAccountSelectionForm() {
-        return null;
-    }*/
-
-    @RequestMapping(value="/submit", method={RequestMethod.GET})
-    public ModelAndView getTransferForm() {
         ModelAndView mav = new ModelAndView("createTransferForm");
+        RestTemplate restTemplate = new RestTemplate();
+
+        //recover accounts
+        ResponseEntity<List> accountsResponseEntity = restTemplate.getForEntity(transferManagerAccountUrl, List.class);
+        if (accountsResponseEntity.getStatusCode() == HttpStatus.OK) {
+            List<AccounEntity> accounts = accountsResponseEntity.getBody();
+            mav.addObject("accounts",accounts);
+            logger.info("accounts received : " + accounts.toString());
+        } else {
+            mav.addObject("accountsMessage","Aucun compte");
+        }
+
+        //recover beneficiary accounts
+        ResponseEntity<List> beneficiaryAccountsResponseEntity = restTemplate.getForEntity(transferManagerBeneficiaryAccountUrl, List.class);
+        if (beneficiaryAccountsResponseEntity.getStatusCode() == HttpStatus.OK) {
+            List<BeneficiaryAccountEntity> beneficiaryAccounts = beneficiaryAccountsResponseEntity.getBody();
+            mav.addObject("beneficiaryAccounts",beneficiaryAccounts);
+            logger.info("beneficiary accounts received : " + beneficiaryAccounts.toString());
+        } else {
+            mav.addObject("beneficiaryAccountsMessage","Aucun compte bénéficiare");
+        }
+
         mav.addObject("transferModel", new TransferModel());
         logger.info("Transfer form displayed...");
+
         return mav;
     }
 

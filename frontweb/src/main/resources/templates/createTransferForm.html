@@ -12,7 +12,13 @@
             <fieldset>
                 <div id="transfer">
                     <label for="sendingIBAN">IBAN émetteur: </label>
-                    <input type="text" th:field="*{sendingIBAN}" size="30"/>
+                    <select class="form-control"  th:field="*{sendingIBAN}">
+                        <option value="0">Selectionner un compte émetteur</option>
+                        <option th:each="account : ${accounts}"
+                                th:value="${account.iban}"
+                                th:selected="${account.iban}"
+                                th:text="${account.iban}+' (solde: '+${account.balance}+')'"></option>
+                    </select>
                     <br/>
 
                     <label for="amount">Montant: </label>
@@ -20,7 +26,13 @@
                     <br/>
 
                     <label for="beneficiaryIban">IBAN bénéficiaire: </label>
-                    <input type="text" th:field="*{beneficiaryIban}" size="30"/>
+                    <select class="form-control"  th:field="*{beneficiaryIban}">
+                        <option value="0">Selectionner un compte bénéficiaire</option>
+                        <option th:each="beneficiaryAccount : ${beneficiaryAccounts}"
+                                th:value="${beneficiaryAccount.iban}"
+                                th:selected="${beneficiaryAccount.iban}"
+                                th:text="${beneficiaryAccount.iban}+' (libelle: '+${beneficiaryAccount.name}+')'"></option>
+                    </select>
                     <br/>
 
                     <label for="valueDate">Date de valeur: </label>
