@@ -50,15 +50,7 @@ public class TransferProducer {
 
     }
 
-    public void sendTransfer(TransferModel transfer) {
-
-        //create a dto from the model
-        TransferDto transferDto = new TransferDto();
-        transferDto.setBeneficiaryIban(transfer.getBeneficiaryIban());
-        transferDto.setValueDate(transfer.getValueDate());
-        transferDto.setWording(transfer.getWording());
-        transferDto.setSendingIBAN(transfer.getSendingIBAN());
-        transferDto.setAmount(transfer.getAmount());
+    public void sendTransfer(TransferDto transferDto) {
 
         Properties producerProperties = new Properties();
 
@@ -85,7 +77,7 @@ public class TransferProducer {
         test.setSendingIBAN("FR76875686575");
         test.setValueDate(now());
         TransferProducer producer = new TransferProducer();
-        producer.sendTransfer(test);
+        //producer.sendTransfer(test);
     }
 
 }
