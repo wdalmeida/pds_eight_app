@@ -1,10 +1,11 @@
 package entity;
 
+
 import lombok.Data;
-import repository.TransferRepository;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+
 
 @Data
 @Entity
@@ -13,11 +14,12 @@ public class TransferEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private long idtransfer;
 
-    @Column(name = "beneficiaryIban")
+    @Column(name = "beneficiaryiban")
     private String beneficiaryIban;
 
+    @JoinColumn(name = "idtransaction")
     @OneToOne
     private TransactionEntity TransactionEntity;
 }

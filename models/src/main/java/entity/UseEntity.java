@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+
 @Data
 @Entity
 @Table(name = "connection")
@@ -11,11 +12,11 @@ public class UseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int userId;
+    int idcustomer;
 
-    @Column(name="Login")
+    @Column(name="login")
     private String login;
 
-    @Column(name = "Password")
+    @Column(name = "password")
     private String password;
 }

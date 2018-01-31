@@ -12,20 +12,21 @@ public class TransactionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idtransaction;
 
-    @Column(name="ValueDate")
+    @Column(name="valuedate")
     private LocalDate valueDate;
 
-    @Column(name="Amount")
+    @Column(name="amount")
     private double amount;
 
-    @Column(name="Wording")
+    @Column(name="wording")
     private String wording;
 
+    @JoinColumn(name="iban")
     @ManyToOne
     private AccounEntity accountEntity;
 
-    @Column(name="Read")
+    @Column(name="read")
     private boolean read;
 }

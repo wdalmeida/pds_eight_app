@@ -4,18 +4,19 @@ import lombok.Data;
 
 import javax.persistence.*;
 
+
 @Data
 @Entity
-@Table(name="typeAccount")
+@Table(name="typeaccount")
 public class AccountTypeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idtype;
 
-    @Column(name="Label")
+    @Column(name="label")
     private String label;
 
-    @Column(name="Price")
+    @Column(name="price")
     private double price;
 }

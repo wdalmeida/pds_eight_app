@@ -11,12 +11,16 @@ public class ClientEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idclient;
 
-    @Column(name = "Name")
+    @JoinColumn(name = "idcustomer")
+    @OneToOne
+    private UseEntity userEntity;
+
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "LastName")
+    @Column(name = "lastname")
     private String LastName;
 
     @Column(name = "gender")
@@ -43,7 +47,7 @@ public class ClientEntity {
     @Column(name = "birthday")
     private String birthday;
 
-    @Column(name = "birthplaceCity")
+    @Column(name = "birthplacecity")
     private String birthplaceCity;
 
     @Column(name = "nationality")
@@ -52,7 +56,7 @@ public class ClientEntity {
     @Column(name = "situation")
     private String situation;
 
-    @Column(name = "dateInscription")
+    @Column(name = "dateinscription")
     private String dateInscription;
 
     @Column(name = "child")
@@ -61,7 +65,7 @@ public class ClientEntity {
     @Column(name="heritage")
     private boolean heritage;
 
-    @Column(name="permanentJob")
+    @Column(name="permanentjob")
     private boolean permanentJob;
 
 }
