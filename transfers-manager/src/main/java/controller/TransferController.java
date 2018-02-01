@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 import producer.TransferProducer;
 import service.IAccountService;
 import service.IBeneficiaryAccountService;
+import service.ITransferService;
 import utils.CollectionUtils;
 
 import java.util.List;
@@ -29,6 +30,9 @@ public class TransferController {
     private IAccountService accountService;
 
     @Autowired
+    private ITransferService transferService;
+
+    @Autowired
     private IBeneficiaryAccountService beneficiaryAccountService;
 
     @RequestMapping(value="/submit", method={RequestMethod.POST})
@@ -36,12 +40,13 @@ public class TransferController {
         logger.info(transferDto.toString());
 
         //send transfer to backend
-        new TransferProducer().sendTransfer(transferDto);
+        //new TransferProducer().sendTransfer(transferDto);
 
         //save in database
-        //TODO
-
-        return new ResponseEntity<Authenticator.Success>(HttpStatus.OK);
+        boolean saved = transferService.createTransferAndTransaction(transferDto);
+        return (saved) ?
+                new ResponseEntity(HttpStatus.OK)
+                : new ResponseEntity(HttpStatus.NOT_MODIFIED);
     }
 
     @RequestMapping(value="/accounts", method={RequestMethod.GET})

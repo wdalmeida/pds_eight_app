@@ -11,28 +11,31 @@
         <form action="#" method="post" th:object="${transferModel}" th:action="@{/transfers/submit}">
             <fieldset>
                 <div id="transfer">
-                    <label for="sendingIBAN">IBAN émetteur: </label>
-                    <select class="form-control"  th:field="*{sendingIBAN}">
-                        <option value="0">Selectionner un compte émetteur</option>
-                        <option th:each="account : ${accounts}"
-                                th:value="${account.iban}"
-                                th:selected="${account.iban}"
-                                th:text="${account.iban}+' (solde: '+${account.balance}+')'"></option>
-                    </select>
+                    <label for="sendingIBAN">IBAN émetteur:
+                        <select class="form-control"  th:field="*{sendingIBAN}">
+                            <option value="0">Selectionner un compte émetteur</option>
+                            <option th:each="account : ${accounts}"
+                                    th:value="${account.iban}"
+                                    th:selected="${account.iban}"
+                                    th:text="${account.iban}+' (solde: '+${account.balance}+')'"></option>
+                        </select>
+                    </label>
                     <br/>
 
                     <label for="amount">Montant: </label>
                     <input type="text" th:field="*{amount}" size="15"/>
                     <br/>
 
-                    <label for="beneficiaryIban">IBAN bénéficiaire: </label>
-                    <select class="form-control"  th:field="*{beneficiaryIban}">
-                        <option value="0">Selectionner un compte bénéficiaire</option>
-                        <option th:each="beneficiaryAccount : ${beneficiaryAccounts}"
-                                th:value="${beneficiaryAccount.iban}"
-                                th:selected="${beneficiaryAccount.iban}"
-                                th:text="${beneficiaryAccount.iban}+' (libelle: '+${beneficiaryAccount.name}+')'"></option>
-                    </select>
+                    <label for="beneficiaryIban">IBAN bénéficiaire:
+                        <select class="form-control"  th:field="*{beneficiaryIban}">
+                            <option value="0">Selectionner un compte bénéficiaire</option>
+                            <option th:each="beneficiaryAccount : ${beneficiaryAccounts}"
+                                    th:value="${beneficiaryAccount.iban}"
+                                    th:selected="${beneficiaryAccount.iban}"
+                                    th:text="${beneficiaryAccount.iban}+' (libelle: '+${beneficiaryAccount.name}+')'"></option>
+                        </select>
+                    </label>
+
                     <br/>
 
                     <label for="valueDate">Date de valeur: </label>

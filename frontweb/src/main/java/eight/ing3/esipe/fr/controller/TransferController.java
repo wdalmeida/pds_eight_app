@@ -44,7 +44,7 @@ public class TransferController {
         if (accountsResponseEntity.getStatusCode() == HttpStatus.OK) {
             List<AccounEntity> accounts = accountsResponseEntity.getBody();
             mav.addObject("accounts",accounts);
-            logger.info("accounts received : " + accounts.toString());
+            logger.info("sending accounts : " + accounts.toString());
         } else {
             mav.addObject("accountsMessage","Aucun compte");
         }
@@ -54,7 +54,7 @@ public class TransferController {
         if (beneficiaryAccountsResponseEntity.getStatusCode() == HttpStatus.OK) {
             List<BeneficiaryAccountEntity> beneficiaryAccounts = beneficiaryAccountsResponseEntity.getBody();
             mav.addObject("beneficiaryAccounts",beneficiaryAccounts);
-            logger.info("beneficiary accounts received : " + beneficiaryAccounts.toString());
+            logger.info("beneficiary accounts : " + beneficiaryAccounts.toString());
         } else {
             mav.addObject("beneficiaryAccountsMessage","Aucun compte bénéficiare");
         }
@@ -67,7 +67,7 @@ public class TransferController {
 
     @RequestMapping(value="/submit", method={RequestMethod.POST})
     public ModelAndView submitTransfer(@ModelAttribute("transferModel") TransferModel transferModel, BindingResult bindingResult) {
-        ModelAndView mav = new ModelAndView("response");
+        ModelAndView mav = new ModelAndView("transferResponse");
 
         logger.info("transfer filled : " + transferModel.toString());
 
@@ -83,10 +83,10 @@ public class TransferController {
         ResponseEntity<?> response = restTemplate.postForEntity(transferManagerSubmitUrl, request, TransferDto.class);
 
         if (response.getStatusCode() == HttpStatus.OK) {
-            mav.addObject("message", "OK");
-        } else {
-            mav.addObject("message", "KO");
+            mav.addObject("transferModel", transferModel);
         }
+
+        logger.info("Transfer result page displayed");
         return mav;
 
     }
