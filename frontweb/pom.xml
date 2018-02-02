@@ -71,9 +71,8 @@
 							<goal>repackage</goal>
 						</goals>
 						<configuration>
-							<classifier>spring-boot</classifier>
 							<mainClass>
-								eight.ing3.esipe.fr.FrontApplication
+								FrontApplication
 							</mainClass>
 						</configuration>
 					</execution>

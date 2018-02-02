@@ -59,9 +59,8 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <classifier>spring-boot</classifier>
                             <mainClass>
-                                eight.ing3.esipe.fr.TransfersManagerApplication
+                                TransfersManagerApplication
                             </mainClass>
                         </configuration>
                     </execution>
