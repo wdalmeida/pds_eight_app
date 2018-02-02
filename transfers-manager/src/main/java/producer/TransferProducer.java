@@ -69,15 +69,4 @@ public class TransferProducer {
         }
     }
 
-    public static void main (String[] args) {
-        TransferModel test = new TransferModel();
-        test.setWording("test");
-        test.setAmount(3995);
-        test.setBeneficiaryIban("FR768574754");
-        test.setSendingIBAN("FR76875686575");
-        test.setValueDate(now());
-        TransferProducer producer = new TransferProducer();
-        //producer.sendTransfer(test);
-    }
-
 }
