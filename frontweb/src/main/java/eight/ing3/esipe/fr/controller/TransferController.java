@@ -46,7 +46,7 @@ public class TransferController {
             mav.addObject("accounts",accounts);
             logger.info("sending accounts : " + accounts.toString());
         } else {
-            mav.addObject("accountsMessage","Aucun compte");
+            logger.info("no sending accounts retrieved");
         }
 
         //recover beneficiary accounts
@@ -56,7 +56,7 @@ public class TransferController {
             mav.addObject("beneficiaryAccounts",beneficiaryAccounts);
             logger.info("beneficiary accounts : " + beneficiaryAccounts.toString());
         } else {
-            mav.addObject("beneficiaryAccountsMessage","Aucun compte bénéficiare");
+            logger.info("no beneficiary accounts retrieved");
         }
 
         mav.addObject("transferModel", new TransferModel());
@@ -81,9 +81,13 @@ public class TransferController {
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<TransferDto> request = new HttpEntity<>(transferDto);
         ResponseEntity<?> response = restTemplate.postForEntity(transferManagerSubmitUrl, request, TransferDto.class);
-
+        logger.info("response status : " + response.getStatusCode());
         if (response.getStatusCode() == HttpStatus.OK) {
+            logger.info("transfer saved and well submitted");
             mav.addObject("transferModel", transferModel);
+        } else {
+            mav.addObject("transferModel", null);
+            logger.info("transfer not saved");
         }
 
         logger.info("Transfer result page displayed");

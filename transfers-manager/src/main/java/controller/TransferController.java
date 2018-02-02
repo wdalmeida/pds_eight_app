@@ -37,16 +37,19 @@ public class TransferController {
 
     @RequestMapping(value="/submit", method={RequestMethod.POST})
     public ResponseEntity<?> submitTransfer(@RequestBody TransferDto transferDto) {
-        logger.info(transferDto.toString());
-
-        //send transfer to backend
-        //new TransferProducer().sendTransfer(transferDto);
+        logger.info("transfer to save" + transferDto.toString());
 
         //save in database
         boolean saved = transferService.createTransferAndTransaction(transferDto);
-        return (saved) ?
-                new ResponseEntity(HttpStatus.OK)
-                : new ResponseEntity(HttpStatus.NOT_MODIFIED);
+
+        logger.info("transfer not saved");
+        if (saved) {
+            //send transfer to backend
+            new TransferProducer().sendTransfer(transferDto);
+            return new ResponseEntity(HttpStatus.OK);
+        } else {
+            return new ResponseEntity(HttpStatus.NOT_MODIFIED);
+        }
     }
 
     @RequestMapping(value="/accounts", method={RequestMethod.GET})
