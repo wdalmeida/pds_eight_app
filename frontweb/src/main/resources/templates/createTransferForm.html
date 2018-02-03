@@ -5,7 +5,9 @@
     <body>
         <nav th:replace="fragments/menu :: menu"></nav>
 
-        <h2>Effectuer un virement</h2>
+        <div class="container text-center">
+            <h1>Réaliser un virement</h1>
+        </div>
 
         <!--/*@thymesVar id="transferModel" type=""*/-->
         <form action="#" method="post" th:object="${transferModel}" th:action="@{/transfers/submit}">
@@ -21,9 +23,10 @@
                         </select>
                     </label>
                     <br/>
+                    <br/>
 
-                    <label for="amount">Montant: </label>
-                    <input type="text" th:field="*{amount}" size="15"/>
+                    <label for="amount">Montant: <input type="text" th:field="*{amount}" size="15"/></label>
+                    <br/>
                     <br/>
 
                     <label for="beneficiaryIban">IBAN bénéficiaire:
@@ -35,20 +38,21 @@
                                     th:text="${beneficiaryAccount.iban}+' (libelle: '+${beneficiaryAccount.name}+')'"></option>
                         </select>
                     </label>
-
+                    <br/>
                     <br/>
 
-                    <label for="valueDate">Date de valeur: </label>
-                    <input type="date" th:field="*{valueDate}" size="30"/>
+                    <label for="valueDate">Date de valeur: <input type="date" th:field="*{valueDate}" size="30"/></label>
+                    <br/>
                     <br/>
 
-                    <label for="wording">Libellé: </label>
-                    <input type="text" th:field="*{wording}" size="30"/>
+                    <label for="wording">Libellé: <input type="text" th:field="*{wording}" size="30"/></label>
+                    <br/>
+                    <br/>
 
                 </div>
 
                 <div class="submit">
-                    <button name="submit" type="submit">Envoyer</button>
+                    <button name="submit" type="submit">Créer</button>
                 </div>
             </fieldset>
         </form>
