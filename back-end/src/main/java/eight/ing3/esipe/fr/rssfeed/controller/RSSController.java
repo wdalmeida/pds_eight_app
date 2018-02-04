@@ -31,7 +31,7 @@ public class RSSController {
      * Method to get a news on the BFM feed
      *
      * @param id Latest is 0
-     * @return RSSFeed in JSON with HTTP status 200 or only HTTP status 500
+     * @return RSSFeed in JSON with HTTP status 200 or only HTTP status 204
      */
     @GetMapping("/rss/{id}")
     public  ResponseEntity<RSSFeed> getOne(@PathVariable int id) throws IOException {

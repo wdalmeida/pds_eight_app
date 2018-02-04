@@ -6,6 +6,7 @@ import com.rometools.rome.io.SyndFeedOutput;
 import com.rometools.rome.io.XmlReader;
 import org.apache.log4j.Logger;
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -131,13 +132,16 @@ public class RSSReaderTest {
 
     @After
     public void clear(){
-        File test = new File("test.txt");
+        File test = new File(filename);
         logger.debug("File path ==>"+test.getAbsolutePath());
-        if(test.exists()){
-            test.setWritable(true,false);
-            test.delete();
-            test.deleteOnExit();
-            logger.debug("File existed and has been deleted");
+        if(test.exists() && test.setWritable(true,false)){
+            if(test.delete()){
+                test.deleteOnExit();
+                logger.debug("File existed and has been deleted");
+            }
+            else{
+                logger.debug("File can't be deleted");
+            }
         }
         else {
             logger.debug("File doesn't exist");
