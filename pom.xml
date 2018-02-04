@@ -15,6 +15,7 @@
         <module>back-transfers</module>
         <module>transfers-manager</module>
         <module>back-end</module>
+        <module>applicationweb</module>
         <module>notify-client-transaction</module>
     </modules>
 
