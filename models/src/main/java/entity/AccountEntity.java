@@ -4,8 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-/*@Data
-@Entity(name = "account")
+@Data
+@Entity(name = "accoun")
 public class AccountEntity {
 
     @Id
@@ -30,4 +30,3 @@ public class AccountEntity {
         this.balance = balance;
     }
 }
-*/

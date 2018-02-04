@@ -6,7 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.List;
 
-/*@Data
+@Data
 @Entity(name = "user")
 public class UserEntity {
 
@@ -33,4 +33,4 @@ public class UserEntity {
         this.lastName = lastName;
         this.accounts = accounts;
     }
-}*/
+}
