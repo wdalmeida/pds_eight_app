@@ -179,6 +179,11 @@
                 <scope>import</scope>
                 <type>pom</type>
             </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-maven-plugin</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
 
 
 
@@ -242,5 +247,4 @@
             </plugin>
         </plugins>
     </build>
-
 </project>
