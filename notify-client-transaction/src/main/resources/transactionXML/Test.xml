@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes" ?>
+
+<document>
+<transaction type="transfer">
+    <personne>Jean Pierre</personne>
+    <ibansender>FR12345678974877</ibansender>
+    <date>
+        <year>2017</year>
+        <month>01</month>
+        <day>10</day>
+    </date>
+    <intitule>Loyer</intitule>
+    <montant>160,58</montant>
+    <detail>Le loyer du mois de décembre</detail>
+    <ibanrecipient>FR12234580148715</ibanrecipient>
+</transaction>
+
+<transaction type="payment">
+    <personne>amazon</personne>
+    <ibansender>FR12345678974877</ibansender>
+    <date>
+        <year>20017</year>
+        <month>01</month>
+        <day>10</day>
+    </date>
+    <intitule>Achat</intitule>
+    <montant>58,8</montant>
+    <detail>Achat du frigo</detail>
+    <tpe>123456789</tpe>
+</transaction>
+</document>
