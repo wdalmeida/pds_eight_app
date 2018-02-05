@@ -40,22 +40,7 @@ public class NotificationService {
         System.out.println(this.notificationRepository + " test");
     }
 
-    @Bean
-    public XmlMapper getXmlMapper() {
-        return new XmlMapper();
-    }
 
-    @Bean
-    public void sendToQueue() throws JsonProcessingException {
-
-        List<Transaction> transactions = new ArrayList<>();
-        transactions.add(new Transaction("personne", "873879873", "intitul", 1000.00, "detail", "myIban", null, null));
-        transactions.add(new Transaction("personne", "873879873", "intitul", 1000.00, "detail", "myIban", null, null));
-        transactions.add(new Transaction("personne", "873879873", "intitul", 1000.00, "detail", "myIban", null, new Date(System.currentTimeMillis())));
-        String xml = xmlMapper.writeValueAsString(transactions);
-
-        this.sender.send(topicName, xml);
-    }
 
 
     @Transactional
