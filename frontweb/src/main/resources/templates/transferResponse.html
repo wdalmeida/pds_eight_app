@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head lang="fr" th:replace="fragments/header :: header"></head>
+
+    <body>
+        <nav th:replace="fragments/menu :: menu"></nav>
+
+        <div class="container text-center">
+            <h1>Récapitulatif du virement</h1>
+        </div>
+
+        <div th:if="${transferModel != null}">
+            <section id="about">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <h2>Le virement a été créé.</h2>
+                            <p class="lead">Virement:</p>
+                            <ul>
+                                <li>IBAN émetteur : <div th:text="${transferModel.sendingIBAN}"></div></li>
+                                <br/>
+                                <li>Montant : <div th:text="${transferModel.amount}"></div></li>
+                                <br/>
+                                <li>IBAN bénéficiaire : <div th:text="${transferModel.beneficiaryIban}"></div></li>
+                                <br/>
+                                <li>Date de valeur : <div th:text="${transferModel.valueDate}"></div></li>
+                                <br/>
+                                <li>Libellé : <div th:text="${transferModel.wording}"></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div th:if="${transferModel == null}">
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 mx-auto">
+                            <h2>Le virement n'a pas été créé.</h2>
+                            <p class="lead">Le solde du compte n'est pas suffisant.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </body>
+</html>
