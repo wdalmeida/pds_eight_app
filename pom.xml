@@ -19,6 +19,7 @@
         <module>notify-client-transaction</module>
         <module>applicationweb</module>
         <module>RecupMouvement</module>
+        <module>fraudulent-transfers-learning</module>
     </modules>
 
     <properties>
