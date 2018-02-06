@@ -1,6 +1,7 @@
 package eight.ing3.esipe.fr.accountServices.accountServices.controllers;
 
 import dto.AccountDto;
+import dto.TransactionDto;
 import eight.ing3.esipe.fr.accountServices.GenericException;
 import eight.ing3.esipe.fr.accountServices.accountServices.services.AccountService;
 
@@ -31,7 +32,7 @@ public class AccountController {
     }
 
 
-    @RequestMapping(value="accounts",method = RequestMethod.GET)
+    @RequestMapping(value="account",method = RequestMethod.GET)
     public ResponseEntity<?> get(HttpServletRequest request) throws IOException, GenericException {
 
 
@@ -45,6 +46,13 @@ public class AccountController {
                 new ResponseEntity<>(accountList, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
 
+    }
+
+    @RequestMapping(value = "account/{account_number}",method =RequestMethod.GET)
+    public ResponseEntity<?> getTransactions( @PathVariable("account_number") String accountNumber) throws GenericException {
+        final List<TransactionDto> transactionList = accountService.getTransactions(accountNumber);
+        return (!transactionList.isEmpty() && transactionList != null ) ?
+                new ResponseEntity<>(transactionList, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 

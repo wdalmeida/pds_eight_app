@@ -1,15 +1,14 @@
 package eight.ing3.esipe.fr.accountServices.accountServices.services;
 
 
-import dto.AccountDto;
-import dto.AccountType;
-import dto.CredentialDto;
-import dto.UserDto;
+import dto.*;
 import eight.ing3.esipe.fr.accountServices.GenericException;
 import entity.AccountEntity;
+import entity.TransactionEntity;
 import entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import repository.AccountRepository;
 import repository.UserRepository;
 
 import java.util.List;
@@ -20,11 +19,13 @@ public class AccountService implements IAccountService {
 
 
     private final UserRepository userRepository;
+    private final AccountRepository accountRepository;
 
 
 
     @Autowired
-    public AccountService(UserRepository userRepository) {
+    public AccountService(UserRepository userRepository, AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
         this.userRepository = userRepository;
 
     }
@@ -52,7 +53,41 @@ public class AccountService implements IAccountService {
 
        }
 
+       public AccountDto getAccountById(String accountNumber) throws GenericException {
 
+        AccountEntity accountEntity = accountRepository.findOne(accountNumber);
+
+        if(accountEntity == null ){
+            throw new GenericException("No account found with this id " + accountNumber);
+        }
+        else {
+
+            return AccountDto.builder()
+                    .accountNumber(accountEntity.getAccountNumber())
+                    .balance(accountEntity.getBalance())
+                    .type(AccountType.valueOf(accountEntity.getType()))
+                    .transactionDtoList(transactionEntitiesToTransactionDtoList(accountEntity.getTransactions()))
+                    .build();
+        }
+
+       }
+
+
+    public List<TransactionDto> transactionEntitiesToTransactionDtoList(List<TransactionEntity> transactionEntities){
+
+        return transactionEntities
+                .stream()
+                .map(
+                        t -> TransactionDto.builder()
+                        .transactionId(t.getTransactionId())
+                        .date(t.getDate())
+                        .description(t.getDescription())
+                        .amount(t.getAmount())
+                        .build()
+                )
+                .collect(Collectors.toList());
+
+    }
 
     public List<AccountDto> accountEntitiesToAccountDtoList(List<AccountEntity> accountEntities){
         return accountEntities
@@ -75,6 +110,10 @@ public class AccountService implements IAccountService {
 
     }
 
+    @Override
+    public List<TransactionDto> getTransactions(String account_number) throws GenericException {
 
+        return getAccountById(account_number).getTransactionDtoList();
+    }
 
 }

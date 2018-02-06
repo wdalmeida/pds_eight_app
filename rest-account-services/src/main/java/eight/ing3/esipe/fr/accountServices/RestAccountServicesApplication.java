@@ -23,7 +23,7 @@ public class RestAccountServicesApplication {
 	public FilterRegistrationBean jwtFilter() {
 		final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
 		registrationBean.setFilter(new AuthenticationFilter());
-		registrationBean.addUrlPatterns("/accounts/*");
+		registrationBean.addUrlPatterns("/account/*");
 
 		return registrationBean;
 	}
