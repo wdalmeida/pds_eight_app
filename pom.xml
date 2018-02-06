@@ -20,6 +20,7 @@
         <module>RecupMouvement</module>
 	    <module>rest-account-services</module>
 	    <module>notify-client-transaction</module>
+        <module>fraudulent-transfers-learning</module>
     </modules>
 
     <properties>
