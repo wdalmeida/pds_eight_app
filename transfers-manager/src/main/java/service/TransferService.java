@@ -3,13 +3,19 @@ package service;
 import dto.TransferDto;
 import entity.AccounEntity;
 import entity.TransactionEntity;
+import entity.TransferDetailsEntity;
 import entity.TransferEntity;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import repository.AccounRepository;
 import repository.TransactionRepository;
+import repository.TransferDetailsRepository;
 import repository.TransferRepository;
+
+import java.time.LocalTime;
+
+import static java.time.LocalDate.now;
 
 @Service
 public class TransferService implements ITransferService{
@@ -24,6 +30,14 @@ public class TransferService implements ITransferService{
 
     @Autowired
     private AccounRepository accounRepository;
+
+    @Autowired
+    private TransferDetailsRepository transferDetailsRepository;
+
+    @Override
+    public Iterable<TransferDetailsEntity> getAllTransferDetails() {
+        return transferDetailsRepository.findAll();
+    }
 
     @Override
     public boolean createTransferAndTransaction(TransferDto transferDto) {
@@ -43,6 +57,13 @@ public class TransferService implements ITransferService{
             transferEntity.setBeneficiaryIban(transferDto.getBeneficiaryIban());
             transferEntity.setTransactionEntity(transactionEntity);
 
+            TransferDetailsEntity transferDetailsEntity = new TransferDetailsEntity();
+            transferDetailsEntity.setTransferEntity(transferEntity);
+            transferDetailsEntity.setNewbalanceorig(accounEntity.getBalance() - transferDto.getAmount());
+            transferDetailsEntity.setOldBalanceOrg(accounEntity.getBalance());
+            //get hour in month
+            transferDetailsEntity.setStep(LocalTime.now().getHour() + (24 * (now().getDayOfMonth()-1)));
+
             transactionRepository.save(transactionEntity);
             logger.info("transaction saved");
 
@@ -53,6 +74,10 @@ public class TransferService implements ITransferService{
             accounRepository.save(accounEntity);
             logger.info("balance of the account is reduced of " + transferDto.getAmount() +
                             " (closed balance : " + accounEntity.getBalance() + ")");
+
+            transferDetailsRepository.save(transferDetailsEntity);
+            logger.info("details of transfer saved");
+
             return true;
         } else {
 
@@ -61,4 +86,8 @@ public class TransferService implements ITransferService{
         }
 
     }
+
+
+
+
 }
