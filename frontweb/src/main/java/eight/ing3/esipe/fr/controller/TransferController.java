@@ -3,6 +3,7 @@ package eight.ing3.esipe.fr.controller;
 import dto.TransferDto;
 import entity.AccounEntity;
 import entity.BeneficiaryAccountEntity;
+import entity.TransferDetailsEntity;
 import model.TransferModel;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,6 +34,9 @@ public class TransferController {
 
     @Value("${transfers.manager.beneficiaryaccount.url}")
     private String transferManagerBeneficiaryAccountUrl;
+
+    @Value("${transfers.manager.transfersdetails.url}")
+    private String transferManagerTransferdetailsUrl;
 
     @RequestMapping(value="/create", method={RequestMethod.GET})
     public ModelAndView getSendingAccountSelectionForm() {
@@ -93,6 +97,23 @@ public class TransferController {
         logger.info("Transfer result page displayed");
         return mav;
 
+    }
+
+    @RequestMapping(value="/fraudulent", method={RequestMethod.GET})
+    public ModelAndView getFraudulentTransfersForm() {
+        ModelAndView mav = new ModelAndView("fraudulentTransfers");
+        RestTemplate restTemplate = new RestTemplate();
+
+        //recover transfer details
+        ResponseEntity<List> transfersResponseEntity = restTemplate.getForEntity(transferManagerTransferdetailsUrl, List.class);
+        if (transfersResponseEntity.getStatusCode() == HttpStatus.OK) {
+            List<TransferDetailsEntity> transfers = transfersResponseEntity.getBody();
+            mav.addObject("transfers",transfers);
+            logger.info("transfers : " + transfers.toString());
+        } else {
+            logger.info("no transfers retrieved");
+        }
+        return mav;
     }
 }
 
