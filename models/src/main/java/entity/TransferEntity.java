@@ -22,4 +22,5 @@ public class TransferEntity {
     @JoinColumn(name = "idtransaction")
     @OneToOne
     private TransactionEntity TransactionEntity;
+
 }
