@@ -6,7 +6,6 @@
     <packaging>pom</packaging>
     <name>BEM application</name>
 
-
     <modules>
         <module>frontweb</module>
         <module>rest-account-services</module>
@@ -15,6 +14,7 @@
         <module>back-transfers</module>
         <module>transfers-manager</module>
         <module>back-end</module>
+        <module>notify-client-transaction</module>
         <module>applicationweb</module>
         <module>notify-client-transaction</module>
     </modules>
@@ -42,6 +42,7 @@
 
     <dependencyManagement>
         <dependencies>
+
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -247,4 +248,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>
