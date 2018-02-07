@@ -18,7 +18,7 @@ public class FraudulentTransferController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public void test() throws JAXBException, IOException, SAXException {
-        fraudulentTransferLearning.testPmml();
+        fraudulentTransferLearning.initPmml();
 
     }
 }

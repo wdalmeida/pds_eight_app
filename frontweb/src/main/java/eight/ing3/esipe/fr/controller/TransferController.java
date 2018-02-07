@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
@@ -37,6 +38,9 @@ public class TransferController {
 
     @Value("${transfers.manager.transfersdetails.url}")
     private String transferManagerTransferdetailsUrl;
+
+    @Value("${transfers.manager.fraudulenttransfer.url}")
+    private String transferManagerFraudulentTransferUrl;
 
     @RequestMapping(value="/create", method={RequestMethod.GET})
     public ModelAndView getSendingAccountSelectionForm() {
@@ -113,7 +117,18 @@ public class TransferController {
         } else {
             logger.info("no transfers retrieved");
         }
+        mav.addObject("transferDetailsEntity", new TransferDetailsEntity());
         return mav;
+    }
+
+    @RequestMapping(value="/fraudulent/{id}", method={RequestMethod.GET})
+    public ModelAndView getFraudulentTransfersForm(@PathVariable int id) {
+        RestTemplate restTemplate = new RestTemplate();
+
+        HttpEntity<Integer> request = new HttpEntity<>(new Integer(id));
+        ResponseEntity<?> response = restTemplate.postForEntity(transferManagerFraudulentTransferUrl,request,Integer.class);
+        logger.info("fraudulent computation response : " + response.toString());
+        return null;
     }
 }
 
