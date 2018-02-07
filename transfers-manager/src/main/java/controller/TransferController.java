@@ -46,7 +46,7 @@ public class TransferController {
         logger.info("transfer not saved");
         if (saved) {
             //send transfer to backend
-            new TransferProducer().sendTransfer(transferDto);
+            //new TransferProducer().sendTransfer(transferDto);
             return new ResponseEntity(HttpStatus.OK);
         } else {
             return new ResponseEntity(HttpStatus.NOT_MODIFIED);
