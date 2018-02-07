@@ -9,6 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Service for reading RSS Feed
  *
@@ -43,5 +47,25 @@ public class RssServiceImpl implements IRssService {
         }
         RSSFeed rf = new RSSFeed(se.getTitle(),se.getLink(),desc,se.getEnclosures().get(0).getUrl());
         return  rf;
+    }
+
+    @Override
+    public List<RSSFeed> getAllFromBEM() {
+        String url="http://rss.eight.inside.esiag.info/rss.xml";
+        logger.debug("Service news : ");
+        SyndFeed rss = reader.read(url);
+        List<SyndEntry> newsList= rss.getEntries();
+        String desc;
+        List<RSSFeed> result = new ArrayList<>();
+        for(SyndEntry se : newsList){
+            desc = se.getDescription().getValue();
+            if(desc.contains("<br")) {
+                desc = desc.substring(0, desc.indexOf("<br"));
+                desc= desc.trim();
+                logger.debug("Delete Html ");
+            }
+            result.add(new RSSFeed(se.getTitle(),se.getLink(),desc,se.getEnclosures().get(0).getUrl()));
+        }
+        return  result;
     }
 }
