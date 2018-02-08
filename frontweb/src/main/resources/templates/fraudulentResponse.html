@@ -9,7 +9,36 @@
         <h1>Dossier de fraude</h1>
     </div>
 
+    <div class="jumbotron">
+        <div th:if="${percent > 50}">
+            <h1 class="display-3">Le mouvement est frauduleux</h1>
+            <p class="lead">Certitude à <p th:text="${percent}"/> pourcents</p>
+        </div>
+    </div>
 
+    <div class="row marketing">
+        <div class="col-lg-6">
+            <h4>Montant</h4>
+            <p th:text="${transfer.transferEntity.transactionEntity.amount}"></p>
+
+            <h4>Emetteur</h4>
+            <p th:text="${transfer.transferEntity.transactionEntity.accountEntity.iban}"></p>
+
+            <h4>Solde avant virement</h4>
+            <p th:text="${transfer.oldBalanceOrg}"></p>
+        </div>
+
+        <div class="col-lg-6">
+            <h4>Libellé</h4>
+            <p th:text="${transfer.transferEntity.transactionEntity.wording}"></p>
+
+            <h4>Bénéficiaire</h4>
+            <p th:text="${transfer.transferEntity.beneficiaryIban}"></p>
+
+            <h4>Solde après virement</h4>
+            <p th:text="${transfer.newbalanceorig}"></p>
+        </div>
+    </div>
 
 </body>
 </html>

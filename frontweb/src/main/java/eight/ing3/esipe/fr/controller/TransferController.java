@@ -20,6 +20,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/transfers")
 @Controller
@@ -124,11 +125,19 @@ public class TransferController {
     @RequestMapping(value="/fraudulent/{id}", method={RequestMethod.GET})
     public ModelAndView getFraudulentTransfersForm(@PathVariable int id) {
         RestTemplate restTemplate = new RestTemplate();
-
+        ModelAndView mav = new ModelAndView("fraudulentResponse");
         HttpEntity<Integer> request = new HttpEntity<>(new Integer(id));
-        ResponseEntity<?> response = restTemplate.postForEntity(transferManagerFraudulentTransferUrl,request,Integer.class);
+        ResponseEntity<Map> response = restTemplate.postForEntity(transferManagerFraudulentTransferUrl,request,Map.class);
         logger.info("fraudulent computation response : " + response.toString());
-        return null;
+        if (response.getStatusCode() == HttpStatus.OK) {
+            Map responseBody = response.getBody();
+            mav.addObject("percent", responseBody.get("percent"));
+            mav.addObject("transfer", responseBody.get("transfer"));
+        } else {
+            mav.addObject("percent", null);
+        }
+
+        return mav;
     }
 }
 
