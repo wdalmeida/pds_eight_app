@@ -26,5 +26,15 @@
             <artifactId>pmml-evaluator</artifactId>
             <version>1.3.11</version>
         </dependency>
+        <dependency>
+            <groupId>eight.ing3.esipe.fr</groupId>
+            <artifactId>models</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.1-901.jdbc4</version>
+        </dependency>
     </dependencies>
 </project>
