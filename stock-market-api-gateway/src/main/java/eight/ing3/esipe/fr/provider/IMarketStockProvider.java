@@ -14,4 +14,6 @@ public interface IMarketStockProvider {
     public void setTargetCurrency(String targetCurrency);
 
     public String handlingResponse(String urlRequest);
+
+    public boolean valideCode(String companyCode);
 }

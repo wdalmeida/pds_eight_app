@@ -1,27 +1,35 @@
 package eight.ing3.esipe.fr.provider;
 
-import eight.ing3.esipe.fr.utils.Properties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-/**
- * Created by Vyach on 18/01/2018.
- */
 @Component(value = "provider_a")
 public class MockMarketStockProviderA implements IMarketStockProvider {
 
     private final Logger logger = LoggerFactory.getLogger(MockMarketStockProviderA.class);
 
-    @Autowired
-    private Properties properties;
-
     //default parameters
     private String codeCompany = "OR";
     private String srcCurrency = "USD";
     private String targetCurrency = "EUR";
+
+    @Value("${mock.stock_market.method}")
+    private String method;
+
+    @Value("${mock.stock_market.url}")
+    private String url;
+
+    @Value("${mock.stock_market.param.company_code}")
+    private String paramCompanyCode;
+
+    @Value("${mock.stock_market.param.src_currency}")
+    private String paramSrcCurrency;
+
+    @Value("${mock.stock_market.param.target_currency}")
+    private String paramTargetCurrency;
 
     private String response;
 
@@ -31,10 +39,10 @@ public class MockMarketStockProviderA implements IMarketStockProvider {
      */
     @Override
     public String getUrlRequest() {
-        return this.properties.getStockMarketUrl() +
-                this.properties.getMockStockMarketCompanyCode() + "/" + codeCompany +
-                "/" + this.properties.getMockStockMarketSrcCurrency() + "/" + srcCurrency +
-                "/" + this.properties.getMockStockMarketTargetCurrency() + "/" + targetCurrency;
+        return this.url +
+                this.paramCompanyCode + "/" + codeCompany +
+                "/" + this.paramSrcCurrency + "/" + srcCurrency +
+                "/" + this.paramTargetCurrency + "/" + targetCurrency;
     }
 
     @Override
@@ -70,10 +78,22 @@ public class MockMarketStockProviderA implements IMarketStockProvider {
     @Override
     public String handlingResponse(String urlRequest) {
 
+        logger.info("url request : " + urlRequest);
+
         RestTemplate restTemplate = new RestTemplate();
 
         response = restTemplate.getForObject(urlRequest, String.class);
 
         return response;
+    }
+
+    @Override
+    public boolean valideCode(String companyCode) {
+
+        if (companyCode.equals("OR") || companyCode.equals("GLE") || companyCode.equals("CA")) {
+            return true;
+        }
+        return false;
+
     }
 }
