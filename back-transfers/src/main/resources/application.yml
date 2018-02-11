@@ -1,0 +1,18 @@
+consumer:
+ properties:
+  bootstrap_servers_config: 10.10.1.12:9092
+  group_id_config: transfersGroup
+  auto_offset_reset_config: earliest
+  value_deserializer_class_config: deserializer.TransferDeserializer
+  key_deserializer_class_config: org.apache.kafka.common.serialization.StringDeserializer
+  topic: transfers
+externalBank:
+ url: http://int.eight.inside.esiag.info:9191/externalBank/submit/
+spring:
+ datasource:
+  url: jdbc:postgresql://10.10.1.5:5432/eight
+  username: eight
+  password: eight
+  driver-class-name: org.postgresql.Driver
+ jpa:
+  generate-ddl: true

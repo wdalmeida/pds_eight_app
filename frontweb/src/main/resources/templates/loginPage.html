@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head lang="fr" th:replace="fragments/header :: header"></head>
+
+    <body>
+        <a class="navbar-brand" href="#">Banque d'échange mutualiste</a>
+
+        <nav th:fragment="menu" class="navbar navbar-toggleable-md navbar-inverse bg-inverse fixed-top">
+
+            <ul class="nav navbar-nav ">
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/}">Accueil</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" th:href="@{/login}">Se connecter</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="row" id="pwd-container">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <section class="login-form">
+                    <form  method="post" th:object="${loginModel}" th:action="@{/customerHomePage}" action="#">
+                        <h2>Portail</h2>
+                        <div class="login">
+                            <input path="login" th:field="*{login}" type="text" class="form-control input-lg" placeholder="Identifiant"></input>
+                            <input path="pwd" th:field="*{pwd}" type="password" placeholder="Mot de passe" class="form-control input-lg"></input>
+                        </div>
+                        <div class="submit">
+                            <button name="submit" type="submit">Se connecter</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </body>
+</html>

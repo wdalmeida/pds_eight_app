@@ -5,12 +5,13 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Data
-@Entity(name = "account")
+@Entity(name = "accoun")
 public class AccountEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long accountNumber;
+   // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    String accountNumber;
+
 
     @Column (name = "type")
     private String type;
@@ -21,4 +22,11 @@ public class AccountEntity {
     @ManyToOne
     private UserEntity user;
 
+    public AccountEntity(){};
+
+    public AccountEntity(String accountNumber, String type, int balance) {
+        this.accountNumber = accountNumber;
+        this.type = type;
+        this.balance = balance;
+    }
 }
