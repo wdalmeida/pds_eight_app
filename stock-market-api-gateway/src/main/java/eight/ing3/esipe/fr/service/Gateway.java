@@ -28,11 +28,21 @@ public class Gateway {
 
         String response = "{}";
 
-        marketStockProviderA.setCodeCompany(codeCompany);
-        marketStockProviderA.setSrcCurrency(srcCurrency);
-        marketStockProviderA.setTargetCurrency(targetCurrency);
+        if (marketStockProviderA.valideCode(codeCompany)) {
+            marketStockProviderA.setCodeCompany(codeCompany);
+            marketStockProviderA.setSrcCurrency(srcCurrency);
+            marketStockProviderA.setTargetCurrency(targetCurrency);
 
-        response = marketStockProviderA.handlingResponse(marketStockProviderA.getUrlRequest());
+            response = marketStockProviderA.handlingResponse(marketStockProviderA.getUrlRequest());
+
+        }
+        else if (marketStockProviderB.valideCode(codeCompany)) {
+            marketStockProviderB.setCodeCompany(codeCompany);
+
+            response = marketStockProviderB.handlingResponse(marketStockProviderB.getUrlRequest());
+        }
+
+
 
         return response;
     }
