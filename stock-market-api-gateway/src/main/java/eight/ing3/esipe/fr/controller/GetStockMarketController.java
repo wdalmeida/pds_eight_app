@@ -1,6 +1,7 @@
 package eight.ing3.esipe.fr.controller;
 
 import eight.ing3.esipe.fr.provider.IMarketStockProvider;
+import eight.ing3.esipe.fr.service.Gateway;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,9 @@ public class GetStockMarketController {
 
     private final Logger logger = LoggerFactory.getLogger(GetStockMarketController.class);
 
+
     @Autowired
-    @Qualifier("provider_a")
-    private IMarketStockProvider marketStockProviderA;
+    private Gateway gateway;
 
     @RequestMapping("/")
     public String index() {
@@ -36,18 +37,7 @@ public class GetStockMarketController {
             @PathVariable String targetCurrency
     ) {
 
-        //build the provider
-        marketStockProviderA.setCodeCompany(codeCompany);
-        marketStockProviderA.setSrcCurrency(srcCurrency);
-        marketStockProviderA.setTargetCurrency(targetCurrency);
-
-        String urlRequest = marketStockProviderA.getUrlRequest();
-
-
-
-        logger.info("URL request : " + urlRequest);
-
-        String response = marketStockProviderA.handlingResponse(urlRequest);
+        String response = gateway.getResponseFromProvider(codeCompany, srcCurrency, targetCurrency);
 
 
         return response;
