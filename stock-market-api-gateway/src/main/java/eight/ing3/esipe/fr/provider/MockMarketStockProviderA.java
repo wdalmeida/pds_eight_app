@@ -91,6 +91,8 @@ public class MockMarketStockProviderA implements IMarketStockProvider {
 
         response = restTemplate.getForObject(urlRequest, String.class);
 
+        logger.info("Providor A response : " + response);
+
         //Mapper is configured to ignore unknowned parameters
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 

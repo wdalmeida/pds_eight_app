@@ -1,5 +1,6 @@
 package eight.ing3.esipe.fr.service;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import eight.ing3.esipe.fr.provider.IMarketStockProvider;
 import eight.ing3.esipe.fr.provider.dto.DTOProvidorA;
 import eight.ing3.esipe.fr.provider.dto.DTOProvidorB;
@@ -38,7 +39,7 @@ public class Gateway {
     public String getResponseFromProvider(String codeCompany, String srcCurrency, String targetCurrency) throws IOException {
 
         String response = "{}";
-
+        ObjectMapper mapper = new ObjectMapper();
 
 
         if (marketStockProviderA.valideCode(codeCompany)) {
@@ -54,6 +55,9 @@ public class Gateway {
 
                 DTOProvidorOutput dtoOutput = new DTOProvidorOutput(currentDTO);
                 dtoOutputList.add(dtoOutput);
+                //all id will be null because entities are not corretly parsed (need entity association to DTOProvidorA)
+                response = mapper.writeValueAsString(dtoOutputList);
+
             }
 
             logger.info(dtoOutputList.size() + " dto object converted ready for the output");
@@ -70,6 +74,7 @@ public class Gateway {
 
                 DTOProvidorOutput dtoOutput = new DTOProvidorOutput(currentDTO);
                 dtoOutputList.add(dtoOutput);
+                response = mapper.writeValueAsString(dtoOutputList);
             }
 
             logger.info(dtoOutputList.size() + " dto object converted ready for the output");

@@ -1,11 +1,16 @@
 package eight.ing3.esipe.fr.provider.dto;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Date;
 
 /**
  * Created by Vyach on 12/02/2018.
  */
 public class DTOProvidorOutput {
+
+    private final Logger logger = LoggerFactory.getLogger(DTOProvidorOutput.class);
 
     private String id;
     private Date date;
@@ -69,6 +74,9 @@ public class DTOProvidorOutput {
 
     //convert DTOProvidorA inot DTOProvidorOutput
     public DTOProvidorOutput(DTOProvidorA dtoProvidorA) {
+
+        logger.info("DTO Providor A ID : " + dtoProvidorA.getId());
+
         this.id = dtoProvidorA.getId();
         this.date = dtoProvidorA.getDate();
         this.hour = dtoProvidorA.getDateHour();
@@ -80,6 +88,9 @@ public class DTOProvidorOutput {
 
     //convert DTOProvidorB inot DTOProvidorOutput
     public DTOProvidorOutput(DTOProvidorB dtoProvidorB) {
+
+        logger.info("DTO Providor B ID : " + dtoProvidorB.getId());
+
         this.id = dtoProvidorB.getId();
         this.date = dtoProvidorB.getDate();
         this.hour = dtoProvidorB.getDateHour();
