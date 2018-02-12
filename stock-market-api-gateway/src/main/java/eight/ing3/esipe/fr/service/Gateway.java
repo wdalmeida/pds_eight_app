@@ -41,6 +41,10 @@ public class Gateway {
         String response = "{}";
         ObjectMapper mapper = new ObjectMapper();
 
+        logger.info("input code company : " + codeCompany);
+        logger.info("input currency source : " + srcCurrency);
+        logger.info("input currency target : " + targetCurrency);
+
 
         if (marketStockProviderA.valideCode(codeCompany)) {
             marketStockProviderA.setCodeCompany(codeCompany);
