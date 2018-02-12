@@ -70,7 +70,7 @@ public class MockMarketStockProviderB implements IMarketStockProvider {
     }
 
     @Override
-    public String handlingResponse(String urlRequest) throws IOException {
+    public List<DTOProvidorB> handlingResponse(String urlRequest) throws IOException {
 
         logger.info("url request : " + urlRequest);
 
@@ -84,10 +84,9 @@ public class MockMarketStockProviderB implements IMarketStockProvider {
         //Map the json string into dto object
         List<DTOProvidorB> readValue = mapper.readValue(response, new TypeReference<List<DTOProvidorB>>(){});
 
-        logger.info("Amount of dto object created form parsin json string : " + readValue.size());
+        logger.info(readValue.size() + " dto object created from parsing json string");
 
-
-        return response;
+        return readValue;
     }
 
     @Override

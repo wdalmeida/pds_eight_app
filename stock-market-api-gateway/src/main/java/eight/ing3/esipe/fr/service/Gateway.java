@@ -1,11 +1,14 @@
 package eight.ing3.esipe.fr.service;
 
 import eight.ing3.esipe.fr.provider.IMarketStockProvider;
+import eight.ing3.esipe.fr.provider.dto.DTOProvidorA;
+import eight.ing3.esipe.fr.provider.dto.DTOProvidorB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Vyach on 11/02/2018.
@@ -35,13 +38,13 @@ public class Gateway {
             marketStockProviderA.setSrcCurrency(srcCurrency);
             marketStockProviderA.setTargetCurrency(targetCurrency);
 
-            response = marketStockProviderA.handlingResponse(marketStockProviderA.getUrlRequest());
+            List<DTOProvidorA> listFlowA = marketStockProviderA.handlingResponse(marketStockProviderA.getUrlRequest());
 
         }
         else if (marketStockProviderB.valideCode(codeCompany)) {
             marketStockProviderB.setCodeCompany(codeCompany);
 
-            response = marketStockProviderB.handlingResponse(marketStockProviderB.getUrlRequest());
+            List<DTOProvidorB> listFlowB = marketStockProviderB.handlingResponse(marketStockProviderB.getUrlRequest());
         }
 
 
