@@ -17,6 +17,7 @@
         <module>back-end</module>
         <module>notify-client-transaction</module>
         <module>applicationweb</module>
+        <module>stock-market-api-gateway</module>
     </modules>
 
     <properties>
