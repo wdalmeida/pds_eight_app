@@ -1,10 +1,14 @@
 package eight.ing3.esipe.fr.service;
 
+import eight.ing3.esipe.fr.provider.IMarketStockProvider;
+import eight.ing3.esipe.fr.provider.MockMarketStockProviderA;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import javax.validation.constraints.AssertTrue;
@@ -20,6 +24,20 @@ import static org.junit.Assert.assertNotEquals;
 
 public class GatewayTest {
 
+    @Mock
+    private Gateway gateway;
+
+    @InjectMocks
+    private MockMarketStockProviderA marketStockProviderA;
+
+    @InjectMocks
+    private MockMarketStockProviderA marketStockProviderB;
+
+    /*@Before
+    public void init() {
+        gateway = new Gateway();
+    }*/
+
 
     /**
      * Test the valid input for providor A
@@ -33,7 +51,6 @@ public class GatewayTest {
         //targetCurrency allowed : EUR
 
 
-        Gateway gateway = new Gateway();
 
         String response1 = gateway.getResponseFromProvider("OR", "USD", "EUR");
         String response2 = gateway.getResponseFromProvider("GLE", "USD", "EUR");
