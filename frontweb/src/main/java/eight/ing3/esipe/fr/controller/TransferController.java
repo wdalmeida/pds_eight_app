@@ -3,6 +3,7 @@ package eight.ing3.esipe.fr.controller;
 import dto.TransferDto;
 import entity.AccounEntity;
 import entity.BeneficiaryAccountEntity;
+import entity.TransferDetailsEntity;
 import model.TransferModel;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,12 +13,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/transfers")
 @Controller
@@ -33,6 +36,12 @@ public class TransferController {
 
     @Value("${transfers.manager.beneficiaryaccount.url}")
     private String transferManagerBeneficiaryAccountUrl;
+
+    @Value("${transfers.manager.transfersdetails.url}")
+    private String transferManagerTransferdetailsUrl;
+
+    @Value("${transfers.manager.fraudulenttransfer.url}")
+    private String transferManagerFraudulentTransferUrl;
 
     @RequestMapping(value="/create", method={RequestMethod.GET})
     public ModelAndView getSendingAccountSelectionForm() {
@@ -93,6 +102,42 @@ public class TransferController {
         logger.info("Transfer result page displayed");
         return mav;
 
+    }
+
+    @RequestMapping(value="/fraudulent", method={RequestMethod.GET})
+    public ModelAndView getFraudulentTransfersForm() {
+        ModelAndView mav = new ModelAndView("fraudulentTransfers");
+        RestTemplate restTemplate = new RestTemplate();
+
+        //recover transfer details
+        ResponseEntity<List> transfersResponseEntity = restTemplate.getForEntity(transferManagerTransferdetailsUrl, List.class);
+        if (transfersResponseEntity.getStatusCode() == HttpStatus.OK) {
+            List<TransferDetailsEntity> transfers = transfersResponseEntity.getBody();
+            mav.addObject("transfers",transfers);
+            logger.info("transfers : " + transfers.toString());
+        } else {
+            logger.info("no transfers retrieved");
+        }
+        mav.addObject("transferDetailsEntity", new TransferDetailsEntity());
+        return mav;
+    }
+
+    @RequestMapping(value="/fraudulent/{id}", method={RequestMethod.GET})
+    public ModelAndView getFraudulentTransfersForm(@PathVariable int id) {
+        RestTemplate restTemplate = new RestTemplate();
+        ModelAndView mav = new ModelAndView("fraudulentResponse");
+        HttpEntity<Integer> request = new HttpEntity<>(new Integer(id));
+        ResponseEntity<Map> response = restTemplate.postForEntity(transferManagerFraudulentTransferUrl,request,Map.class);
+        logger.info("fraudulent computation response : " + response.toString());
+        if (response.getStatusCode() == HttpStatus.OK) {
+            Map responseBody = response.getBody();
+            mav.addObject("percent", responseBody.get("percent"));
+            mav.addObject("transfer", responseBody.get("transfer"));
+        } else {
+            mav.addObject("percent", null);
+        }
+
+        return mav;
     }
 }
 

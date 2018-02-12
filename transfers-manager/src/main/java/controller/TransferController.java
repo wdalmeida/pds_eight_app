@@ -4,6 +4,7 @@ import com.sun.net.httpserver.Authenticator;
 import dto.TransferDto;
 import entity.AccounEntity;
 import entity.BeneficiaryAccountEntity;
+import entity.TransferDetailsEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,7 +46,7 @@ public class TransferController {
         logger.info("transfer not saved");
         if (saved) {
             //send transfer to backend
-            new TransferProducer().sendTransfer(transferDto);
+            //new TransferProducer().sendTransfer(transferDto);
             return new ResponseEntity(HttpStatus.OK);
         } else {
             return new ResponseEntity(HttpStatus.NOT_MODIFIED);
@@ -68,6 +69,13 @@ public class TransferController {
                 new ResponseEntity<List<BeneficiaryAccountEntity>>(accountList, HttpStatus.OK) : new ResponseEntity<List<BeneficiaryAccountEntity>>(HttpStatus.NO_CONTENT);
     }
 
+    @RequestMapping(value="/transfersdetails", method={RequestMethod.GET})
+    public ResponseEntity<?> getTransfersDetails(){
+        Iterable<TransferDetailsEntity> transferDetailsIterable = transferService.getAllTransferDetails();
+        List<TransferDetailsEntity> transferDetailsList = CollectionUtils.makeCollection(transferDetailsIterable);
+        return (!transferDetailsList.isEmpty()) ?
+                new ResponseEntity<List<TransferDetailsEntity>>(transferDetailsList, HttpStatus.OK) : new ResponseEntity<List<TransferDetailsEntity>>(HttpStatus.NO_CONTENT);
 
+    }
 }
 

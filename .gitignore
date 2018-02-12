@@ -1,3 +1,4 @@
+
 ### Java template
 # Compiled class file
 *.class
@@ -118,6 +119,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 *.iml
+/back-end/src/main/resources/application-warren.properties
 
 .idea
 
