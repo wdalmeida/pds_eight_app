@@ -1,19 +1,24 @@
 package entity;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 
-@Data
+
 @Entity
 @Table(name="notification")
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class NotificationEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int IdNotification;
+    private Integer IdNotification;
 
     @Column(name="iban")
     private  String iban;
@@ -34,8 +39,8 @@ public class NotificationEntity {
     private String typeTranaction;
 
     @Column(name="amount")
-    private float amount;
+    private Double amount;
 
     @Column(name="status")
-    private boolean status;
+    private Boolean status;
 }

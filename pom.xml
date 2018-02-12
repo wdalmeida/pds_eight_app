@@ -16,6 +16,7 @@
         <module>back-end</module>
         <module>notify-client-transaction</module>
         <module>applicationweb</module>
+        <module>client-discovery</module>
         <module>stock-market-api-gateway</module>
         <module>RecupMouvement</module>
 	    <module>rest-account-services</module>
