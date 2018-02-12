@@ -91,11 +91,13 @@ public class MockMarketStockProviderA implements IMarketStockProvider {
 
         response = restTemplate.getForObject(urlRequest, String.class);
 
+        //Mapper is configured to ignore unknowned parameters
         ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
+        //Map the json string into dto object
         List<DTOProvidorA> readValue = mapper.readValue(response, new TypeReference<List<DTOProvidorA>>(){});
 
-        logger.info(readValue.get(0).getDateHour());
+        logger.info("Amount of dto object created form parsin json string : " + readValue.size());
 
         return response;
     }
