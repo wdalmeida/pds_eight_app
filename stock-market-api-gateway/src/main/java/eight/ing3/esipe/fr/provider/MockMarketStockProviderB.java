@@ -1,5 +1,9 @@
 package eight.ing3.esipe.fr.provider;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import eight.ing3.esipe.fr.provider.dto.DTOProvidorB;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by Vyach on 11/02/2018.
@@ -72,6 +77,15 @@ public class MockMarketStockProviderB implements IMarketStockProvider {
         RestTemplate restTemplate = new RestTemplate();
 
         response = restTemplate.getForObject(urlRequest, String.class);
+
+        //Mapper is configured to ignore unknowned parameters
+        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        //Map the json string into dto object
+        List<DTOProvidorB> readValue = mapper.readValue(response, new TypeReference<List<DTOProvidorB>>(){});
+
+        logger.info("Amount of dto object created form parsin json string : " + readValue.size());
+
 
         return response;
     }
