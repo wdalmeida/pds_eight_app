@@ -11,12 +11,12 @@
         <module>rest-account-services</module>
         <module>models</module>
         <module>authentication-services</module>
-        <module>stock-market-api-gateway</module>
         <module>back-transfers</module>
         <module>transfers-manager</module>
         <module>back-end</module>
         <module>notify-client-transaction</module>
         <module>applicationweb</module>
+        <module>stock-market-api-gateway</module>
         <module>RecupMouvement</module>
         <module>fraudulent-transfers-learning</module>
         <module>client-discovery</module>
