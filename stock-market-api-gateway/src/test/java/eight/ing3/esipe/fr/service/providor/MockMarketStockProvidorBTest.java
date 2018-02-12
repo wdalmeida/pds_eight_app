@@ -12,7 +12,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static sun.plugin.javascript.navig.JSType.URL;
 
 /**
  * Created by Vyach on 12/02/2018.
