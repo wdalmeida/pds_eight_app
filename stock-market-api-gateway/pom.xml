@@ -41,7 +41,7 @@
                         </goals>
                         <configuration>
                             <mainClass>
-                                FrontApplication
+                                eight.ing3.esipe.fr.APIStockMarketApplication
                             </mainClass>
                         </configuration>
                     </execution>
