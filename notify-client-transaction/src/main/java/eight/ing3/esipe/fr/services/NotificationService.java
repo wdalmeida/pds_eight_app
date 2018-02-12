@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Service("notificationRepository")
+@Service("notificationService")
 public class NotificationService {
 
 
@@ -40,6 +40,7 @@ public class NotificationService {
 
     @PostConstruct
     private void testNotificationRepository() {
+
         System.out.println(this.notificationRepository + " test");
     }
 

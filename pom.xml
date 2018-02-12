@@ -6,7 +6,6 @@
     <packaging>pom</packaging>
     <name>BEM application</name>
 
-
     <modules>
         <module>frontweb</module>
         <module>rest-account-services</module>
@@ -20,6 +19,7 @@
         <module>applicationweb</module>
         <module>RecupMouvement</module>
         <module>fraudulent-transfers-learning</module>
+        <module>client-discovery</module>
     </modules>
 
     <properties>

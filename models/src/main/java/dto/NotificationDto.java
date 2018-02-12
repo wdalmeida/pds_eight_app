@@ -1,17 +1,20 @@
 package dto;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
+
+
+import lombok.*;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class NotificationDto {
 
-    private int IdNotification;
+    private Integer IdNotification;
 
     private  String iban;
 
@@ -19,14 +22,15 @@ public class NotificationDto {
 
     private String detail;
 
-    private Timestamp date;
+    private Date date;
 
     private String recipient;
 
     private String typeTransaction;
 
-    private float amount;
+    private Double amount;
 
-    private boolean status;
+    private Boolean status;
+
 
 }

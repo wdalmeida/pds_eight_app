@@ -1,3 +1,4 @@
+
 package eight.ing3.pds.schedulers;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
@@ -11,8 +12,11 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Component
 public class MockScheduler {
@@ -31,7 +35,7 @@ public class MockScheduler {
     private Sender sender;
 
     @PostConstruct
-    public void trototo(){
+    public void check(){
 
     }
 
@@ -43,14 +47,27 @@ public class MockScheduler {
             logger.info("sending random data");
 
             List<Transaction> transactions = new ArrayList<>();
-            transactions.add(new Transaction("personne", "873879873", "intitul", 1000.00, "detail", "myIban", null, null));
-            transactions.add(new Transaction("personne", "873879873", "intitul", 1000.00, "detail", "myIban", null, null));
-            transactions.add(new Transaction("personne", "873879873", "intitul", 1000.00, "detail", "myIban", null, new Date(System.currentTimeMillis())));
+            Transaction transaction = new Transaction();
+            Random r = new Random();
+            int randomNumber = r.nextInt(100000) + 1;
+            LocalDate date  = LocalDate.now();
+            float min = 5.00F;
+            float max = 2000.00F;
+            double amount = min + Math.random() * (max - min);
+            String wording = "wording" + randomNumber;
+            String ibanSender = "FR00000" + randomNumber;
+            transaction.setDate(new Timestamp(System.currentTimeMillis()));
+            transaction.setMontant(amount);
+            transaction.setIntitule(wording);
+            transaction.setIbansender(ibanSender);
+
+
+            transactions.add(transaction);
             String xml = xmlMapper.writeValueAsString(transactions);
             this.sender.send(topicName, xml);
         }catch ( Exception ex) {
             logger.fatal("An error was thrown " + ex.getMessage());
         }
     }
-
 }
+
