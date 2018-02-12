@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+
 /**
  * Created by Vyach on 11/02/2018.
  */
@@ -24,7 +26,7 @@ public class Gateway {
     private IMarketStockProvider marketStockProviderB;
 
 
-    public String getResponseFromProvider(String codeCompany, String srcCurrency, String targetCurrency) {
+    public String getResponseFromProvider(String codeCompany, String srcCurrency, String targetCurrency) throws IOException {
 
         String response = "{}";
 

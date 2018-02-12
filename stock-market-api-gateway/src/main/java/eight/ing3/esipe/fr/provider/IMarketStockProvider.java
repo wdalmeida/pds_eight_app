@@ -1,5 +1,7 @@
 package eight.ing3.esipe.fr.provider;
 
+import java.io.IOException;
+
 /**
  * Created by Vyach on 18/01/2018.
  */
@@ -13,7 +15,7 @@ public interface IMarketStockProvider {
     public void setSrcCurrency(String srcCurrency);
     public void setTargetCurrency(String targetCurrency);
 
-    public String handlingResponse(String urlRequest);
+    public String handlingResponse(String urlRequest) throws IOException;
 
     public boolean valideCode(String companyCode);
 }

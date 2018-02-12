@@ -1,10 +1,17 @@
 package eight.ing3.esipe.fr.provider;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import eight.ing3.esipe.fr.provider.dto.DTOProvidorA;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+
+import java.io.IOException;
+import java.util.List;
 
 @Component(value = "provider_a")
 public class MockMarketStockProviderA implements IMarketStockProvider {
@@ -76,13 +83,19 @@ public class MockMarketStockProviderA implements IMarketStockProvider {
     }
 
     @Override
-    public String handlingResponse(String urlRequest) {
+    public String handlingResponse(String urlRequest) throws IOException {
 
         logger.info("url request : " + urlRequest);
 
         RestTemplate restTemplate = new RestTemplate();
 
         response = restTemplate.getForObject(urlRequest, String.class);
+
+        ObjectMapper mapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+        List<DTOProvidorA> readValue = mapper.readValue(response, new TypeReference<List<DTOProvidorA>>(){});
+
+        logger.info(readValue.get(0).getDateHour());
 
         return response;
     }

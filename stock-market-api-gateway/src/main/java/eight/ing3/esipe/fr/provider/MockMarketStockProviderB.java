@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
+
 /**
  * Created by Vyach on 11/02/2018.
  */
@@ -63,7 +65,7 @@ public class MockMarketStockProviderB implements IMarketStockProvider {
     }
 
     @Override
-    public String handlingResponse(String urlRequest) {
+    public String handlingResponse(String urlRequest) throws IOException {
 
         logger.info("url request : " + urlRequest);
 

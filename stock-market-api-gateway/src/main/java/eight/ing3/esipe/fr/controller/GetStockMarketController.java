@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+
 /**
  * Created by Vyach on 18/01/2018.
  */
@@ -35,7 +37,7 @@ public class GetStockMarketController {
             @PathVariable String codeCompany,
             @PathVariable String srcCurrency,
             @PathVariable String targetCurrency
-    ) {
+    ) throws IOException {
 
         String response = gateway.getResponseFromProvider(codeCompany, srcCurrency, targetCurrency);
 
