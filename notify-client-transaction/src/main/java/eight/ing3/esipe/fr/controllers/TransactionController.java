@@ -9,8 +9,7 @@ public class TransactionController {
 
     @RequestMapping(value = "list")
     public String getTransactions(){
-        System.out.println("COUCOU");
-        return "fezfz";
+        return "null";
     }
 
 }

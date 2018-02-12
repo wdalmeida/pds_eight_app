@@ -1,63 +1,51 @@
 package eight.ing3.esipe.fr.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
-import eight.ing3.esipe.fr.entities.Notification;
 import eight.ing3.esipe.fr.entities.Transaction;
-import eight.ing3.esipe.fr.kafkaServices.producer.Sender;
-import eight.ing3.esipe.fr.repositories.NotificationRepository;
+import entity.AccounEntity;
+import entity.NotificationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
+import repository.AccounRepository;
+import repository.NotificationRepository;
 
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-@Service("notificationRepository")
+@Service("notificationService")
 public class NotificationService {
-
-
-    @Autowired
-    private XmlMapper xmlMapper;
 
     @Autowired
     private NotificationRepository notificationRepository;
 
     @Autowired
-    private Sender sender;
+    private AccounRepository accounRepository;
 
     @Value("${kafka.topic.transactionQueue}")
     private String topicName;
 
     @PostConstruct
     private void testNotificationRepository() {
+
         System.out.println(this.notificationRepository + " test");
     }
 
-
-
-
     @Transactional
-    public void createNotification(Double amount, Timestamp date, String details,
-                                   Integer idAccount, String label, String recipient, String status, String typeTransaction) {
+    public void createNotification(Transaction transaction) {
+        AccounEntity accounEntity = accounRepository.findOne(transaction.getIbansender());
         //Notification notification = new Notification();
         //notification.setIdNotification(id_notification);
-        Notification notification = new Notification();
-        notification.setAmount(amount);
-        notification.setDate(date);
-        notification.setDetails(details);
-        notification.setIdAccount(idAccount);
-        notification.setLabel(label);
-        notification.setRecipient(recipient);
-        notification.setStatus(status);
-        notification.setTypeTransac(typeTransaction);
 
-        notificationRepository.save(notification);
+        NotificationEntity notif = NotificationEntity.builder()
+                .amount(transaction.getMontant())
+                .date(new Timestamp(transaction.getDate().getTime()))
+                .label(transaction.getIntitule())
+                .detail(null)
+                .status(false)
+                .iban(accounEntity == null ? null : accounEntity.getIban())
+                .build();
+
+        notificationRepository.save(notif);
     }
 }

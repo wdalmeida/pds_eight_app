@@ -1,7 +1,8 @@
 package repository;
 
-import entity.AccounEntity;
+import entity.NotificationEntity;
 import org.springframework.data.repository.CrudRepository;
 
-public interface NotificationRepository extends CrudRepository<AccounEntity,String> {
+public interface NotificationRepository extends CrudRepository<NotificationEntity,String> {
+
 }
