@@ -1,6 +1,5 @@
 package controller;
 
-import com.sun.net.httpserver.Authenticator;
 import dto.TransferDto;
 import entity.AccounEntity;
 import entity.BeneficiaryAccountEntity;
