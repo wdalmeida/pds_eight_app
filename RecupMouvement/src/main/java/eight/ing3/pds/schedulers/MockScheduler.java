@@ -49,13 +49,13 @@ public class MockScheduler {
             List<Transaction> transactions = new ArrayList<>();
             Transaction transaction = new Transaction();
             Random r = new Random();
-            int randomNumber = r.nextInt(100000) + 1;
+            int randomNumber = r.nextInt(999999) + 100000;
             LocalDate date  = LocalDate.now();
             float min = 5.00F;
             float max = 2000.00F;
             double amount = min + Math.random() * (max - min);
             String wording = "wording" + randomNumber;
-            String ibanSender = "FR00000" + randomNumber;
+            String ibanSender = "FR00000" + randomNumber + "00000000000000";
             transaction.setDate(new Timestamp(System.currentTimeMillis()));
             transaction.setMontant(amount);
             transaction.setIntitule(wording);
