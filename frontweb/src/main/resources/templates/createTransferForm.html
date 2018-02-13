@@ -9,52 +9,63 @@
             <h1>Réaliser un virement</h1>
         </div>
 
-        <!--/*@thymesVar id="transferModel" type=""*/-->
-        <form action="#" method="post" th:object="${transferModel}" th:action="@{/transfers/submit}">
-            <fieldset>
-                <div id="transfer">
-                    <label for="sendingIBAN">IBAN émetteur:
-                        <select class="form-control"  th:field="*{sendingIBAN}">
-                            <option value="0">Selectionner un compte émetteur</option>
-                            <option th:each="account : ${accounts}"
-                                    th:value="${account.iban}"
-                                    th:selected="${account.iban}"
-                                    th:text="${account.iban}+' (solde: '+${account.balance}+')'"></option>
-                        </select>
-                    </label>
-                    <br/>
-                    <br/>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-offset-3 col-lg-6">
+                        <!--/*@thymesVar id="transferModel" type=""*/-->
+                        <form action="#" method="post" th:object="${transferModel}" th:action="@{/transfers/submit}">
+                            <fieldset>
+                                <br/>
+                                <br/>
+                                <div id="transfer">
+                                    <div class="form-group">
+                                        <label for="sendingIBAN">Compte émetteur</label>
+                                        <select class="form-control"  th:field="*{sendingIBAN}">
+                                            <option value="0">Selectionner un compte émetteur</option>
+                                            <option th:each="account : ${accounts}"
+                                                    th:value="${account.iban}"
+                                                    th:selected="${account.iban}"
+                                                    th:text="${account.iban}+' (solde: '+${account.balance}+')'"></option>
+                                        </select>
+                                    </div>
+                                    <br/>
+                                    <div class="form-group">
+                                        <label>Montant</label>
+                                        <input type="text" th:field="*{amount}" size="15"/>
+                                    </div>
+                                    <br/>
+                                    <div class="form-group">
+                                        <label for="beneficiaryIban">IBAN bénéficiaire</label>
+                                        <select class="form-control"  th:field="*{beneficiaryIban}">
+                                            <option value="0">Selectionner un compte bénéficiaire</option>
+                                            <option th:each="beneficiaryAccount : ${beneficiaryAccounts}"
+                                                    th:value="${beneficiaryAccount.iban}"
+                                                    th:selected="${beneficiaryAccount.iban}"
+                                                    th:text="${beneficiaryAccount.iban}+' (libelle: '+${beneficiaryAccount.name}+')'"></option>
+                                        </select>
+                                    </div>
+                                    <br/>
+                                    <div class="form-group">
+                                        <label for="valueDate">Date de valeur</label>
+                                        <input type="date" th:field="*{valueDate}" size="30"/>
+                                    </div>
+                                    <br/>
+                                    <div class="form-group">
+                                        <label for="wording">Libellé</label>
+                                        <input type="text" th:field="*{wording}" size="30"/>
+                                    </div>
+                                    <br/>
+                                </div>
 
-                    <label for="amount">Montant: <input type="text" th:field="*{amount}" size="15"/></label>
-                    <br/>
-                    <br/>
-
-                    <label for="beneficiaryIban">IBAN bénéficiaire:
-                        <select class="form-control"  th:field="*{beneficiaryIban}">
-                            <option value="0">Selectionner un compte bénéficiaire</option>
-                            <option th:each="beneficiaryAccount : ${beneficiaryAccounts}"
-                                    th:value="${beneficiaryAccount.iban}"
-                                    th:selected="${beneficiaryAccount.iban}"
-                                    th:text="${beneficiaryAccount.iban}+' (libelle: '+${beneficiaryAccount.name}+')'"></option>
-                        </select>
-                    </label>
-                    <br/>
-                    <br/>
-
-                    <label for="valueDate">Date de valeur: <input type="date" th:field="*{valueDate}" size="30"/></label>
-                    <br/>
-                    <br/>
-
-                    <label for="wording">Libellé: <input type="text" th:field="*{wording}" size="30"/></label>
-                    <br/>
-                    <br/>
-
+                                <div class="submit">
+                                    <button name="submit" type="submit" class="btn btn-primary">Valider</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
                 </div>
-
-                <div class="submit">
-                    <button name="submit" type="submit">Créer</button>
-                </div>
-            </fieldset>
-        </form>
+            </div>
+        </section>
     </body>
 </html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head lang="fr" th:replace="fragments/header :: header"></head>
+
+    <body>
+        <nav th:replace="fragments/menu :: menu"></nav>
+        <div class="container text-center">
+            <h1>Mouvements frauduleux</h1>
+        </div>
+    </body>
+    <div class="container">
+        <div class="col-lg-offset-2 col-lg-8">
+            <h2>Liste des virements</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>Identifiant</th>
+                    <th>Montant du virement</th>
+                    <th>Libellé</th>
+                    <th>IBAN bénéficiaire</th>
+                    <th>Frauduleux</th>
+                </tr>
+                <tr th:each="transfer : ${transfers}">
+                    <td th:text="${transfer.idtransferdetails}"></td>
+                    <td th:text="${transfer.transferEntity.transactionEntity.amount}"></td>
+                    <td th:text="${transfer.transferEntity.transactionEntity.wording}"></td>
+                    <td th:text="${transfer.transferEntity.beneficiaryIban}"></td>
+                    <td><a th:href="@{|/transfers/fraudulent/${transfer.idtransferdetails}|}">Calculer</a></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</html>
