@@ -44,9 +44,6 @@ public class NotificationService {
         System.out.println(this.notificationRepository + " test");
     }
 
-
-
-
     @Transactional
     public void createNotification(Double amount, Timestamp date, String details,
                                    Integer idAccount, String label, String recipient, String status, String typeTransaction) {

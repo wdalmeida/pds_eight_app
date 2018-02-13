@@ -4,6 +4,8 @@ package eight.ing3.esipe.fr.entities;
 import lombok.*;
 
 import java.sql.Date;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Builder
 @Setter
