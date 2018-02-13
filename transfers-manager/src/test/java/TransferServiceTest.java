@@ -1,6 +1,7 @@
 import dto.TransferDto;
 import entity.AccounEntity;
 import entity.TransactionEntity;
+import entity.TransferDetailsEntity;
 import entity.TransferEntity;
 import org.hibernate.validator.constraints.ModCheck;
 import org.junit.Test;
@@ -10,6 +11,7 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import repository.AccounRepository;
 import repository.TransactionRepository;
+import repository.TransferDetailsRepository;
 import repository.TransferRepository;
 import service.TransferService;
 
@@ -36,6 +38,9 @@ public class TransferServiceTest {
     @Mock
     TransactionRepository transactionRepository;
 
+    @Mock
+    TransferDetailsRepository transferDetailsRepository;
+
     @Test
     public void shouldCreateTransferAndTransaction(){
 
@@ -53,6 +58,7 @@ public class TransferServiceTest {
         verify(transactionRepository, times(1)).save(any(TransactionEntity.class));
         verify(transferRepository, times(1)).save(any(TransferEntity.class));
         verify(accounRepository, times(1)).save(any(AccounEntity.class));
+        verify(transferDetailsRepository, times(1)).save(any(TransferDetailsEntity.class));
     }
 
     @Test
@@ -71,6 +77,7 @@ public class TransferServiceTest {
         verify(transactionRepository, times(0)).save(any(TransactionEntity.class));
         verify(transferRepository, times(0)).save(any(TransferEntity.class));
         verify(accounRepository, times(0)).save(any(AccounEntity.class));
+        verify(transferDetailsRepository, times(0)).save(any(TransferDetailsEntity.class));
 
     }
 
