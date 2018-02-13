@@ -2,7 +2,6 @@ package service;
 
 import dto.TransferDto;
 import entity.TransferDetailsEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public interface ITransferService {
 
