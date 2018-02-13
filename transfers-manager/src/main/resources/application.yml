@@ -11,9 +11,9 @@ server:
   contextPath: /transfers
 spring:
  datasource:
-  url: jdbc:postgresql://localhost:5433/eight
-  username: postgres
-  password: postgres
+  url: jdbc:postgresql://10.10.1.5:5432/eight
+  username: eight
+  password: eight
   driver-class-name: org.postgresql.Driver
  jpa:
   generate-ddl: true
