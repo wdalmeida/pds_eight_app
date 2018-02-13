@@ -32,7 +32,7 @@ public class NotificationService {
     }
 
     @Transactional
-    public void createNotification(Transaction transaction) {
+    public boolean createNotification(Transaction transaction) {
         AccounEntity accounEntity = accounRepository.findOne(transaction.getIbansender());
         //Notification notification = new Notification();
         //notification.setIdNotification(id_notification);
@@ -47,5 +47,7 @@ public class NotificationService {
                 .build();
 
         notificationRepository.save(notif);
+        return
+                true;
     }
 }

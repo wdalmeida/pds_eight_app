@@ -16,9 +16,9 @@ public class MockScheduler {
     private String topicName;
 
     @PostConstruct
-    public void trototo(){
-        System.out.println("cwahahahaha");
-        logger.info("wahahahhaha");
+    public void check(){
+        System.out.println("checked");
+        logger.info("checked");
     }
     @Scheduled(fixedRate = 1000)
     public void scheduleFixedRateTask() {
