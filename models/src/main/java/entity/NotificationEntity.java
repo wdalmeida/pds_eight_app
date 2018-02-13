@@ -35,8 +35,8 @@ public class NotificationEntity {
     @Column(name="recipient")
     private String recipient;
 
-    @Column(name="typeTranaction")
-    private String typeTranaction;
+    @Column(name="typeTransaction")
+    private String typeTransaction;
 
     @Column(name="amount")
     private Double amount;
