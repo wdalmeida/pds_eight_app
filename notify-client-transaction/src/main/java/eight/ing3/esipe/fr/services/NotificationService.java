@@ -3,15 +3,14 @@ package eight.ing3.esipe.fr.services;
 import eight.ing3.esipe.fr.entities.Transaction;
 import entity.AccounEntity;
 import entity.NotificationEntity;
+import java.sql.Timestamp;
+import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import repository.AccounRepository;
 import repository.NotificationRepository;
-
-import javax.annotation.PostConstruct;
-import javax.transaction.Transactional;
-import java.sql.Timestamp;
 
 @Service("notificationService")
 public class NotificationService {
@@ -47,7 +46,16 @@ public class NotificationService {
                 .build();
 
         notificationRepository.save(notif);
-        return
-                true;
+        return true;
     }
+
+    public void setNotificationRepository(NotificationRepository notificationRepository) {
+        this.notificationRepository = notificationRepository;
+    }
+
+    public void setAccounRepository(AccounRepository accounRepository) {
+        this.accounRepository = accounRepository;
+    }
+    
+    
 }
