@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Component
-public class TransactionDto {
+public class OperationDto {
 
     private Long transactionId;
     private Date date;
