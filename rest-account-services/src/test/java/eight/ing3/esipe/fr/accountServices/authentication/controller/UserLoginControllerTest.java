@@ -111,7 +111,7 @@ public class UserLoginControllerTest {
                 .build();
         ObjectMapper mapper = new ObjectMapper();
 
-        System.out.println("test "+mapper.writeValueAsString(falseCredentialDto));
+        
         when(userLoginServiceMock.checkCredentials(any(CredentialDto.class))).thenReturn(userDto);
 
         mockMvc.perform(post("/auth").contentType(MediaType.APPLICATION_JSON).content(mapper.writeValueAsString(falseCredentialDto))).andDo(print())

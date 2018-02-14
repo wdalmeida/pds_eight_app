@@ -26,11 +26,12 @@ public class AccountServiceTest {
 
     private AccountService accountService;
     private UserRepository userRepositoryMock;
+    private AccountRepository accountRepositoryMock;
 
     @Before
     public void setUp(){
         userRepositoryMock = mock(UserRepository.class);
-        accountService = new AccountService(userRepositoryMock);
+        accountService = new AccountService(userRepositoryMock,accountRepositoryMock);
     }
 
     @Test

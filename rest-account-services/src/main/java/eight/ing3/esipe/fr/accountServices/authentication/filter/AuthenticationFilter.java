@@ -20,11 +20,10 @@ import java.util.Optional;
 @Component
 public class AuthenticationFilter extends GenericFilterBean {
 
-   // private final JwtService jwtService;
+  
 
-
-    public AuthenticationFilter(/*JwtService jwtService*/) {
-       // this.jwtService = jwtService;
+    public AuthenticationFilter() {
+       
 
     }
 
@@ -48,7 +47,7 @@ public class AuthenticationFilter extends GenericFilterBean {
         System.out.println("["+jwtToken+"]");
 
         try {
-            Claims claims = /*jwtService.verifyToken(jwtToken)*/  Jwts.parser().setSigningKey("MTIzc2Z2MWU2djFlcnYxOThlcjF2NXYxOWU4YjFlNjViMTY1ZWYxYnY5OGU0ZmI".getBytes()).parseClaimsJws(jwtToken).getBody();
+            Claims claims = Jwts.parser().setSigningKey("MTIzc2Z2MWU2djFlcnYxOThlcjF2NXYxOWU4YjFlNjViMTY1ZWYxYnY5OGU0ZmI".getBytes()).parseClaimsJws(jwtToken).getBody();
             System.out.println(claims.getSubject());
             httpServletRequest.setAttribute("userId",claims.getSubject());
             httpServletRequest.setAttribute("claims",claims);
@@ -62,14 +61,7 @@ public class AuthenticationFilter extends GenericFilterBean {
             return;
         }
 
-       // httpServletResponse.addHeader("Authorization","Bearer "+jwtToken);
-
-      /*  Authentication authentication =
-
-        SecurityContextHolder.getContext().setAuthentication();*/
-
-
-
+     
         filterChain.doFilter(servletRequest,servletResponse);
 
 

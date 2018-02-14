@@ -30,8 +30,8 @@ public class AccountControllerITest {
 		HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.AUTHORIZATION, "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIxMjM0NTYiLCJmaXJzdE5hbWUiOiJwZXJhdWx0IiwibGFzdE5hbWUiOiJhbnRob255IiwiaWF0IjoxNTEyNjU5MjM2fQ.abjq-jI9ar2tvfrJUjPLb2laJywQ2vLXrKBFzvvaHsP8KhDeCF7Kx8Mw17k-FkQmlQha6R83pg5riO_6GJOjPA");
 		
-		ResponseEntity<String> response = restTemplate.exchange("http://localhost:8181/accounts", HttpMethod.GET,new HttpEntity<>(headers),String.class);
-		System.out.println(response);
+		ResponseEntity<String> response = restTemplate.exchange("http://localhost:8095/account", HttpMethod.GET,new HttpEntity<>(headers),String.class);
+
 
 		String expectedJson = "[\n" +
 				"    {\n" +
