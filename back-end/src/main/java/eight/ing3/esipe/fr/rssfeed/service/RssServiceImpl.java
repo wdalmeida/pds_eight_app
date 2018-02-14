@@ -45,7 +45,7 @@ public class RssServiceImpl implements IRssService {
             desc= desc.trim();
             logger.debug("Delete Html ");
         }
-        RSSFeed rf = new RSSFeed(se.getTitle(),se.getLink(),desc,se.getEnclosures().get(0).getUrl());
+        RSSFeed rf = new RSSFeed(se.getTitle(),se.getLink(),desc,se.getEnclosures().get(0).getUrl(),se.getPublishedDate());
         return  rf;
     }
 
@@ -64,7 +64,7 @@ public class RssServiceImpl implements IRssService {
                 desc= desc.trim();
                 logger.debug("Delete Html ");
             }
-            result.add(new RSSFeed(se.getTitle(),se.getLink(),desc,se.getEnclosures().get(0).getUrl()));
+            result.add(new RSSFeed(se.getTitle(),se.getLink(),desc,se.getEnclosures().get(0).getUrl(),se.getPublishedDate()));
         }
         return  result;
     }
