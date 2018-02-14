@@ -143,7 +143,5 @@ public class RssServiceImplTest {
 
         assertEquals(expected.getImgLink(),result.getImgLink());
         logger.debug("Expected image url was "+expected.getImgLink()+"| Result is "+ result.getImgLink());
-
-
     }
 }
