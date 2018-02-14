@@ -4,15 +4,13 @@ package eight.ing3.esipe.fr.accountServices.accountServices.services;
 import dto.*;
 import eight.ing3.esipe.fr.accountServices.GenericException;
 import entity.AccountEntity;
-import entity.TransactionEntity;
+import entity.OperationEntity;
 import entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import repository.AccountRepository;
 import repository.UserRepository;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -79,12 +77,12 @@ public class AccountService implements IAccountService {
        }
 
 
-    public List<TransactionDto> transactionEntitiesToTransactionDtoList(List<TransactionEntity> transactionEntities){
+    public List<OperationDto> transactionEntitiesToTransactionDtoList(List<OperationEntity> transactionEntities){
 
         return transactionEntities
                 .stream()
                 .map(
-                        t -> TransactionDto.builder()
+                        t -> OperationDto.builder()
                         .transactionId(t.getTransactionId())
                         .date(t.getDate())
                         .description(t.getDescription())
@@ -118,11 +116,11 @@ public class AccountService implements IAccountService {
     }
 
     @Override
-    public List<TransactionDto> getTransactions(String account_number) throws GenericException {
+    public List<OperationDto> getTransactions(String account_number) throws GenericException {
 
-        List<TransactionDto> transactionDtoList = getAccountById(account_number).getTransactionDtoList();
+        List<OperationDto> transactionDtoList = getAccountById(account_number).getTransactionDtoList();
 
-        transactionDtoList.sort((TransactionDto t1,TransactionDto t2)->t2.getDate().compareTo(t1.getDate()));
+        transactionDtoList.sort((OperationDto t1, OperationDto t2)->t2.getDate().compareTo(t1.getDate()));
 
         return transactionDtoList;
     }

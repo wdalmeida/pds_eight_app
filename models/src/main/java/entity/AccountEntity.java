@@ -24,7 +24,7 @@ public class AccountEntity {
     private UserEntity user;
 
     @OneToMany(mappedBy = "account")
-    private List<TransactionEntity> transactions;
+    private List<OperationEntity> transactions;
 
     public AccountEntity(){};
 

@@ -23,7 +23,7 @@ public class AccountDto {
 
     private int balance;
 
-    private List<TransactionDto> transactionDtoList;
+    private List<OperationDto> transactionDtoList;
 
     }
 
