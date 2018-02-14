@@ -7,10 +7,12 @@ import entity.AccountEntity;
 import entity.TransactionEntity;
 import entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import repository.AccountRepository;
 import repository.UserRepository;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,9 +55,12 @@ public class AccountService implements IAccountService {
 
        }
 
+    
+ 
        public AccountDto getAccountById(String accountNumber) throws GenericException {
 
         AccountEntity accountEntity = accountRepository.findOne(accountNumber);
+        System.out.println("----------------------------------appel getAccountById------------------------------------");
 
         if(accountEntity == null ){
             throw new GenericException("No account found with this id " + accountNumber);
@@ -105,7 +110,7 @@ public class AccountService implements IAccountService {
     @Override
     public List<AccountDto> getAllAccount(String userId) throws GenericException {
 
-
+    	System.out.println("----------------------------------appel getAllAccount------------------------------------");
         return getUserById(userId).getAccountDtoList();
 
     }
@@ -113,7 +118,11 @@ public class AccountService implements IAccountService {
     @Override
     public List<TransactionDto> getTransactions(String account_number) throws GenericException {
 
-        return getAccountById(account_number).getTransactionDtoList();
+        List<TransactionDto> transactionDtoList = getAccountById(account_number).getTransactionDtoList();
+
+        transactionDtoList.sort((TransactionDto t1,TransactionDto t2)->t2.getDate().compareTo(t1.getDate()));
+
+        return transactionDtoList;
     }
 
 }

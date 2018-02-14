@@ -22,20 +22,14 @@ public class UserLoginService implements IUserLoginService {
 
        UserEntity userEntity = userRepository.findOne(Long.parseLong(credentials.getUserId()));
 
-       //System.out.println(userEntity.getFirstName());
+       
 
         return  UserDto.builder()
                 .credential(CredentialDto.builder().userId(String.valueOf(userEntity.getUserId())).password(userEntity.getPassword()).build())
                 .firstName(userEntity.getFirstName())
                 .lastName(userEntity.getLastName())
                 .build() ;
-     /*
-      return  UserDto.builder()
-                .credential(CredentialDto.builder().userId("1").password("test").build())
-                .firstName("anthony")
-                .lastName("perault")
-                .build() ;
-*/
+
 
 
     }
