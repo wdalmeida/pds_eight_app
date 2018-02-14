@@ -75,7 +75,7 @@ public class AccountControllerTest {
 
         when(accountServiceMock.getAllAccount("1")).thenReturn(Arrays.asList(a1, a2));
 
-        mockMvc.perform(get("/accounts").requestAttr("userId","1").contentType(MediaType.APPLICATION_JSON_UTF8))
+        mockMvc.perform(get("/account").requestAttr("userId","1").contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(content().string(expectedResult()));
@@ -89,7 +89,7 @@ public class AccountControllerTest {
 
     @Test
     public void shouldReturn204code() throws Exception {
-        mockMvc.perform(get("/accounts").contentType(MediaType.APPLICATION_JSON_UTF8))
+        mockMvc.perform(get("/account").contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().isNoContent());
     }
 

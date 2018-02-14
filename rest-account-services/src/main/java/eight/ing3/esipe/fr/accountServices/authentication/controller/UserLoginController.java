@@ -29,7 +29,7 @@ public class UserLoginController {
 
     }
 
-    @RequestMapping(value = "/auth",method = RequestMethod.POST/*,consumes = "application/json;charset=UTF-8"*/)
+    @RequestMapping(value = "/auth",method = RequestMethod.POST)
     public ResponseEntity<?> signInAttempt(@RequestBody CredentialDto credential){
 
 
