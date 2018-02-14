@@ -18,6 +18,7 @@
         <module>notify-client-transaction</module>
         <module>applicationweb</module>
         <module>stock-market-api-gateway</module>
+        <module>stock-market-client</module>
     </modules>
 
     <properties>
