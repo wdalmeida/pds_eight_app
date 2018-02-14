@@ -9,7 +9,7 @@
 
     <modules>
         <module>frontweb</module>
-        <module>rest-account-services</module>
+        <!-- <module>rest-account-services</module> -->
         <module>models</module>
         <module>authentication-services</module>
         <module>back-transfers</module>
@@ -21,7 +21,6 @@
         <module>stock-market-api-gateway</module>
         <module>fraudulent-transfers-learning</module>
         <module>RecupMouvement</module>
-        <module>fraudulent-transfers-learning</module>
     </modules>
 
     <properties>
