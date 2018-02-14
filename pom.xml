@@ -6,6 +6,7 @@
     <packaging>pom</packaging>
     <name>BEM application</name>
 
+
     <modules>
         <module>frontweb</module>
         <module>rest-account-services</module>
@@ -18,7 +19,6 @@
         <module>applicationweb</module>
         <module>stock-market-api-gateway</module>
         <module>RecupMouvement</module>
-        <module>fraudulent-transfers-learning</module>
         <module>client-discovery</module>
 	    <module>rest-account-services</module>
         <module>fraudulent-transfers-learning</module>
@@ -36,9 +36,7 @@
         <rome.version>1.8.0</rome.version>
         <cucumber.version>1.2.5</cucumber.version>
         <powermock.version>1.7.3</powermock.version>
-
     </properties>
-
 
     <dependencyManagement>
         <dependencies>
@@ -81,6 +79,24 @@
                 <version>${spring.version}</version>
                 <scope>provided</scope>
                 <type>pom</type>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-data-jpa</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.hsqldb</groupId>
+                <artifactId>hsqldb</artifactId>
+                <version>2.4.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.sf.dozer</groupId>
+                <artifactId>dozer</artifactId>
+                <version>${dozer.version}</version>
             </dependency>
 
             <dependency>
@@ -221,13 +237,6 @@
                 <version>${cucumber.version}</version>
                 <scope>test</scope>
             </dependency>
-            <!-- https://mvnrepository.com/artifact/net.sf.dozer/dozer -->
-            <dependency>
-                <groupId>net.sf.dozer</groupId>
-                <artifactId>dozer</artifactId>
-                <version>5.5.1</version>
-            </dependency>
-
         </dependencies>
     </dependencyManagement>
 

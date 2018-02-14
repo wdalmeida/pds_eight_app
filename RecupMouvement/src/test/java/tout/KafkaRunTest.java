@@ -17,15 +17,15 @@ import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.*;
 import java.util.concurrent.CountDownLatch;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+
 public class KafkaRunTest {
-    @Autowired
+    
     private KafkaTemplate<String, String> kafkaTemplate;
-    @Autowired
+    
+    
     private KafkaProperties.Listener listener;
 
-    @Test
+    
     public void contextLoads() throws InterruptedException {
 
         ListenableFuture<SendResult<String, String>> future = kafkaTemplate.send("topic1", "ABC");
