@@ -4,12 +4,10 @@ import entity.TransferDetailsEntity;
 import org.apache.log4j.Logger;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.mining.MiningModel;
-import org.jpmml.evaluator.FieldValue;
 import org.jpmml.evaluator.InputField;
 import org.jpmml.evaluator.ModelEvaluator;
 import org.jpmml.evaluator.mining.MiningModelEvaluator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.xml.sax.InputSource;
 import org.dmg.pmml.PMML;
@@ -22,10 +20,8 @@ import repository.TransferDetailsRepository;
 
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.sax.SAXSource;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
