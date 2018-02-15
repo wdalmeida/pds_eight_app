@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.net.URL;
+import java.util.Date;
 
 /**
  * Created by Vyach on 15/02/2018.
@@ -24,6 +25,7 @@ public class StockMarketController {
     public String euroNextSM(Model model) throws Exception {
 
         model.addAttribute("name", "test");
+
 
         URL urlReq = new URL(host+"/company/OR/src/USD/target/EUR");
 
