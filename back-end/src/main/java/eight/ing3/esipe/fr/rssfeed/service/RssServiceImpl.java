@@ -38,23 +38,26 @@ public class RssServiceImpl implements IRssService {
         String url="http://bfmbusiness.bfmtv.com/rss/info/flux-rss/flux-toutes-les-actualites/";
         logger.debug("Service news : " + id);
         SyndFeed rss = reader.read(url);
+        logger.debug(rss.toString());
         SyndEntry se = rss.getEntries().get(id);
+        logger.debug(se.toString());
         String desc = se.getDescription().getValue();
         if(desc.contains("<br")) {
             desc = desc.substring(0, desc.indexOf("<br"));
             desc= desc.trim();
             logger.debug("Delete Html ");
         }
-        RSSFeed rf = new RSSFeed(se.getTitle(),se.getLink(),desc,se.getEnclosures().get(0).getUrl(),se.getPublishedDate());
+        RSSFeed rf = new RSSFeed(se.getTitle(),se.getLink(),desc,se.getEnclosures().get(0).getUrl(),se.getPublishedDate().toString());
         return  rf;
     }
 
     @Override
     public List<RSSFeed> getAllFromBEM() {
-        String url="http://rss.eight.inside.esiag.info/rss.xml";
+        String url="http://rss.eight.inside.esiag.info/";
         logger.debug("Service news : ");
         SyndFeed rss = reader.read(url);
         List<SyndEntry> newsList= rss.getEntries();
+        logger.debug(newsList.get(0).toString());
         String desc;
         List<RSSFeed> result = new ArrayList<>();
         for(SyndEntry se : newsList){
@@ -64,7 +67,7 @@ public class RssServiceImpl implements IRssService {
                 desc= desc.trim();
                 logger.debug("Delete Html ");
             }
-            result.add(new RSSFeed(se.getTitle(),se.getLink(),desc,se.getEnclosures().get(0).getUrl(),se.getPublishedDate()));
+            result.add(new RSSFeed(se.getTitle(),se.getLink(),desc,se.getEnclosures().get(0).getUrl(),se.getPublishedDate().toString()));
         }
         return  result;
     }

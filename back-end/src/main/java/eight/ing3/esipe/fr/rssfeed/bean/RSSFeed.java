@@ -1,13 +1,11 @@
 package eight.ing3.esipe.fr.rssfeed.bean;
 
-import java.util.Date;
-
 public class RSSFeed {
     private String title;
     private String link;
     private String description;
     private String imgLink;
-    private Date publishedDate;
+    private String publishedDate;
 
     public RSSFeed() {
     }
@@ -25,7 +23,7 @@ public class RSSFeed {
         this.imgLink = imgLink;
     }
 
-    public RSSFeed(String title, String link, String description, String imgLink, Date publishedDate) {
+    public RSSFeed(String title, String link, String description, String imgLink, String publishedDate) {
         this.title = title;
         this.link = link;
         this.description = description;
@@ -65,11 +63,11 @@ public class RSSFeed {
         this.imgLink = imgLink;
     }
 
-    public Date getPublishedDate() {
+    public String getPublishedDate() {
         return publishedDate;
     }
 
-    public void setPublishedDate(Date publishedDate) {
+    public void setPublishedDate(String publishedDate) {
         this.publishedDate = publishedDate;
     }
 
