@@ -54,7 +54,7 @@
             <version>1.4.2.RELEASE</version>
         </dependency>
     </dependencies>
-    
+
     <build>
         <plugins>
             <plugin>
