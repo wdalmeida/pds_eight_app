@@ -1,10 +1,25 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>STOCK MARKET</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
 </head>
 <body>
-<p th:text="'Hello, ' + ${name} + '!'" />
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>EURONEXT Stock Market</h1>
+    </div>
+
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"/>
+
 </body>
 </html>
