@@ -18,22 +18,34 @@
     <button type="button" class="btn btn-success" id="btn">Voir les indices</button>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="ta_OR">Indices L'Oréal</label>
                 <textarea class="form-control" id="ta_OR" rows="3"></textarea>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="ta_GLE">Indices Société Général</label>
                 <textarea class="form-control" id="ta_GLE" rows="3"></textarea>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="ta_CA">Carrefour</label>
                 <textarea class="form-control" id="ta_CA" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="ta_MC">Moët Louis Vuitton</label>
+                <textarea class="form-control" id="ta_MC" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="ta_KER">Kerlin</label>
+                <textarea class="form-control" id="ta_KER" rows="3"></textarea>
             </div>
         </div>
     </div>
@@ -47,19 +59,10 @@
 <div th:replace="fragments/footer :: footer"/>
 <script language="JavaScript" type="text/javascript">
 
-    /*$.ajax({
-        type: 'GET',
-        url: 'http://192.168.4.204:9095/company/OR/src/USD/target/EUR',
-        processData: true,
-        data: {},
-        dataType: 'text',
-        success: function (data) {
-            console.log('data = '+data);
-        }
-    });*/
-
     function reqGateway(codeCompany) {
         var url = "http://192.168.4.204:9095/company/"+codeCompany+"/src/USD/target/EUR";
+        var id = "#ta_"+codeCompany;
+
         $.ajax({
             type: 'GET',
             url: url,
@@ -67,11 +70,12 @@
                 //$('.result').html(data); //data assignation to .result node
                 //console.log('resulat = '+ res);
                 var data = jQuery.parseJSON(res); //res is parsed
-                var inTimeData = data[0];//get the current row
+                var inTimeData = data[1];//get the current row
                 var valAbs = Math.abs(inTimeData.value);
+                var subVal = valAbs.toString().substr(0,6);
 
-                var id = "#ta_"+codeCompany;
-                var info = "Heure : " + inTimeData.hour + " Valeur : " + valAbs +"\n";
+
+                var info = "Heure : " + inTimeData.hour + " Valeur : " + subVal +"\n";
                 $(id).val($(id).val()+info);
 
             }
@@ -85,6 +89,8 @@
         reqGateway("OR");
         reqGateway("GLE");
         reqGateway("CA");
+        reqGateway("MC");
+        reqGateway("KER");
 
         // Schedule the next request when the current one's complete
         setTimeout(worker, time);
@@ -97,54 +103,6 @@
 </script>
 
 <script type="text/javascript">
-    /*window.onload = (function worker() {
-        console.log("reload chart");
-        /////
-            var codeCompany = "OR";
-            var url = "http://192.168.4.204:9095/company/"+codeCompany+"/src/USD/target/EUR";
-            $.ajax({
-                type: 'GET',
-                url: url,
-                success: function(res) {
-                    //$('.result').html(data); //data assignation to .result node
-                    //console.log('resulat = '+ res);
-                    var dataOR = jQuery.parseJSON(res); //res is parsed
-
-                    var chart = new CanvasJS.Chart("chartContainer",
-                        {
-                            title:{
-                                text: "Stock Exchange EURONEXT Indice"
-                            },
-                            data: [
-                                {
-                                    type: "line",
-                                    dataPoints: [
-
-                                        { x: new Date('February 16, 2018 '+dataOR[9].hour), y: Math.abs(dataOR[9].value) },
-                                        { x: new Date('February 16, 2018 '+dataOR[8].hour), y: Math.abs(dataOR[8].value) },
-                                        { x: new Date('February 16, 2018 '+dataOR[7].hour), y: Math.abs(dataOR[7].value) },
-                                        { x: new Date('February 16, 2018 '+dataOR[6].hour), y: Math.abs(dataOR[6].value) },
-                                        { x: new Date('February 16, 2018 '+dataOR[5].hour), y: Math.abs(dataOR[5].value) },
-                                        { x: new Date('February 16, 2018 '+dataOR[4].hour), y: Math.abs(dataOR[4].value) },
-                                        { x: new Date('February 16, 2018 '+dataOR[3].hour), y: Math.abs(dataOR[3].value) },
-                                        { x: new Date('February 16, 2018 '+dataOR[2].hour), y: Math.abs(dataOR[2].value) },
-                                        { x: new Date('February 16, 2018 '+dataOR[1].hour), y: Math.abs(dataOR[1].value) },
-                                        { x: new Date('February 16, 2018 '+dataOR[0].hour), y: Math.abs(dataOR[0].value) }
-                                    ]
-                                }
-                            ]
-                        });
-
-                    chart.render();
-
-                }
-            });
-
-        setTimeout(worker, 60000);
-    }
-
-
-    );*/
 
     window.onload = (function worker() {
 
@@ -292,7 +250,6 @@
                 });
 
             chart.render();
-
 
         });
 
