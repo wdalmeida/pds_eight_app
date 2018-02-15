@@ -3,6 +3,7 @@ package entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity(name = "accoun")
@@ -21,6 +22,9 @@ public class AccountEntity {
 
     @ManyToOne
     private UserEntity user;
+
+    @OneToMany(mappedBy = "account")
+    private List<OperationEntity> transactions;
 
     public AccountEntity(){};
 

@@ -1,15 +1,14 @@
 package eight.ing3.esipe.fr.accountServices.accountServices.services;
 
 
-import dto.AccountDto;
-import dto.AccountType;
-import dto.CredentialDto;
-import dto.UserDto;
+import dto.*;
 import eight.ing3.esipe.fr.accountServices.GenericException;
 import entity.AccountEntity;
+import entity.OperationEntity;
 import entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import repository.AccountRepository;
 import repository.UserRepository;
 
 import java.util.List;
@@ -20,11 +19,13 @@ public class AccountService implements IAccountService {
 
 
     private final UserRepository userRepository;
+    private final AccountRepository accountRepository;
 
 
 
     @Autowired
-    public AccountService(UserRepository userRepository) {
+    public AccountService(UserRepository userRepository, AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
         this.userRepository = userRepository;
 
     }
@@ -52,7 +53,44 @@ public class AccountService implements IAccountService {
 
        }
 
+    
+ 
+       public AccountDto getAccountById(String accountNumber) throws GenericException {
 
+        AccountEntity accountEntity = accountRepository.findOne(accountNumber);
+        System.out.println("----------------------------------appel getAccountById------------------------------------");
+
+        if(accountEntity == null ){
+            throw new GenericException("No account found with this id " + accountNumber);
+        }
+        else {
+
+            return AccountDto.builder()
+                    .accountNumber(accountEntity.getAccountNumber())
+                    .balance(accountEntity.getBalance())
+                    .type(AccountType.valueOf(accountEntity.getType()))
+                    .transactionDtoList(transactionEntitiesToTransactionDtoList(accountEntity.getTransactions()))
+                    .build();
+        }
+
+       }
+
+
+    public List<OperationDto> transactionEntitiesToTransactionDtoList(List<OperationEntity> transactionEntities){
+
+        return transactionEntities
+                .stream()
+                .map(
+                        t -> OperationDto.builder()
+                        .transactionId(t.getTransactionId())
+                        .date(t.getDate())
+                        .description(t.getDescription())
+                        .amount(t.getAmount())
+                        .build()
+                )
+                .collect(Collectors.toList());
+
+    }
 
     public List<AccountDto> accountEntitiesToAccountDtoList(List<AccountEntity> accountEntities){
         return accountEntities
@@ -70,11 +108,19 @@ public class AccountService implements IAccountService {
     @Override
     public List<AccountDto> getAllAccount(String userId) throws GenericException {
 
-
+    	System.out.println("----------------------------------appel getAllAccount------------------------------------");
         return getUserById(userId).getAccountDtoList();
 
     }
 
+    @Override
+    public List<OperationDto> getTransactions(String account_number) throws GenericException {
 
+        List<OperationDto> transactionDtoList = getAccountById(account_number).getTransactionDtoList();
+
+        transactionDtoList.sort((OperationDto t1, OperationDto t2)->t2.getDate().compareTo(t1.getDate()));
+
+        return transactionDtoList;
+    }
 
 }
