@@ -16,8 +16,6 @@ import java.util.concurrent.CountDownLatch;
 
 public class Receiver {
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(Receiver.class);
-
   private CountDownLatch latch = new CountDownLatch(1);
 
   @Autowired
