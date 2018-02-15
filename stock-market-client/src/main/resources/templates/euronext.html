@@ -15,17 +15,39 @@
     <div class="starter-template">
         <h1>EURONEXT Stock Market</h1>
     </div>
+    <button type="button" class="btn btn-success" id="btn">Voir les indices</button>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="ta_OR">Indices L'Oréal</label>
+                <textarea class="form-control" id="ta_OR" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="ta_GLE">Indices Société Général</label>
+                <textarea class="form-control" id="ta_GLE" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="ta_CA">Carrefour</label>
+                <textarea class="form-control" id="ta_CA" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    </div>
+
 
 </div>
 <!-- /.container -->
 <div th:replace="fragments/footer :: footer"/>
 <script language="JavaScript" type="text/javascript">
-    $(function() {
-        console.log( "ready!" );
-    });
 
-
-    $.ajax({
+    /*$.ajax({
         type: 'GET',
         url: 'http://192.168.4.204:9095/company/OR/src/USD/target/EUR',
         processData: true,
@@ -34,7 +56,191 @@
         success: function (data) {
             console.log('data = '+data);
         }
+    });*/
+
+    function reqGateway(codeCompany) {
+        var url = "http://192.168.4.204:9095/company/"+codeCompany+"/src/USD/target/EUR";
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function(res) {
+                //$('.result').html(data); //data assignation to .result node
+                //console.log('resulat = '+ res);
+                var data = jQuery.parseJSON(res); //res is parsed
+                var inTimeData = data[0];//get the current row
+                var valAbs = Math.abs(inTimeData.value);
+
+                var id = "#ta_"+codeCompany;
+                var info = "Heure : " + inTimeData.hour + " Valeur : " + valAbs +"\n";
+                $(id).val($(id).val()+info);
+
+            }
+        });
+    }
+
+    $("#btn").click(function worker() {
+
+        var time = 60000;
+
+        reqGateway("OR");
+        reqGateway("GLE");
+        reqGateway("CA");
+
+        // Schedule the next request when the current one's complete
+        setTimeout(worker, time);
+
+        }
+
+    )
+
+
+</script>
+
+<script type="text/javascript">
+    /*window.onload = (function worker() {
+        console.log("reload chart");
+        /////
+            var codeCompany = "OR";
+            var url = "http://192.168.4.204:9095/company/"+codeCompany+"/src/USD/target/EUR";
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function(res) {
+                    //$('.result').html(data); //data assignation to .result node
+                    //console.log('resulat = '+ res);
+                    var dataOR = jQuery.parseJSON(res); //res is parsed
+
+                    var chart = new CanvasJS.Chart("chartContainer",
+                        {
+                            title:{
+                                text: "Stock Exchange EURONEXT Indice"
+                            },
+                            data: [
+                                {
+                                    type: "line",
+                                    dataPoints: [
+
+                                        { x: new Date('February 16, 2018 '+dataOR[9].hour), y: Math.abs(dataOR[9].value) },
+                                        { x: new Date('February 16, 2018 '+dataOR[8].hour), y: Math.abs(dataOR[8].value) },
+                                        { x: new Date('February 16, 2018 '+dataOR[7].hour), y: Math.abs(dataOR[7].value) },
+                                        { x: new Date('February 16, 2018 '+dataOR[6].hour), y: Math.abs(dataOR[6].value) },
+                                        { x: new Date('February 16, 2018 '+dataOR[5].hour), y: Math.abs(dataOR[5].value) },
+                                        { x: new Date('February 16, 2018 '+dataOR[4].hour), y: Math.abs(dataOR[4].value) },
+                                        { x: new Date('February 16, 2018 '+dataOR[3].hour), y: Math.abs(dataOR[3].value) },
+                                        { x: new Date('February 16, 2018 '+dataOR[2].hour), y: Math.abs(dataOR[2].value) },
+                                        { x: new Date('February 16, 2018 '+dataOR[1].hour), y: Math.abs(dataOR[1].value) },
+                                        { x: new Date('February 16, 2018 '+dataOR[0].hour), y: Math.abs(dataOR[0].value) }
+                                    ]
+                                }
+                            ]
+                        });
+
+                    chart.render();
+
+                }
+            });
+
+        setTimeout(worker, 60000);
+    }
+
+
+    );*/
+
+    window.onload = (function worker() {
+
+        console.log("is working...");
+
+        var urlOR = "http://192.168.4.204:9095/company/OR/src/USD/target/EUR";
+        var urlGLE = "http://192.168.4.204:9095/company/GLE/src/USD/target/EUR";
+        var urlCA = "http://192.168.4.204:9095/company/CA/src/USD/target/EUR";
+
+        $.when($.ajax({
+                type: 'GET',
+                url: urlOR,
+                success: function(res) {}
+        }), $.ajax({
+                type: 'GET',
+                url: urlGLE,
+            success: function(res) {}
+        }), $.ajax({
+                type: 'GET',
+                url: urlCA,
+            success: function(res) {}
+            }
+
+        )).then(function (resp1, resp2, resp3) {
+
+            console.log("handling responses");
+
+            var dataOR = jQuery.parseJSON(resp1[0]);
+            var dataGLE = jQuery.parseJSON(resp2[0]);
+            var dataCA = jQuery.parseJSON(resp3[0]);
+
+            var chart = new CanvasJS.Chart("chartContainer",
+                {
+                    title:{
+                        text: "Stock Exchange EURONEXT Indice"
+                    },
+                    data: [
+                        {
+                            type: "line",
+                            dataPoints: [
+
+                                { x: new Date('February 16, 2018 '+dataOR[9].hour), y: Math.abs(dataOR[9].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[8].hour), y: Math.abs(dataOR[8].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[7].hour), y: Math.abs(dataOR[7].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[6].hour), y: Math.abs(dataOR[6].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[5].hour), y: Math.abs(dataOR[5].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[4].hour), y: Math.abs(dataOR[4].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[3].hour), y: Math.abs(dataOR[3].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[2].hour), y: Math.abs(dataOR[2].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[1].hour), y: Math.abs(dataOR[1].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[0].hour), y: Math.abs(dataOR[0].value) }
+                            ]
+                        },
+                        {
+                            type: "line",
+                            dataPoints: [
+
+                                { x: new Date('February 16, 2018 '+dataGLE[9].hour), y: Math.abs(dataGLE[9].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[8].hour), y: Math.abs(dataGLE[8].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[7].hour), y: Math.abs(dataGLE[7].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[6].hour), y: Math.abs(dataGLE[6].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[5].hour), y: Math.abs(dataGLE[5].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[4].hour), y: Math.abs(dataGLE[4].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[3].hour), y: Math.abs(dataGLE[3].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[2].hour), y: Math.abs(dataGLE[2].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[1].hour), y: Math.abs(dataGLE[1].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[0].hour), y: Math.abs(dataGLE[0].value) }
+                            ]
+                        },
+                        {
+                            type: "line",
+                            dataPoints: [
+
+                                { x: new Date('February 16, 2018 '+dataCA[9].hour), y: Math.abs(dataCA[9].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[8].hour), y: Math.abs(dataCA[8].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[7].hour), y: Math.abs(dataCA[7].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[6].hour), y: Math.abs(dataCA[6].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[5].hour), y: Math.abs(dataCA[5].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[4].hour), y: Math.abs(dataCA[4].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[3].hour), y: Math.abs(dataCA[3].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[2].hour), y: Math.abs(dataCA[2].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[1].hour), y: Math.abs(dataCA[1].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[0].hour), y: Math.abs(dataCA[0].value) }
+                            ]
+                        }
+                    ]
+                });
+
+            chart.render();
+
+
+        });
+
+        setTimeout(worker, 60000);
     });
+
 
 </script>
 
