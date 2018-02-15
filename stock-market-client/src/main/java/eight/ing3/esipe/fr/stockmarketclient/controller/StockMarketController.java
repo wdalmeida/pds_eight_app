@@ -22,14 +22,7 @@ public class StockMarketController {
     private String host;
 
     @RequestMapping("/euronext")
-    public String euroNextSM(Model model) throws Exception {
-
-        model.addAttribute("name", "test");
-
-
-        URL urlReq = new URL(host+"/company/OR/src/USD/target/EUR");
-
-        logger.info("response : ");
+    public String euroNextSM() throws Exception {
 
         return "euronext";
     }
