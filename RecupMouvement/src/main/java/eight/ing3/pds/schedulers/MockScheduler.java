@@ -21,8 +21,6 @@ import java.util.Random;
 @Component
 public class MockScheduler {
 
-    private static final Logger logger = Logger.getLogger(MockScheduler.class);
-
     @Value("${kafka.topic.transactionQueue}")
     private String topicName;
 
@@ -44,7 +42,6 @@ public class MockScheduler {
     public void scheduleFixedRateTask() {
 
         try {
-            logger.info("sending random data");
 
             List<Transaction> transactions = new ArrayList<>();
             Transaction transaction = new Transaction();
@@ -66,7 +63,6 @@ public class MockScheduler {
             String xml = xmlMapper.writeValueAsString(transactions);
             this.sender.send(topicName, xml);
         }catch ( Exception ex) {
-            logger.fatal("An error was thrown " + ex.getMessage());
         }
     }
 }

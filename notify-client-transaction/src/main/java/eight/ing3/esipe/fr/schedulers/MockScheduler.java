@@ -10,15 +10,12 @@ import javax.annotation.PostConstruct;
 @Component
 public class MockScheduler {
 
-    private static final Logger logger = Logger.getLogger(MockScheduler.class);
-
     @Value("${kafka.topic.transactionQueue}")
     private String topicName;
 
     @PostConstruct
     public void check(){
         System.out.println("checked");
-        logger.info("checked");
     }
     @Scheduled(fixedRate = 1000)
     public void scheduleFixedRateTask() {
