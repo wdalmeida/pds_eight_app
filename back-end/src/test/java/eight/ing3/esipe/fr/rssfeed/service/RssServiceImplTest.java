@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -44,6 +45,8 @@ public class RssServiceImplTest {
         String link="Link :";
         String description="Description";
         String imgUrl = "http://localhost/img.png";
+        Date RssDate= new Date();
+
 
         SyndContent descriptionContent = new SyndContentImpl();
         descriptionContent.setType("text/plain");
@@ -61,6 +64,8 @@ public class RssServiceImplTest {
         entri.setDescription(descriptionContent);
         entri.setLink(link);
         entri.setEnclosures(syndEnclosureList);
+        entri.setPublishedDate(RssDate);
+
         entries.add(entri);
         RSSFeed expected = new RSSFeed(title,link,description,imgUrl);
         int id = 1;
@@ -98,6 +103,7 @@ public class RssServiceImplTest {
         String description="Description with    <br <img .../>";
         String imgUrl = "http://localhost/img.png";
         String expectDesc ="Description with";
+        Date RssDate= new Date();
 
         SyndContent descriptionContent = new SyndContentImpl();
         descriptionContent.setType("text/plain");
@@ -115,8 +121,10 @@ public class RssServiceImplTest {
         entri.setDescription(descriptionContent);
         entri.setLink(link);
         entri.setEnclosures(syndEnclosureList);
+        entri.setPublishedDate(RssDate);
+
         entries.add(entri);
-        RSSFeed expected = new RSSFeed(title,link,description,imgUrl);
+        RSSFeed expected = new RSSFeed(title,link,description,imgUrl,RssDate.toString());
 
         int id = 1;
 
@@ -143,5 +151,8 @@ public class RssServiceImplTest {
 
         assertEquals(expected.getImgLink(),result.getImgLink());
         logger.debug("Expected image url was "+expected.getImgLink()+"| Result is "+ result.getImgLink());
+
+        assertEquals(expected.getPublishedDate(),result.getPublishedDate());
+        logger.debug("Expected image url was "+expected.getPublishedDate()+"| Result is "+ result.getPublishedDate());
     }
 }
