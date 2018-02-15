@@ -67,7 +67,7 @@
                         </goals>
                         <configuration>
                             <mainClass>
-                                eight.ing3.esipe.fr.Application
+                                eight.ing3.pds.Application
                             </mainClass>
                         </configuration>
                     </execution>
