@@ -1,46 +1,117 @@
 package entity;
 
-import lombok.*;
+import lombok.Data;
+import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.time.LocalDate;
+import java.io.Serializable;
+
+    @Data
+    @Entity
+    @Table(name="notification")
+    public class NotificationEntity {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private int idnotification;
+
+        @Column(name="idaccount")
+        private Integer idaccount;
+
+        @Column(name="label")
+        private String label;
+
+        @Column(name="details")
+        private String details;
+
+        @Column(name="date")
+        private String date;
+
+        @Column(name="recipient")
+        private String recipient;
+
+        @Column(name="amount")
+        private Float amount;
+
+        @Column(name="status")
+        private Boolean status;
 
 
-@Entity
-@Table(name="notification")
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-public class NotificationEntity {
+        public NotificationEntity() {
+        }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer IdNotification;
+        public NotificationEntity(Integer idaccount, String label, String details, String date, String recipient, Float amount, Boolean status) {
+            this.idaccount = idaccount;
+            this.label = label;
+            this.details = details;
+            this.date = date;
+            this.recipient = recipient;
+            this.amount = amount;
+            this.status = status;
+        }
 
-    @Column(name="iban")
-    private  String iban;
 
-    @Column(name="detail")
-    private String detail;
+        public Integer getIdnotification() {
+            return this.idnotification;
+        }
 
-    @Column(name="label")
-    private String label;
+        public void setIdnotification(int idnotification) {
+            this.idnotification = idnotification;
+        }
 
-    @Column(name="date")
-    private Timestamp date;
+        public Integer getIdaccount() {
+            return this.idaccount;
+        }
 
-    @Column(name="recipient")
-    private String recipient;
+        public void setIdaccount(Integer idaccount) {
+            this.idaccount = idaccount;
+        }
 
-    @Column(name="typeTransaction")
-    private String typeTransaction;
+        public String getLabel() {
+            return this.label;
+        }
 
-    @Column(name="amount")
-    private Double amount;
+        public void setLabel(String label) {
+            this.label = label;
+        }
 
-    @Column(name="status")
-    private Boolean status;
-}
+        public String getDetails() {
+            return this.details;
+        }
+
+        public void setDetails(String details) {
+            this.details = details;
+        }
+
+        public String getDate() {
+            return this.date;
+        }
+
+        public void setDate(String date) {
+            this.date = date;
+        }
+
+        public String getRecipient() {
+            return this.recipient;
+        }
+
+        public void setRecipient(String recipient) {
+            this.recipient = recipient;
+        }
+
+        public Float getAmount() {
+            return this.amount;
+        }
+
+        public void setAmount(Float amount) {
+            this.amount = amount;
+        }
+
+        public Boolean getStatus() {
+            return this.status;
+        }
+
+        public void setStatus(Boolean status) {
+            this.status = status;
+        }
+    }
+
