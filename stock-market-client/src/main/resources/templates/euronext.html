@@ -153,6 +153,8 @@
         var urlOR = "http://192.168.4.204:9095/company/OR/src/USD/target/EUR";
         var urlGLE = "http://192.168.4.204:9095/company/GLE/src/USD/target/EUR";
         var urlCA = "http://192.168.4.204:9095/company/CA/src/USD/target/EUR";
+        var urlMC = "http://192.168.4.204:9095/company/MC/src/USD/target/EUR";
+        var urlKER = "http://192.168.4.204:9095/company/KER/src/USD/target/EUR";
 
         $.when($.ajax({
                 type: 'GET',
@@ -178,12 +180,18 @@
 
             var chart = new CanvasJS.Chart("chartContainer",
                 {
+                    theme: "light2",
                     title:{
                         text: "Stock Exchange EURONEXT Indice"
+                    },
+                    legend: {
+                        reversed: true,
+                        cursor: "pointer"
                     },
                     data: [
                         {
                             type: "line",
+                            showInLegend: true,
                             dataPoints: [
 
                                 { x: new Date('February 16, 2018 '+dataOR[9].hour), y: Math.abs(dataOR[9].value) },
@@ -200,6 +208,7 @@
                         },
                         {
                             type: "line",
+                            showInLegend: true,
                             dataPoints: [
 
                                 { x: new Date('February 16, 2018 '+dataGLE[9].hour), y: Math.abs(dataGLE[9].value) },
@@ -216,6 +225,41 @@
                         },
                         {
                             type: "line",
+                            showInLegend: true,
+                            dataPoints: [
+
+                                { x: new Date('February 16, 2018 '+dataCA[9].hour), y: Math.abs(dataCA[9].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[8].hour), y: Math.abs(dataCA[8].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[7].hour), y: Math.abs(dataCA[7].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[6].hour), y: Math.abs(dataCA[6].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[5].hour), y: Math.abs(dataCA[5].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[4].hour), y: Math.abs(dataCA[4].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[3].hour), y: Math.abs(dataCA[3].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[2].hour), y: Math.abs(dataCA[2].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[1].hour), y: Math.abs(dataCA[1].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[0].hour), y: Math.abs(dataCA[0].value) }
+                            ]
+                        },
+                        {
+                            type: "line",
+                            showInLegend: true,
+                            dataPoints: [
+
+                                { x: new Date('February 16, 2018 '+dataCA[9].hour), y: Math.abs(dataCA[9].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[8].hour), y: Math.abs(dataCA[8].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[7].hour), y: Math.abs(dataCA[7].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[6].hour), y: Math.abs(dataCA[6].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[5].hour), y: Math.abs(dataCA[5].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[4].hour), y: Math.abs(dataCA[4].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[3].hour), y: Math.abs(dataCA[3].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[2].hour), y: Math.abs(dataCA[2].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[1].hour), y: Math.abs(dataCA[1].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[0].hour), y: Math.abs(dataCA[0].value) }
+                            ]
+                        },
+                        {
+                            type: "line",
+                            showInLegend: true,
                             dataPoints: [
 
                                 { x: new Date('February 16, 2018 '+dataCA[9].hour), y: Math.abs(dataCA[9].value) },
