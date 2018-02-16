@@ -1,36 +1,33 @@
 package dto;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
-import lombok.*;
-
-import java.sql.Date;
-import java.sql.Timestamp;
-
+@Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+@NoArgsConstructor
+@Component
 public class NotificationDto {
 
-    private Integer IdNotification;
+    private
+    int idnotification;
 
-    private  String iban;
+    private Integer idaccount;
 
     private String label;
 
-    private String detail;
+    private String details;
 
-    private Date date;
+    private String date;
 
     private String recipient;
 
-    private String typeTransaction;
-
-    private Double amount;
+    private Float amount;
 
     private Boolean status;
-
-
 }
