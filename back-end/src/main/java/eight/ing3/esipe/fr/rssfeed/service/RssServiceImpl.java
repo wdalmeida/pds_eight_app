@@ -53,7 +53,7 @@ public class RssServiceImpl implements IRssService {
 
     @Override
     public List<RSSFeed> getAllFromBEM() {
-        String url="http://rss.eight.inside.esiag.info/";
+        String url="http://10.10.1.201/";
         logger.debug("Service news : ");
         SyndFeed rss = reader.read(url);
         List<SyndEntry> newsList= rss.getEntries();
