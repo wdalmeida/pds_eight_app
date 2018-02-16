@@ -21,7 +21,6 @@
         <module>stock-market-api-gateway</module>
         <module>fraudulent-transfers-learning</module>
         <module>RecupMouvement</module>
-        <module>stock-market-client</module>
     </modules>
 
     <properties>
