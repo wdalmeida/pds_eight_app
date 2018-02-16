@@ -1,4 +1,3 @@
-
 package ApplicationWeb.applicationweb.model;
 
 
@@ -72,7 +71,7 @@ public class Result_DecModel {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "lastname")
+    @Column(name = "last_name")
     private String lastname;
 
     @Column(name = "socio")
@@ -81,14 +80,14 @@ public class Result_DecModel {
     @Column(name = "balance")
     private Float balance;
 
-public Result_DecModel(Integer idresult, String iban, String name, String lastname, String socio, Float balance){
-    this.idresult=idresult;
-    this.iban=iban;
-    this.name=name;
-    this.lastname=lastname;
-    this.socio=socio;
-    this.balance=balance;
-}
+    public Result_DecModel(Integer idresult, String iban, String name, String lastname, String socio, Float balance){
+        this.idresult=idresult;
+        this.iban=iban;
+        this.name=name;
+        this.lastname=lastname;
+        this.socio=socio;
+        this.balance=balance;
+    }
 
     public Result_DecModel() {
     }

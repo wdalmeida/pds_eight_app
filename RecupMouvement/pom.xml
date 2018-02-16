@@ -53,8 +53,13 @@
             <artifactId>spring-boot-test</artifactId>
             <version>1.4.2.RELEASE</version>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
 
+    </dependencies>
+    
     <build>
         <plugins>
             <plugin>
@@ -67,7 +72,7 @@
                         </goals>
                         <configuration>
                             <mainClass>
-                                eight.ing3.pds.Application
+                                eight.ing3.esipe.fr.Application
                             </mainClass>
                         </configuration>
                     </execution>

@@ -1,6 +1,5 @@
 package ApplicationWeb.applicationweb.services;
 
-import ApplicationWeb.applicationweb.model.NotificationModel;
 import ApplicationWeb.applicationweb.model.Result_DecModel;
 
 import java.util.List;

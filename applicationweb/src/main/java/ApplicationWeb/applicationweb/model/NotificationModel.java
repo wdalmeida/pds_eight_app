@@ -9,11 +9,11 @@ import java.io.Serializable;
 @Table(name="notification")
 public class NotificationModel implements Serializable {
     @Id
-    @SequenceGenerator(name = "seq", sequenceName = "notification_id_notification_seq", allocationSize=0)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
-    @Column(name="idnotification")
+    //@SequenceGenerator(name = "seq", sequenceName = "notification_id_notification_seq", allocationSize=0)
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @Column(name="id_notification")
     private
-    Integer idnotification;
+    Integer id_notification;
 
     @Column(name="idaccount")
     private Integer idaccount;
@@ -52,11 +52,11 @@ public class NotificationModel implements Serializable {
 
 
     public Integer getIdnotification() {
-        return this.idnotification;
+        return this.id_notification;
     }
 
-    public void setIdnotification(Integer idnotification) {
-        this.idnotification = idnotification;
+    public void setIdnotification(Integer id_notification) {
+        this.id_notification = id_notification;
     }
 
     public Integer getIdaccount() {
@@ -114,4 +114,16 @@ public class NotificationModel implements Serializable {
     public void setStatus(Boolean status) {
         this.status = status;
     }
+
+    @Override
+    public String toString(){
+        return "Notification{"+
+                "id="+ id_notification+
+                ", details='"+ amount+ '\''+
+                ", recipient='"+recipient+'\''+
+                ", label='"+label+'\''+
+                ", amount"+amount+
+                '}';
+    }
+
 }

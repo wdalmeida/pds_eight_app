@@ -1,6 +1,5 @@
 package ApplicationWeb.applicationweb.services;
 
-import ApplicationWeb.applicationweb.model.NotificationModel;
 import ApplicationWeb.applicationweb.model.Result_DecModel;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
