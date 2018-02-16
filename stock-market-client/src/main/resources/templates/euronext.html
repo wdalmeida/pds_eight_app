@@ -1,0 +1,263 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>STOCK MARKET</title>
+
+    <div th:replace="fragments/header :: header-css"/>
+
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>EURONEXT Stock Market</h1>
+    </div>
+    <button type="button" class="btn btn-success" id="btn">Voir les indices</button>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="ta_OR">Indices L'Oréal</label>
+                <textarea class="form-control" id="ta_OR" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="ta_GLE">Indices Société Général</label>
+                <textarea class="form-control" id="ta_GLE" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="ta_CA">Carrefour</label>
+                <textarea class="form-control" id="ta_CA" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="ta_MC">Moët Louis Vuitton</label>
+                <textarea class="form-control" id="ta_MC" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="ta_KER">Kerlin</label>
+                <textarea class="form-control" id="ta_KER" rows="3"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    </div>
+
+
+</div>
+<!-- /.container -->
+<div th:replace="fragments/footer :: footer"/>
+<script language="JavaScript" type="text/javascript">
+
+    function reqGateway(codeCompany) {
+        var url = "http://192.168.4.204:9095/company/"+codeCompany+"/src/USD/target/EUR";
+        var id = "#ta_"+codeCompany;
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function(res) {
+                //$('.result').html(data); //data assignation to .result node
+                //console.log('resulat = '+ res);
+                var data = jQuery.parseJSON(res); //res is parsed
+                var inTimeData = data[1];//get the current row
+                var valAbs = Math.abs(inTimeData.value);
+                var subVal = valAbs.toString().substr(0,6);
+
+
+                var info = "Heure : " + inTimeData.hour + " Valeur : " + subVal +"\n";
+                $(id).val($(id).val()+info);
+
+            }
+        });
+    }
+
+    $("#btn").click(function worker() {
+
+        var time = 60000;
+
+        reqGateway("OR");
+        reqGateway("GLE");
+        reqGateway("CA");
+        reqGateway("MC");
+        reqGateway("KER");
+
+        // Schedule the next request when the current one's complete
+        setTimeout(worker, time);
+
+        }
+
+    )
+
+
+</script>
+
+<script type="text/javascript">
+
+    window.onload = (function worker() {
+
+        console.log("is working...");
+
+        var urlOR = "http://192.168.4.204:9095/company/OR/src/USD/target/EUR";
+        var urlGLE = "http://192.168.4.204:9095/company/GLE/src/USD/target/EUR";
+        var urlCA = "http://192.168.4.204:9095/company/CA/src/USD/target/EUR";
+        var urlMC = "http://192.168.4.204:9095/company/MC/src/USD/target/EUR";
+        var urlKER = "http://192.168.4.204:9095/company/KER/src/USD/target/EUR";
+
+        $.when($.ajax({
+                type: 'GET',
+                url: urlOR,
+                success: function(res) {}
+        }), $.ajax({
+                type: 'GET',
+                url: urlGLE,
+            success: function(res) {}
+        }), $.ajax({
+                type: 'GET',
+                url: urlCA,
+            success: function(res) {}
+        }), $.ajax({
+                type: 'GET',
+                url: urlMC,
+                success: function(res) {}
+        }), $.ajax({
+                type: 'GET',
+                url: urlKER,
+                success: function(res) {}
+        })
+        ).then(function (resp1, resp2, resp3, resp4, resp5) {
+
+            console.log("handling responses");
+
+            var dataOR = jQuery.parseJSON(resp1[0]);
+            var dataGLE = jQuery.parseJSON(resp2[0]);
+            var dataCA = jQuery.parseJSON(resp3[0]);
+            var dataMC = jQuery.parseJSON(resp4[0]);
+            var dataKER = jQuery.parseJSON(resp5[0]);
+
+            var chart = new CanvasJS.Chart("chartContainer",
+                {
+                    theme: "light2",
+                    title:{
+                        text: "Stock Exchange EURONEXT Indice"
+                    },
+                    legend: {
+                        reversed: true,
+                        cursor: "pointer"
+                    },
+                    data: [
+                        {
+                            type: "line",
+                            name: "L'Oréal",
+                            showInLegend: true,
+                            dataPoints: [
+
+                                { x: new Date('February 16, 2018 '+dataOR[9].hour), y: Math.abs(dataOR[9].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[8].hour), y: Math.abs(dataOR[8].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[7].hour), y: Math.abs(dataOR[7].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[6].hour), y: Math.abs(dataOR[6].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[5].hour), y: Math.abs(dataOR[5].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[4].hour), y: Math.abs(dataOR[4].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[3].hour), y: Math.abs(dataOR[3].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[2].hour), y: Math.abs(dataOR[2].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[1].hour), y: Math.abs(dataOR[1].value) },
+                                { x: new Date('February 16, 2018 '+dataOR[0].hour), y: Math.abs(dataOR[0].value) }
+                            ]
+                        },
+                        {
+                            type: "line",
+                            name: "Société Général",
+                            showInLegend: true,
+                            dataPoints: [
+
+                                { x: new Date('February 16, 2018 '+dataGLE[9].hour), y: Math.abs(dataGLE[9].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[8].hour), y: Math.abs(dataGLE[8].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[7].hour), y: Math.abs(dataGLE[7].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[6].hour), y: Math.abs(dataGLE[6].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[5].hour), y: Math.abs(dataGLE[5].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[4].hour), y: Math.abs(dataGLE[4].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[3].hour), y: Math.abs(dataGLE[3].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[2].hour), y: Math.abs(dataGLE[2].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[1].hour), y: Math.abs(dataGLE[1].value) },
+                                { x: new Date('February 16, 2018 '+dataGLE[0].hour), y: Math.abs(dataGLE[0].value) }
+                            ]
+                        },
+                        {
+                            type: "line",
+                            name: "Carrefour",
+                            showInLegend: true,
+                            dataPoints: [
+
+                                { x: new Date('February 16, 2018 '+dataCA[9].hour), y: Math.abs(dataCA[9].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[8].hour), y: Math.abs(dataCA[8].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[7].hour), y: Math.abs(dataCA[7].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[6].hour), y: Math.abs(dataCA[6].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[5].hour), y: Math.abs(dataCA[5].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[4].hour), y: Math.abs(dataCA[4].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[3].hour), y: Math.abs(dataCA[3].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[2].hour), y: Math.abs(dataCA[2].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[1].hour), y: Math.abs(dataCA[1].value) },
+                                { x: new Date('February 16, 2018 '+dataCA[0].hour), y: Math.abs(dataCA[0].value) }
+                            ]
+                        },
+                        {
+                            type: "line",
+                            name: "Moët Louis Vuitton",
+                            showInLegend: true,
+                            dataPoints: [
+
+                                { x: new Date('February 16, 2018 '+dataMC[9].hour), y: Math.abs(dataMC[9].value) },
+                                { x: new Date('February 16, 2018 '+dataMC[8].hour), y: Math.abs(dataMC[8].value) },
+                                { x: new Date('February 16, 2018 '+dataMC[7].hour), y: Math.abs(dataMC[7].value) },
+                                { x: new Date('February 16, 2018 '+dataMC[6].hour), y: Math.abs(dataMC[6].value) },
+                                { x: new Date('February 16, 2018 '+dataMC[5].hour), y: Math.abs(dataMC[5].value) },
+                                { x: new Date('February 16, 2018 '+dataMC[4].hour), y: Math.abs(dataMC[4].value) },
+                                { x: new Date('February 16, 2018 '+dataMC[3].hour), y: Math.abs(dataMC[3].value) },
+                                { x: new Date('February 16, 2018 '+dataMC[2].hour), y: Math.abs(dataMC[2].value) },
+                                { x: new Date('February 16, 2018 '+dataMC[1].hour), y: Math.abs(dataMC[1].value) },
+                                { x: new Date('February 16, 2018 '+dataMC[0].hour), y: Math.abs(dataMC[0].value) }
+                            ]
+                        },
+                        {
+                            type: "line",
+                            name: "Kerlin",
+                            showInLegend: true,
+                            dataPoints: [
+
+                                { x: new Date('February 16, 2018 '+dataKER[9].hour), y: Math.abs(dataKER[9].value) },
+                                { x: new Date('February 16, 2018 '+dataKER[8].hour), y: Math.abs(dataKER[8].value) },
+                                { x: new Date('February 16, 2018 '+dataKER[7].hour), y: Math.abs(dataKER[7].value) },
+                                { x: new Date('February 16, 2018 '+dataKER[6].hour), y: Math.abs(dataKER[6].value) },
+                                { x: new Date('February 16, 2018 '+dataKER[5].hour), y: Math.abs(dataKER[5].value) },
+                                { x: new Date('February 16, 2018 '+dataKER[4].hour), y: Math.abs(dataKER[4].value) },
+                                { x: new Date('February 16, 2018 '+dataKER[3].hour), y: Math.abs(dataKER[3].value) },
+                                { x: new Date('February 16, 2018 '+dataKER[2].hour), y: Math.abs(dataKER[2].value) },
+                                { x: new Date('February 16, 2018 '+dataKER[1].hour), y: Math.abs(dataKER[1].value) },
+                                { x: new Date('February 16, 2018 '+dataKER[0].hour), y: Math.abs(dataKER[0].value) }
+                            ]
+                        }
+                    ]
+                });
+
+            chart.render();
+
+        });
+
+        setTimeout(worker, 60000);
+    });
+
+
+</script>
+
+</body>
+</html>
