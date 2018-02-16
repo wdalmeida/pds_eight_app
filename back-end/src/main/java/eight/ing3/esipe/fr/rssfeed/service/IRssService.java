@@ -8,4 +8,7 @@ public interface IRssService {
     RSSFeed getOne(int id);
 
     List<RSSFeed> getAllFromBEM();
+
+    List<RSSFeed> getAllFromBFM();
+
 }

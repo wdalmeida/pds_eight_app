@@ -55,4 +55,17 @@ public class RSSController {
         return (allNews!=null) ?
                 new ResponseEntity<>(allNews, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    /**
+     * Method to get all news from BEM
+     *
+     * @return List of RSSFeed in JSON with HTTP status 200 or only HTTP status 204
+     */
+    @GetMapping("/rss/bfm")
+    public  ResponseEntity<List<RSSFeed>> getAllFromBFM() throws IOException {
+        logger.debug("Get news from BFM ");
+        List<RSSFeed> allNews = IRssService.getAllFromBFM();
+        return (allNews!=null) ?
+                new ResponseEntity<>(allNews, HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
