@@ -1,30 +1,28 @@
-
 package ApplicationWeb.applicationweb.model;
-
 
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+
 @Entity
 @Table(name="notification")
-public class NotificationModel{
-
+public class NotificationModel implements Serializable {
     @Id
-    //@SequenceGenerator(name = "seq", sequenceName = "notification_id_notification_seq", allocationSize=0)
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
+    @SequenceGenerator(name = "seq", sequenceName = "notification_id_notification_seq", allocationSize=0)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq")
     @Column(name="idnotification")
     private
     Integer idnotification;
 
-    @Column(name="iban")
-    private String iban;
+    @Column(name="idaccount")
+    private Integer idaccount;
 
     @Column(name="label")
     private String label;
 
-    @Column(name="detail")
-    private String detail;
+    @Column(name="details")
+    private String details;
 
     @Column(name="date")
     private String date;
@@ -42,10 +40,10 @@ public class NotificationModel{
     public NotificationModel() {
     }
 
-    public NotificationModel(String iban, String label, String detail, String date, String recipient, Float amount, Boolean status) {
-        this.iban = iban;
+    public NotificationModel(Integer idaccount, String label, String details, String date, String recipient, Float amount, Boolean status) {
+        this.idaccount = idaccount;
         this.label = label;
-        this.detail = detail;
+        this.details = details;
         this.date = date;
         this.recipient = recipient;
         this.amount = amount;
@@ -61,12 +59,12 @@ public class NotificationModel{
         this.idnotification = idnotification;
     }
 
-    public String getIban() {
-        return this.iban;
+    public Integer getIdaccount() {
+        return this.idaccount;
     }
 
-    public void setIban(String iban) {
-        this.iban = iban;
+    public void setIdaccount(Integer idaccount) {
+        this.idaccount = idaccount;
     }
 
     public String getLabel() {
@@ -77,12 +75,12 @@ public class NotificationModel{
         this.label = label;
     }
 
-    public String getDetail() {
-        return this.detail;
+    public String getDetails() {
+        return this.details;
     }
 
-    public void setDetail(String detail) {
-        this.detail = detail;
+    public void setDetails(String details) {
+        this.details = details;
     }
 
     public String getDate() {
@@ -116,17 +114,4 @@ public class NotificationModel{
     public void setStatus(Boolean status) {
         this.status = status;
     }
-
-@Override
-    public String toString(){
-        return "Notification{"+
-                "id="+ idnotification+
-                ", details='"+ amount+ '\''+
-                ", recipient='"+recipient+'\''+
-                ", label='"+label+'\''+
-                ", amount"+amount+
-                '}';
 }
-
-}
-
