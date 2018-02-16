@@ -10,10 +10,16 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 //@EnableJpaRepositories("ApplicationWeb.applicationweb.services")
 @SpringBootApplication
-public class ApplicationWeb extends SpringBootServletInitializer {
+@EnableAutoConfiguration
+public class Application extends SpringBootServletInitializer {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(Application.class);
+    }
 
     public static void main(String[] args) throws Exception {
-        SpringApplication.run(ApplicationWeb.class, args);
+        SpringApplication.run(Application.class, args);
     }
 
 }
