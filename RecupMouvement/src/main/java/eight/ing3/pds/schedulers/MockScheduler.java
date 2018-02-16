@@ -4,7 +4,6 @@ package eight.ing3.pds.schedulers;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import eight.ing3.pds.entities.Transaction;
 import eight.ing3.pds.kafkaServices.producer.Sender;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
