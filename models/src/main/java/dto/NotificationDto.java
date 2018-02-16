@@ -16,7 +16,7 @@ public class NotificationDto {
 
     private Integer IdNotification;
 
-    private String iban;
+    private  String iban;
 
     private String label;
 

@@ -3,13 +3,6 @@ package repository;
 import entity.NotificationEntity;
 import org.springframework.data.repository.CrudRepository;
 
-import org.springframework.stereotype.Repository;
+public interface NotificationRepository extends CrudRepository<NotificationEntity,String> {
 
-import java.util.List;
-
-@Repository
-public interface NotificationRepository extends CrudRepository<NotificationEntity, Integer> {
-
-    @Override
-    public List<NotificationEntity> findAll();
 }
