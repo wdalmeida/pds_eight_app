@@ -2,15 +2,17 @@ server:
   port: 9500
 
 kafka:
-  bootstrap-servers: 10.10.1.12:9092
+  bootstrap-servers: localhost:9092
   topic:
     transactionQueue: transactionQueue.t
 
-spring:
- datasource:
-  url: jdbc:postgresql://10.10.1.5:5432/eight
-  username: eight
-  password: eight
-  driver-class-name: org.postgresql.Driver
- jpa:
-  generate-ddl: true
+spring :
+  datasource :
+    url : jdbc:postgresql://localhost:5432/Test
+    username : postgres
+    password: Ineegeerei1
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    generate-ddl: true
+    hibernate :
+      ddl-auto: update
