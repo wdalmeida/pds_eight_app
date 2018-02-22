@@ -4,29 +4,22 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 @Data
-@Entity
-@Table(name="transaction")
-public class TransactionEntity {
+@Entity(name = "operation")
+public class OperationEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idtransaction;
+    Long transactionId;
 
-    @Column(name="valuedate")
-    private LocalDate valueDate;
+    private Date date;
 
-    @Column(name="amount")
+    private String description;
+
     private double amount;
 
-    @Column(name="wording")
-    private String wording;
-
-    @JoinColumn(name="iban")
     @ManyToOne
-    private AccounEntity accountEntity;
-
-    @Column(name="read")
-    private boolean read;
+    private AccountEntity account;
 }

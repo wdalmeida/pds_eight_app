@@ -56,6 +56,7 @@ public class AccountService implements IAccountService {
 
     
  
+       @Override
        public AccountDto getAccountById(String accountNumber) throws GenericException {
 
         AccountEntity accountEntity = accountRepository.findOne(accountNumber);
@@ -77,6 +78,7 @@ public class AccountService implements IAccountService {
        }
 
 
+    @Override
     public List<OperationDto> transactionEntitiesToTransactionDtoList(List<OperationEntity> transactionEntities){
 
         return transactionEntities

@@ -20,7 +20,6 @@
         <module>stock-market-api-gateway</module>
         <module>RecupMouvement</module>
         <module>client-discovery</module>
-	    <module>rest-account-services</module>
         <module>fraudulent-transfers-learning</module>
     </modules>
 

@@ -10,9 +10,6 @@ import java.time.LocalDate;
 @Entity
 @Table(name="notification")
 public class NotificationEntity {
-    public Integer getIdNotification() {
-        return IdNotification;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +29,33 @@ public class NotificationEntity {
 
     @Column(name="recipient")
     private String recipient;
+
+    @Column(name="typeTransaction")
+    private String typeTransaction;
+
+    @Column(name="amount")
+    private Double amount;
+
+    @Column(name="status")
+    private Boolean status;
+
+    public NotificationEntity() {
+    }
+
+    public NotificationEntity(String iban, String detail, String label, Timestamp date, String recipient, String typeTransaction, Double amount, Boolean status) {
+        this.iban = iban;
+        this.detail = detail;
+        this.label = label;
+        this.date = date;
+        this.recipient = recipient;
+        this.typeTransaction = typeTransaction;
+        this.amount = amount;
+        this.status = status;
+    }
+
+    public Integer getIdNotification() {
+        return IdNotification;
+    }
 
     public void setIdNotification(Integer idNotification) {
         IdNotification = idNotification;
@@ -100,14 +124,4 @@ public class NotificationEntity {
     public void setStatus(Boolean status) {
         this.status = status;
     }
-
-    @Column(name="typeTransaction")
-    private String typeTransaction;
-
-    @Column(name="amount")
-    private Double amount;
-
-    @Column(name="status")
-    private Boolean status;
-
 }
