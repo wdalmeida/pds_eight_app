@@ -37,12 +37,13 @@ public class NotificationService {
         //notification.setIdNotification(id_notification);
 
         NotificationEntity notif = new NotificationEntity();
-                notif.setAmount(transaction.getMontant());
-                notif.setDate(new Timestamp(transaction.getDate().getTime()));
-                notif.setLabel(transaction.getIntitule());
-                notif.setDetail(null);
-                notif.setStatus(false);
-                notif.setIban(null);
+        notif.setAmount(transaction.getMontant());
+        notif.setDate(new Timestamp(transaction.getDate().getTime()));
+        notif.setLabel(transaction.getIntitule());
+        notif.setDetail(null);
+        notif.setStatus(false);
+        notif.setIban(null);
+
         notificationRepository.save(notif);
         return true;
     }

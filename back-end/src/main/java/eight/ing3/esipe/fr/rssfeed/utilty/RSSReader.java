@@ -39,9 +39,6 @@ public class RSSReader {
         } catch (FeedException | IOException e) {
             e.printStackTrace();
         }
-
-        //logger.debug("What is in feed ? ==>"+feed.getFeedType());
-
         return feed;
     }
 

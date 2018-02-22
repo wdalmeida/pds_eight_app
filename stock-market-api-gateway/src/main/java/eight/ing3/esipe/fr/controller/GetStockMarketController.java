@@ -29,7 +29,6 @@ public class GetStockMarketController {
         return "The gateway is running !";
     }
 
-    @CrossOrigin(origins = "*")
     @RequestMapping(value = "/company/{codeCompany}/src/{srcCurrency}/target/{targetCurrency}", method = RequestMethod.GET)
     public String getStockMarketFlow(
             @PathVariable String codeCompany,

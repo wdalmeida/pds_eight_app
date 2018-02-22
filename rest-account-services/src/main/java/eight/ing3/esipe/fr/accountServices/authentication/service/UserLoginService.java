@@ -20,9 +20,9 @@ public class UserLoginService implements IUserLoginService {
     @Override
     public UserDto checkCredentials(CredentialDto credentials) {
 
-       UserEntity userEntity = userRepository.findOne(Long.parseLong(credentials.getUserId()));
+        UserEntity userEntity = userRepository.findOne(Long.parseLong(credentials.getUserId()));
 
-       
+
 
         return  UserDto.builder()
                 .credential(CredentialDto.builder().userId(String.valueOf(userEntity.getUserId())).password(userEntity.getPassword()).build())

@@ -1,14 +1,13 @@
 package entity;
 
-
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 @Data
-@Entity(name = "transaction")
+@Entity(name = "operation")
 public class OperationEntity {
 
     @Id

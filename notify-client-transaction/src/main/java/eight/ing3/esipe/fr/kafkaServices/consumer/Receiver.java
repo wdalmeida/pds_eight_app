@@ -15,6 +15,8 @@ import org.springframework.kafka.annotation.KafkaListener;
 
 public class Receiver {
 
+  private static final Logger LOGGER = LoggerFactory.getLogger(Receiver.class);
+
   private CountDownLatch latch = new CountDownLatch(1);
 
   @Autowired
@@ -29,27 +31,27 @@ public class Receiver {
 
 
 
-    @KafkaListener(topics = "${kafka.topic.transactionQueue}")
-    public void receive(String payload) throws IOException {
-      System.out.println("<< " + payload);
-      List<Transaction> transactions = xmlMapper.readValue(payload, new TypeReference<List<Transaction>>() {});
-        for(Transaction transaction : transactions){
-            System.out.println("j'ai recu une nouvelle transaction !!! ");
-            System.out.println("la transaction est : " + transaction);
-            System.out.println("\n\n");
-            notificationService.createNotification(transaction);
+  @KafkaListener(topics = "${kafka.topic.transactionQueue}")
+  public void receive(String payload) throws IOException {
+    System.out.println("<< " + payload);
+    List<Transaction> transactions = xmlMapper.readValue(payload, new TypeReference<List<Transaction>>() {});
+    for(Transaction transaction : transactions){
+      System.out.println("j'ai recu une nouvelle transaction !!! ");
+      System.out.println("la transaction est : " + transaction);
+      System.out.println("\n\n");
+      notificationService.createNotification(transaction);
 //            notificationService.createNotification(transaction.getMontant(), new Timestamp(Long.parseLong(String.valueOf(transaction.getDate()))), transaction.getDetail(), new Integer(String.valueOf(transaction.getMontant())), transaction.getIntitule(), transaction.getIbanrecipient(), transaction.getIntitule(), transaction.getTpe());
-          System.out.println("fin");
-        }
-
-        latch.countDown();
+      System.out.println("fin");
     }
 
-    /*@KafkaListener(topics = "${kafka.topic.boot}")
-    public void receive(ConsumerRecord<?, ?> consumerRecord) {
-      LOGGER.info("received payload='{}'", consumerRecord.toString());
-      System.out.println("J'ai recu un premier message :) , " + consumerRecord);
-      latch.countDown();
-    }*/
+    latch.countDown();
+  }
+
+   /*@KafkaListener(topics = "${kafka.topic.boot}")
+   public void receive(ConsumerRecord<?, ?> consumerRecord) {
+     LOGGER.info("received payload='{}'", consumerRecord.toString());
+     System.out.println("J'ai recu un premier message :slightly_smiling_face: , " + consumerRecord);
+     latch.countDown();
+   }*/
 
 }
