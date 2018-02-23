@@ -2,6 +2,7 @@ package eight.ing3.esipe.fr.accountServices.accountServices.controllers;
 
 import eight.ing3.esipe.fr.accountServices.RestAccountServicesApplication;
 import org.json.JSONException;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -19,12 +20,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @SpringBootTest(classes = RestAccountServicesApplication.class,webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @ActiveProfiles("test")
 public class AccountControllerITest {
-	
+
 	TestRestTemplate restTemplate = new TestRestTemplate();
 
 	
 	
-	@Test
+	@Ignore @Test
 	public void ShouldReturnExpectedAccountList_withThisToken() throws JSONException{
 		
 		HttpHeaders headers = new HttpHeaders();
