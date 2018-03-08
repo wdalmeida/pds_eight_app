@@ -4,6 +4,7 @@ package eight.ing3.esipe.fr.service.providor;
 import eight.ing3.esipe.fr.provider.MockMarketStockProviderB;
 import eight.ing3.esipe.fr.provider.dto.DTOProvidorB;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Value;
@@ -56,7 +57,7 @@ public class MockMarketStockProvidorBTest {
      * Test the good handling of a providor
      * @throws IOException
      */
-    @Test
+    @Ignore @Test
     public void testHandlingResponse() throws IOException {
 
         if (!url.equals("test.com")) {

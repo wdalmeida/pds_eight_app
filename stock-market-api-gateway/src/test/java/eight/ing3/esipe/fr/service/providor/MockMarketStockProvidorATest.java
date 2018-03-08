@@ -3,6 +3,7 @@ package eight.ing3.esipe.fr.service.providor;
 import eight.ing3.esipe.fr.provider.MockMarketStockProviderA;
 import eight.ing3.esipe.fr.provider.dto.DTOProvidorA;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.ResourceAccessException;
@@ -25,9 +27,6 @@ import static org.junit.Assert.assertTrue;
  * Created by Vyach on 12/02/2018.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@TestPropertySource(properties = {
-        "mock.stock_market.url=test.com",
-})
 public class MockMarketStockProvidorATest {
 
     private final Logger logger = LoggerFactory.getLogger(MockMarketStockProvidorATest.class);
@@ -67,7 +66,7 @@ public class MockMarketStockProvidorATest {
      *
      * Integration Test
      */
-    @Test
+    @Ignore @Test
     public void testHandlingResponse() throws IOException {
 
         logger.info("URL : " + url);
