@@ -4,7 +4,12 @@ package eight.ing3.esipe.fr.service.providor;
 import eight.ing3.esipe.fr.provider.MockMarketStockProviderB;
 import eight.ing3.esipe.fr.provider.dto.DTOProvidorB;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.ResourceAccessException;
 
 import java.io.IOException;
@@ -16,11 +21,16 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by Vyach on 12/02/2018.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@TestPropertySource(properties = {
+        "mock.stock_market.url=test.com",
+})
 public class MockMarketStockProvidorBTest {
 
     private MockMarketStockProviderB providor;
 
-    private static final String URL = "http://192.168.4.204:9090/stockmarket-b/stockmarket/companycode/MC";
+    @Value("${mock.stock_market.url}")
+    private String url;
 
     @Before
     public void init() {
@@ -42,16 +52,20 @@ public class MockMarketStockProvidorBTest {
     }
 
     /**
+     * Integration Test
+     *
      * Test the good handling of a providor
      * @throws IOException
      */
-    @Test
+    @Ignore @Test
     public void testHandlingResponse() throws IOException {
 
-        List<DTOProvidorB> response = providor.handlingResponse(URL);
+        if (!url.equals("test.com")) {
+            List<DTOProvidorB> response = providor.handlingResponse(this.url);
 
+            assertTrue(response.size() > 0);
 
-        assertTrue(response.size() > 0);
+        }
 
     }
 

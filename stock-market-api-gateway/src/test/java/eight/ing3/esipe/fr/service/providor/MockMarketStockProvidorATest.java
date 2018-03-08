@@ -3,7 +3,18 @@ package eight.ing3.esipe.fr.service.providor;
 import eight.ing3.esipe.fr.provider.MockMarketStockProviderA;
 import eight.ing3.esipe.fr.provider.dto.DTOProvidorA;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.client.ResourceAccessException;
 
 import java.io.IOException;
@@ -15,16 +26,22 @@ import static org.junit.Assert.assertTrue;
 /**
  * Created by Vyach on 12/02/2018.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
 public class MockMarketStockProvidorATest {
+
+    private final Logger logger = LoggerFactory.getLogger(MockMarketStockProvidorATest.class);
+
 
     private MockMarketStockProviderA providor;
 
-    private static final String URL
-            = "http://int.eight.inside.esiag.info:9090/mock-market-flow-api/marketflow/companies/OR/fromcurrency/USD/tocurrency/EUR";
+    @Value("${mock.stock_market.url}")
+    private String url;
 
     @Before
     public void init() {
+
         providor = new MockMarketStockProviderA();
+
     }
 
     @Test
@@ -46,14 +63,20 @@ public class MockMarketStockProvidorATest {
     /**
      * Test the good handling of a providor
      * @throws IOException
+     *
+     * Integration Test
      */
-    @Test
+    @Ignore @Test
     public void testHandlingResponse() throws IOException {
 
-        List<DTOProvidorA> response = providor.handlingResponse(URL);
+        logger.info("URL : " + url);
 
+        if (!url.equals("test.com")) {
+            List<DTOProvidorA> response = providor.handlingResponse(this.url);
 
-        assertTrue(response.size() > 0);
+            assertTrue(response.size() > 0);
+
+        }
 
     }
 
