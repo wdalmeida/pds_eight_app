@@ -22,6 +22,7 @@
         <module>fraudulent-transfers-learning</module>
         <module>RecupMouvement</module>
         <module>stock-market-client</module>
+        <module>twitter-producer</module>
     </modules>
 
     <properties>
