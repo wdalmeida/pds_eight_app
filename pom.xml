@@ -23,6 +23,7 @@
         <module>RecupMouvement</module>
         <module>stock-market-client</module>
         <module>twitter-producer</module>
+        <module>transfer-mock</module>
     </modules>
 
     <properties>
