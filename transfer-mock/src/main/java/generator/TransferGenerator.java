@@ -1,6 +1,7 @@
 package generator;
 
 import org.springframework.stereotype.Component;
+import producer.TransferProducer;
 
 import javax.annotation.PostConstruct;
 import java.sql.Timestamp;
@@ -16,13 +17,17 @@ public class TransferGenerator {
 
     @PostConstruct
     public void generate() {
+
+        TransferProducer transferProducer = new TransferProducer();
+        transferProducer.init();
+
         Random r = new Random();
         ArrayList list = new ArrayList();
         Date date = new java.util.Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         int percent;
         String text;
-        for (int i = 0; i < 10; i++) {
+        while(true) {
             //amount
             text = String.format(Locale.ROOT, "%.2f", 1 + r.nextFloat() * (700 - 1));
             text = text + "; " + dateFormat.format(date);
@@ -42,8 +47,7 @@ public class TransferGenerator {
             text = text + "; FR" + r.nextInt((1000000000 - 0100000000) + 1) + 1 + "000" + r.nextInt((1000000000 - 0100000000) + 1) + 1;
             //balance before transaction
             text = text + "; " + String.format(Locale.ROOT, "%.2f", 1 + r.nextFloat() * (2000 - 1));
-            list.add(i,text);
+            transferProducer.sendTransfer(text);
         }
-        System.out.print(list.toString());
     }
 }

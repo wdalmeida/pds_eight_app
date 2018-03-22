@@ -1,15 +1,20 @@
 package listener;
 
 
+import org.apache.log4j.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import producer.TwitterProducer;
 import twitter4j.*;
+import twitter4j.Logger;
 import twitter4j.conf.ConfigurationBuilder;
 
 import javax.annotation.PostConstruct;
 
 @Component
 public class TwitterListener {
+
+    private static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(TwitterListener.class);
 
     @Value("${twitter.consumerKey}")
     private String consumerKey;
@@ -33,7 +38,8 @@ public class TwitterListener {
                 .setOAuthAccessTokenSecret(accessTokenSecret);
 
         TwitterStream twitterStream = new TwitterStreamFactory(configurationBuilder.build()).getInstance();
-
+        TwitterProducer twitterProducer = new TwitterProducer();
+        twitterProducer.init();
         twitterStream.addListener(new StatusListener() {
             @Override
             public void onException(Exception e) {
@@ -41,7 +47,7 @@ public class TwitterListener {
             }
 
             public void onStatus(Status status) {
-                System.out.println(status.getText());
+                twitterProducer.sendTwitterMessage(status.getText());
             }
 
             @Override
@@ -65,9 +71,9 @@ public class TwitterListener {
             }
         });
 
-        FilterQuery tweetFilterQuery = new FilterQuery(); // See
-        tweetFilterQuery.track(new String[]{"banque", "transaction"}); // OR on keywords
-        tweetFilterQuery.language(new String[]{"fr"}); // Note that language does not work properly on Norwegian tweets
+        FilterQuery tweetFilterQuery = new FilterQuery();
+        tweetFilterQuery.track("banque", "transaction", "transfert", "carte bancaire");
+        tweetFilterQuery.language("fr");
         twitterStream.filter(tweetFilterQuery);
     }
 
