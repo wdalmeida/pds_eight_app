@@ -24,6 +24,8 @@
         <module>stock-market-client</module>
         <module>twitter-producer</module>
         <module>transfer-mock</module>
+        <module>transfer-data-manager</module>
+        <module>twitter-data-manager</module>
     </modules>
 
     <properties>
