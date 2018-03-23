@@ -11,12 +11,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.LinkedBlockingDeque;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class TransferGenerator {
 
     @PostConstruct
-    public void generate() {
+    public void generate() throws InterruptedException {
 
         TransferProducer transferProducer = new TransferProducer();
         transferProducer.init();
@@ -48,6 +51,9 @@ public class TransferGenerator {
             //balance before transaction
             text = text + "; " + String.format(Locale.ROOT, "%.2f", 1 + r.nextFloat() * (2000 - 1));
             transferProducer.sendTransfer(text);
+
+            final BlockingDeque<Boolean> dq = new LinkedBlockingDeque<>(1);
+            dq.pollFirst(250, TimeUnit.MILLISECONDS);
         }
     }
 }

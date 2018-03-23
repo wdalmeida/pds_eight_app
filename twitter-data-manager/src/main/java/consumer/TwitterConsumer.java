@@ -1,24 +1,31 @@
 package consumer;
 
+import entities.Tweet;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import repositories.TweetRepository;
 
 import javax.annotation.PostConstruct;
 import java.util.Collections;
 import java.util.Properties;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-@Component
+@Service
 public class TwitterConsumer {
 
     private static Logger logger = Logger.getLogger(TwitterConsumer.class);
 
     private Properties consumerProperties;
+
+    @Autowired private TweetRepository tweetRepository;
 
     @Value("${consumer.properties.bootstrap_servers_config}")
     private String bootstrap_servers_config;
@@ -64,6 +71,7 @@ public class TwitterConsumer {
                 ConsumerRecords<String, String> messages = consumer.poll(100);
                 for (ConsumerRecord<String, String> message : messages) {
                     logger.info("twitter message received " + message.value());
+                    tweetRepository.save(new Tweet(UUID.randomUUID().toString(),message.value()));
                 }
             }
             stopped.set(true);
