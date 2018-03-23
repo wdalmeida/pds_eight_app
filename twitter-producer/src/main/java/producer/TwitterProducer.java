@@ -21,7 +21,7 @@ public class TwitterProducer {
 
     public void init () {
         Properties producerProperties = new Properties();
-        producerProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        producerProperties.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "10.10.1.12:9092");
         producerProperties.put(ProducerConfig.ACKS_CONFIG, "all");
         producerProperties.put(ProducerConfig.RETRIES_CONFIG, 0);
         producerProperties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
