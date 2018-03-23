@@ -6,3 +6,9 @@ consumer:
   value_deserializer_class_config: org.apache.kafka.common.serialization.StringDeserializer
   key_deserializer_class_config: org.apache.kafka.common.serialization.LongDeserializer
   topic: transactions
+spring :
+  data :
+    mongodb :
+      host : localhost
+      port : 27017
+      database : transfers
