@@ -8,9 +8,10 @@ from ..service.home_service import home_service as service
 def index():
     cust = dao_cust.Customer()
     cust.get_customers(db)
-    wait=service('127.0.0.1',5001,app)
+    wait=service('127.0.0.1',5001)
     wait.start()
     return render_template('index.html')
+
 
 @app.route('/loading/')
 def loading():

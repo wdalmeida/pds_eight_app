@@ -1,6 +1,5 @@
 from flask_socketio import send, emit
-from . import *
-import websocket
+from .. import *
 
 
 @socketio.on('card_read')

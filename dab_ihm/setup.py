@@ -10,5 +10,6 @@ setup(name='DAB-IHM',
       install_requires=[
           'flask',
           'sqlalchemy',
+          'flask-socketio'
       ],
       zip_safe=False)
