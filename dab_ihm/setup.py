@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup,find_packages
 #python setup.py install
 #python app.py
 setup(name='DAB-IHM',
@@ -6,10 +6,9 @@ setup(name='DAB-IHM',
       description='DAB - IHM',
       author='Warren D\'ALMEIDA',
       author_email='warren.dalmeida@etu.u-pec.fr',
-      packages=['dab'],
+      packages=find_packages(),
       install_requires=[
           'flask',
-          'sqlalchemy',
           'flask-socketio'
       ],
       zip_safe=False)

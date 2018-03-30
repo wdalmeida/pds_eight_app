@@ -1,13 +1,21 @@
 from flask import Flask, render_template, url_for
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
 from flask_socketio import SocketIO
+import logging
+import logging.config
+from os import path
 
 
 app = Flask(__name__)
+
+#config file
 app.config.from_object("config")
-socketio=SocketIO(app, ping_timeout=10, logger=True,async_mode='threading')
-db = create_engine(app.config['DATABASE_URI'])
-base = declarative_base()
+
+#Websocket
+socketio=SocketIO(app, ping_timeout=1, logger=False, async_mode='threading')
+
+#Logger
+logging.config.fileConfig(app.config['LOG_CONF'])
+logger = logging.getLogger(app.config['LOG_ENV'])
+
 
 import dab.controller.controller

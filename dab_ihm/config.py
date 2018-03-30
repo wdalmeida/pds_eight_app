@@ -5,11 +5,6 @@ DEBUG = True
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
-# Define the database - we are working with
-# SQLite for this example
-DATABASE_URI = "postgresql://postgres:50USme229@localhost:5432/pds_test"
-DATABASE_CONNECT_OPTIONS = {}
-
 # Application threads. A common general assumption is
 # using 2 per available processor cores - to handle
 # incoming requests using one and performing background
@@ -18,3 +13,12 @@ THREADS_PER_PAGE = 2
 
 # Enable protection agains *Cross-site Request Forgery (CSRF)*
 CSRF_ENABLED     = True
+
+#Rest server
+TRANSACTION_SERVER = "127.0.0.1"
+TRANSACTION_SERVER_PORT = 5001
+
+#LOG
+LOG_CONF="log.conf"
+LOG_FILE="dab-ihm.log"
+LOG_ENV="dev"
