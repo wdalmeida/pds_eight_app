@@ -1,6 +1,7 @@
 import socket
 import threading
 import time
+import nxppy
 
 
 class read_nfc_tag(threading.Thread):
@@ -31,19 +32,28 @@ class read_nfc_tag(threading.Thread):
             print ("No socket")
 
     def detect_tag(self):
-        print("detect")
+        mifare = nxppy.Mifare()
+        # Print card UIDs as they are detected
         while True:
-            connect= self.connect_to_ihm()
-            if not connect:
-                time.sleep(5)
-            else:
-                self.sock.send(b"TEST TEST")
-                self.disconnect_to_ihm()
-                time.sleep(5)
+            try:
+                uid = mifare.select()
+                self.send_data(uid)
+                print(uid)
+            except nxppy.SelectError:
+                # SelectError is raised if no card is in the field.
+                pass
+
+            time.sleep(1)
+
+    def send_data(self,uid):
+        connect= self.connect_to_ihm()
+        if connect:
+            self.sock.send(bytes(uid, 'utf-8'))
+            self.disconnect_to_ihm()
+        time.sleep(5)
 
     def run(self):
         self.detect_tag()
-
 
 
 if __name__ == "__main__":
