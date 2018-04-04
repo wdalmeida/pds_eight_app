@@ -3,7 +3,7 @@ package dto;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
 
 @Data

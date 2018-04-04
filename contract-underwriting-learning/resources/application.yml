@@ -1,0 +1,11 @@
+server:
+  port: 9500
+
+spring:
+ datasource:
+  url: jdbc:postgresql://localhost:5432/postgres
+  username: postgres
+  password: Ineegeerei1
+  driver-class-name: org.postgresql.Driver
+ jpa:
+  generate-ddl: true
