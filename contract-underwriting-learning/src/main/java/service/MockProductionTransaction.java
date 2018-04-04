@@ -12,19 +12,19 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.*;
-
 import static java.lang.String.valueOf;
 
 public class MockProductionTransaction {
 
+    @Autowired
+    private ProductionTransactionRepository productionTransactionRepository;
+
     @Scheduled(fixedRate = 1000)
     public void scheduleFixedRateTask() throws IOException {
 
-        System.out.println("START");
-
-        String firstNameFile = "contract-underwriting-learning/resource/Prenoms.csv";
-        String lastNameFile = "contract-underwriting-learning/resource/Noms.csv";
-        String postalCodeFile = "contract-underwriting-learning/resource/laposte_hexasmal.csv";
+        String firstNameFile = "contract-underwriting-learning/resources/Prenoms.csv";
+        String lastNameFile = "contract-underwriting-learning/resources/Noms.csv";
+        String postalCodeFile = "contract-underwriting-learning/resources/laposte_hexasmal.csv";
         //first name
         BufferedReader brFirstName = null;
         String lineFirstName = null;
@@ -90,21 +90,25 @@ public class MockProductionTransaction {
                 int monthFinal = (gc.get(Calendar.MONTH) + 1);
                 int dayFinal = gc.get(Calendar.DAY_OF_MONTH);
 
-                System.out.println("MIDDLE");
-
-
                 ProductionTransactionDto productionTransactionDto = new ProductionTransactionDto();
-                    productionTransactionDto.setDate(new Timestamp(System.currentTimeMillis()));
-                    productionTransactionDto.setId_client(r.nextInt(100) + 99999999);
-                    productionTransactionDto.setId_account(r.nextInt(1000) + 2000000000);
-                    productionTransactionDto.setClient_first_name(valueOf(listFirstName.get(r.nextInt(11626) + 1)));
-                    productionTransactionDto.setClient_last_name(valueOf(listLastName.get(r.nextInt(399) + 1)));
-                    productionTransactionDto.setClient_birthday((java.sql.Date) new Date(yearFinal, monthFinal, dayFinal));
-                    productionTransactionDto.setClient_adress(r.nextInt() + " rue " +
+                productionTransactionDto.setDate(new Timestamp(System.currentTimeMillis()));
+                //System.out.println(productionTransactionDto.getDate());
+                productionTransactionDto.setId_client(r.nextInt(100) + 99999999);
+                //System.out.println(productionTransactionDto.getId_client());
+                productionTransactionDto.setId_account(r.nextInt(1000) + 2000000000);
+                //System.out.println(productionTransactionDto.getId_account());
+                productionTransactionDto.setClient_first_name(valueOf(listFirstName.get(r.nextInt(11626) + 1)));
+                //System.out.println(productionTransactionDto.getClient_first_name());
+                productionTransactionDto.setClient_last_name(valueOf(listLastName.get(r.nextInt(399) + 1)));
+                //System.out.println(productionTransactionDto.getClient_last_name());
+                productionTransactionDto.setClient_birthday(new Date(yearFinal, monthFinal, dayFinal));
+                //System.out.println(productionTransactionDto.getClient_birthday());
+                productionTransactionDto.setClient_adress(r.nextInt(1) + 500 + " rue " +
                             valueOf(listFirstName.get(r.nextInt(11626) + 1)) + " " +
                             valueOf(listLastName.get(r.nextInt(399) + 1)) + " , " +
-                            String.valueOf(listPostalCode.get(r.nextInt(39200) + 1)));
-                    productionTransactionDto.setAccount_type("compte épargne");
+                            r.nextInt(10000) + 99999);
+                //System.out.println(productionTransactionDto.getClient_adress());
+                productionTransactionDto.setAccount_type("compte épargne");
                     productionTransactionDto.setAccount_product("PEL");
                     int account_balance_before_transaction= r.nextInt(1) + 100000000;
                     productionTransactionDto.setAccount_balance_before_transaction(account_balance_before_transaction);
@@ -117,10 +121,11 @@ public class MockProductionTransaction {
                     productionTransactionDto.setTransaction_label(" ");
                     productionTransactionDto.setId_account_beneficiary(r.nextInt(1000) + 2000000000);
 
-                    //problème non résolu dans set...
-                System.out.println("BEFORE FINISH");
-
                 System.out.println(productionTransactionDto);
+
+                //ProductionTransactionEntity productionTransactionEntity = new ProductionTransactionEntity();
+
+                //productionTransactionRepository.save(productionTransactionEntity);
 
 
             }
@@ -136,15 +141,10 @@ public class MockProductionTransaction {
 
     }
 
-   /* @Autowired
-    private ProductionTransactionRepository productionTransactionRepository;
+   /*
     public boolean createProductionTransaction(ProductionTransactionDto productionTransactionDto) {
 
-        ProductionTransactionEntity productionTransactionEntity = new ProductionTransactionEntity();
 
-
-
-        productionTransactionRepository.save(productionTransactionEntity);
         return true;
     }
 
