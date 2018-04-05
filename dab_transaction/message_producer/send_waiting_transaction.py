@@ -17,3 +17,6 @@ def send(transaction):
         print("error")
         pass
     return res
+
+#this is for test
+send("")
