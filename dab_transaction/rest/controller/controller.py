@@ -5,7 +5,7 @@ from message_producer.send_waiting_transaction import send as kafkaSend
 from message_consumer.receive_waiting_transaction import read as kafkaRead
 
 
-@app.route('/transaction/waiting', methods= ['POST'])
+@app.route('/transaction/waiting/', methods= ['POST'])
 def create_waiting_transaction():
     resp = None
     logging.debug("Controller - Home")
