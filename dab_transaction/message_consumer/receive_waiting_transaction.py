@@ -7,8 +7,9 @@ def read(id):
     consumer = KafkaConsumer('test',
                                     group_id='test',
                                     bootstrap_servers=['10.10.1.110:9092','10.10.1.111:9092'],
-                                    auto_offset_reset='latest',
-                                    enable_auto_commit=True)
+                                    auto_offset_reset='earliest',
+                                    enable_auto_commit=True,
+                                    consumer_timeout_ms=2000) # 2 seconds
     for message in consumer:
         print("message")
         print("%s:%d:%d: key=%s value=%s" % (message.topic, message.partition,
