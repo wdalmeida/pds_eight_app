@@ -22,5 +22,4 @@ def read(id):
         if trans['transaction_id'] == id:
             return  {
             'status': 200,
-            'message': 'Message sent: ' + request.url,
-    }
+            'message': 'Message sent: ' + json_data }
