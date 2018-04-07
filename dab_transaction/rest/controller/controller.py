@@ -23,7 +23,7 @@ def create_waiting_transaction():
         #resp = service.create_transaction(data,db)
     else:
         resp = unknown_ressource()
-    return resp
+    return jsonify(resp)
 
 
 @app.errorhandler(400)
