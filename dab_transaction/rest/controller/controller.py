@@ -9,6 +9,8 @@ from message_consumer.receive_waiting_transaction import read as kafkaRead
 def create_waiting_transaction():
     resp = None
     logging.debug("Controller - Home")
+    logging.debug(request.json)
+
     if request.json and request.headers['Content-Type'] == 'application/json':
         data = json.dumps(request.json)
         if kafkaSend(data):
