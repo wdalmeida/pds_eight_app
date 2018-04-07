@@ -7,7 +7,7 @@ def send(transaction):
     producer = KafkaProducer(bootstrap_servers=['10.10.1.110:9092','10.10.1.111:9092'],
                              value_serializer=lambda m: json.dumps(m).encode('utf-8'))
     print(transaction)
-    future = producer.send('test', json.dumps(transaction.__dict__))
+    future = producer.send('test', transaction)
     #producer = KafkaProducer(bootstrap_servers=['10.10.1.110:9092','10.10.1.111:9092'])
     #future = producer.send('test', b'raw_bytes')
 
