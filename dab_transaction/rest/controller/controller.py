@@ -15,9 +15,11 @@ def create_waiting_transaction():
 
     if request.json and request.headers['Content-Type'] == 'application/json':
         data = json.dumps(request.json)
+        logging.debug(request.get_json())
+        logging.debug(data)
         if kafkaSend(data):
-            print (data.transaction_id)
-            resp = kafkaRead(data.transaction_id)
+            print (data["transaction_id"])
+            resp = kafkaRead(data["transaction_id"])
         #resp = service.create_transaction(data,db)
     else:
         resp = unknown_ressource()
