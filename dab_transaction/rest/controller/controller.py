@@ -14,7 +14,7 @@ def create_waiting_transaction():
     logging.debug("Where does it fail ?")
 
     if request.json and request.headers['Content-Type'] == 'application/json':
-        data = json.dumps(request.json)
+        data = json.loads(request.get_json())
         logging.debug(request.get_json())
         logging.debug(data)
         if kafkaSend(data):
