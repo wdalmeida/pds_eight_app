@@ -16,9 +16,10 @@ def read(id):
                                              message.offset, message.key,
                                              message.value.decode('utf-8')))
         json_data = message.value.decode('utf-8')
-        print(json_data.__dict__)
+        print(json_data)
+        trans=json.loads(json_data)
         print("end of for")
-        if json_data.transaction_id == id:
+        if trans['transaction_id'] == id:
             return  {
             'status': 200,
             'message': 'Message sent: ' + request.url,
