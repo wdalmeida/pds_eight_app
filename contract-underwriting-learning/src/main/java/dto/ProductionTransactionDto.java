@@ -3,8 +3,9 @@ package dto;
 import lombok.*;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 
 @Data
 @Builder
@@ -15,7 +16,7 @@ import java.sql.Timestamp;
 @Setter
 public class ProductionTransactionDto {
 
-    private Timestamp date;
+    private Date date;
     private long id_client;
     private long id_account;
     private String client_last_name;

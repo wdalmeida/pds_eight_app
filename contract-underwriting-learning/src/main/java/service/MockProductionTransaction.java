@@ -1,25 +1,32 @@
 package service;
 
-import dto.ProductionTransactionDto;
 import entity.ProductionTransactionEntity;
+import enumeration.AccountProduct;
+import enumeration.AccountType;
+import enumeration.TransactionTypeCredit;
+import enumeration.TransactionTypeSavingPlus;
+import org.hibernate.event.spi.EventType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Service;
 import repository.ProductionTransactionRepository;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.Timestamp;
 import java.util.*;
 import static java.lang.String.valueOf;
+import static org.hibernate.event.spi.EventType.values;
 
+@Service
 public class MockProductionTransaction {
 
     @Autowired
     private ProductionTransactionRepository productionTransactionRepository;
+    ArrayList<String> sign = new ArrayList<String>();
 
-    @Scheduled(fixedRate = 1000)
+
+    //@Scheduled(fixedRate = 100)
     public void scheduleFixedRateTask() throws IOException {
 
         String firstNameFile = "contract-underwriting-learning/resources/Prenoms.csv";
@@ -90,44 +97,52 @@ public class MockProductionTransaction {
                 int monthFinal = (gc.get(Calendar.MONTH) + 1);
                 int dayFinal = gc.get(Calendar.DAY_OF_MONTH);
 
-                ProductionTransactionDto productionTransactionDto = new ProductionTransactionDto();
-                productionTransactionDto.setDate(new Timestamp(System.currentTimeMillis()));
+                ProductionTransactionEntity productionTransactionEntity = new ProductionTransactionEntity();
+                productionTransactionEntity.setDate(new java.sql.Date(System.currentTimeMillis()));
                 //System.out.println(productionTransactionDto.getDate());
-                productionTransactionDto.setId_client(r.nextInt(100) + 99999999);
+                productionTransactionEntity.setId_client(r.nextInt(99999) + 100);
                 //System.out.println(productionTransactionDto.getId_client());
-                productionTransactionDto.setId_account(r.nextInt(1000) + 2000000000);
+                productionTransactionEntity.setId_account(r.nextInt(20000) + 1000);
                 //System.out.println(productionTransactionDto.getId_account());
-                productionTransactionDto.setClient_first_name(valueOf(listFirstName.get(r.nextInt(11626) + 1)));
+                productionTransactionEntity.setClient_first_name(valueOf(listFirstName.get(r.nextInt(11626) + 1)));
                 //System.out.println(productionTransactionDto.getClient_first_name());
-                productionTransactionDto.setClient_last_name(valueOf(listLastName.get(r.nextInt(399) + 1)));
+                productionTransactionEntity.setClient_last_name(valueOf(listLastName.get(r.nextInt(399) + 1)));
                 //System.out.println(productionTransactionDto.getClient_last_name());
-                productionTransactionDto.setClient_birthday(new Date(yearFinal, monthFinal, dayFinal));
+                productionTransactionEntity.setClient_birthday(new java.sql.Date(yearFinal, monthFinal, dayFinal));
                 //System.out.println(productionTransactionDto.getClient_birthday());
-                productionTransactionDto.setClient_adress(r.nextInt(1) + 500 + " rue " +
+                productionTransactionEntity.setClient_adress(r.nextInt(1) + 500 + " rue " +
                             valueOf(listFirstName.get(r.nextInt(11626) + 1)) + " " +
                             valueOf(listLastName.get(r.nextInt(399) + 1)) + " , " +
-                            r.nextInt(10000) + 99999);
+                            r.nextInt(999) + 100);
                 //System.out.println(productionTransactionDto.getClient_adress());
-                productionTransactionDto.setAccount_type("compte épargne");
-                    productionTransactionDto.setAccount_product("PEL");
-                    int account_balance_before_transaction= r.nextInt(1) + 100000000;
-                    productionTransactionDto.setAccount_balance_before_transaction(account_balance_before_transaction);
-                    int transaction_amount = r.nextInt(10) + 100000;
-                    productionTransactionDto.setTransaction_amount(transaction_amount);
-                    productionTransactionDto.setAccount_balance_after_transaction(account_balance_before_transaction
+                String accountTypeString = String.valueOf(AccountType.values()[new Random().nextInt(AccountType.values().length)]);
+                productionTransactionEntity.setAccount_type(accountTypeString);
+                //name = ((city.getName() == null) ? "N/A" : city.getName());
+                String accountProductString = ((accountTypeString == "COMPTE_COURANT") ? "TRANSACTION" : String.valueOf(AccountProduct.values()[new Random().nextInt(AccountProduct.values().length)]));
+                //String accountTypeString = String.valueOf(AccountType.values()[new Random().nextInt(AccountType.values().length)]);
+                //String accountTypeString = String.valueOf(AccountType.values()[new Random().nextInt(AccountType.values().length)]);
+                productionTransactionEntity.setAccount_product(accountProductString);
+                    int account_balance_before_transaction= r.nextInt(10000) + 1;
+                productionTransactionEntity.setAccount_balance_before_transaction(account_balance_before_transaction);
+                    int transaction_amount = r.nextInt(100) + 10;
+                productionTransactionEntity.setTransaction_amount(transaction_amount);
+                productionTransactionEntity.setAccount_balance_after_transaction(account_balance_before_transaction
                             + transaction_amount);
-                    productionTransactionDto.setTransaction_type("Versement libre");
-                    productionTransactionDto.setTransaction_sign("+");
-                    productionTransactionDto.setTransaction_label(" ");
-                    productionTransactionDto.setId_account_beneficiary(r.nextInt(1000) + 2000000000);
+                sign.add("+");
+                sign.add("-");
+                String signString = sign.get(r.nextInt(1)+0);
+                productionTransactionEntity.setTransaction_sign(signString);
+                String transactionTypeString = ((accountTypeString == "COMPTE_EPARGNE" && signString == "+") ? String.valueOf(TransactionTypeSavingPlus.values()[new Random().nextInt(TransactionTypeSavingPlus.values().length)]) : String.valueOf(TransactionTypeCredit.values()[new Random().nextInt(TransactionTypeCredit.values().length)]));
+                productionTransactionEntity.setTransaction_type(transactionTypeString);
+                productionTransactionEntity.setTransaction_label(" ");
+                productionTransactionEntity.setId_account_beneficiary(r.nextInt(20000) + 1000);
 
-                System.out.println(productionTransactionDto);
+                System.out.println(productionTransactionEntity);
 
                 //ProductionTransactionEntity productionTransactionEntity = new ProductionTransactionEntity();
-
-                //productionTransactionRepository.save(productionTransactionEntity);
-
-
+                System.out.println("Not saved");
+                productionTransactionRepository.save(productionTransactionEntity);
+                System.out.println("Saved");
             }
         }
             catch(Exception e){
@@ -140,17 +155,6 @@ public class MockProductionTransaction {
         return start + (int)Math.round(Math.random() * (end - start));
 
     }
-
-   /*
-    public boolean createProductionTransaction(ProductionTransactionDto productionTransactionDto) {
-
-
-        return true;
-    }
-
-    public void setProductionTransactionRepository(ProductionTransactionRepository productionTransactionRepository) {
-        this.productionTransactionRepository = productionTransactionRepository;
-    }*/
 
     public static void main(String[] args) throws IOException {
         MockProductionTransaction m = new MockProductionTransaction();

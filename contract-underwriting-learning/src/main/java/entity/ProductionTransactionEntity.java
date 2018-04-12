@@ -1,11 +1,11 @@
 package entity;
 
-import java.sql.Date;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.sql.Timestamp;
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -16,7 +16,7 @@ public class ProductionTransactionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     @Column(name="date")
-    private Timestamp date;
+    private Date date;
     @Column(name="id_client")
     private long id_client;
     @Column(name="id_account")

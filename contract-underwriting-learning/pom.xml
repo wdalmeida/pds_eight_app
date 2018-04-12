@@ -15,18 +15,15 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
@@ -37,30 +34,9 @@
             <version>4.0.6</version>
         </dependency>
         <dependency>
-            <groupId>oauth.signpost</groupId>
-            <artifactId>oauth-signpost</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>oauth.signpost</groupId>
-            <artifactId>oauth-signpost</artifactId>
-            <version>1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.dataformat</groupId>
-            <artifactId>jackson-dataformat-xml</artifactId>
-        </dependency>
-
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -80,6 +56,29 @@
             <artifactId>junit-jupiter-api</artifactId>
             <version>5.1.0-M1</version>
         </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.twitter4j</groupId>
+            <artifactId>twitter4j-stream</artifactId>
+            <version>4.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+            <version>2.10.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-autoconfigure</artifactId>
+            <version>1.5.8.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongo-java-driver</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
@@ -94,7 +93,7 @@
                         </goals>
                         <configuration>
                             <mainClass>
-                                eight.ing3.esipe.fr.Application
+                                Application
                             </mainClass>
                         </configuration>
                     </execution>
@@ -102,6 +101,4 @@
             </plugin>
         </plugins>
     </build>
-
-    
 </project>
