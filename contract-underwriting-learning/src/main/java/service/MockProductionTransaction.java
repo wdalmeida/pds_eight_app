@@ -15,6 +15,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+
 import static java.lang.String.valueOf;
 import static org.hibernate.event.spi.EventType.values;
 
@@ -23,6 +24,9 @@ public class MockProductionTransaction {
 
     @Autowired
     private ProductionTransactionRepository productionTransactionRepository;
+
+
+
     ArrayList<String> sign = new ArrayList<String>();
 
 
@@ -111,9 +115,9 @@ public class MockProductionTransaction {
                 productionTransactionEntity.setClient_birthday(new java.sql.Date(yearFinal, monthFinal, dayFinal));
                 //System.out.println(productionTransactionDto.getClient_birthday());
                 productionTransactionEntity.setClient_adress(r.nextInt(1) + 500 + " rue " +
-                            valueOf(listFirstName.get(r.nextInt(11626) + 1)) + " " +
-                            valueOf(listLastName.get(r.nextInt(399) + 1)) + " , " +
-                            r.nextInt(999) + 100);
+                        valueOf(listFirstName.get(r.nextInt(11626) + 1)) + " " +
+                        valueOf(listLastName.get(r.nextInt(399) + 1)) + " , " +
+                        r.nextInt(999) + 100);
                 //System.out.println(productionTransactionDto.getClient_adress());
                 String accountTypeString = String.valueOf(AccountType.values()[new Random().nextInt(AccountType.values().length)]);
                 productionTransactionEntity.setAccount_type(accountTypeString);
@@ -122,15 +126,15 @@ public class MockProductionTransaction {
                 //String accountTypeString = String.valueOf(AccountType.values()[new Random().nextInt(AccountType.values().length)]);
                 //String accountTypeString = String.valueOf(AccountType.values()[new Random().nextInt(AccountType.values().length)]);
                 productionTransactionEntity.setAccount_product(accountProductString);
-                    int account_balance_before_transaction= r.nextInt(10000) + 1;
+                int account_balance_before_transaction = r.nextInt(10000) + 1;
                 productionTransactionEntity.setAccount_balance_before_transaction(account_balance_before_transaction);
-                    int transaction_amount = r.nextInt(100) + 10;
+                int transaction_amount = r.nextInt(100) + 10;
                 productionTransactionEntity.setTransaction_amount(transaction_amount);
                 productionTransactionEntity.setAccount_balance_after_transaction(account_balance_before_transaction
-                            + transaction_amount);
+                        + transaction_amount);
                 sign.add("+");
                 sign.add("-");
-                String signString = sign.get(r.nextInt(1)+0);
+                String signString = sign.get(r.nextInt(1) + 0);
                 productionTransactionEntity.setTransaction_sign(signString);
                 String transactionTypeString = ((accountTypeString == "COMPTE_EPARGNE" && signString == "+") ? String.valueOf(TransactionTypeSavingPlus.values()[new Random().nextInt(TransactionTypeSavingPlus.values().length)]) : String.valueOf(TransactionTypeCredit.values()[new Random().nextInt(TransactionTypeCredit.values().length)]));
                 productionTransactionEntity.setTransaction_type(transactionTypeString);
@@ -140,24 +144,23 @@ public class MockProductionTransaction {
                 System.out.println(productionTransactionEntity);
 
                 //ProductionTransactionEntity productionTransactionEntity = new ProductionTransactionEntity();
-                System.out.println("Not saved");
+                System.out.println("Not saved" + productionTransactionRepository);
                 productionTransactionRepository.save(productionTransactionEntity);
                 System.out.println("Saved");
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-            catch(Exception e){
-
-            }
     }
 
     public static int randBetween(int start, int end) {
 
-        return start + (int)Math.round(Math.random() * (end - start));
+        return start + (int) Math.round(Math.random() * (end - start));
 
     }
 
-    public static void main(String[] args) throws IOException {
+    /*public static void main(String[] args) throws IOException {
         MockProductionTransaction m = new MockProductionTransaction();
         m.scheduleFixedRateTask();
-    }
+    }*/
 }
