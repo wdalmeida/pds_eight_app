@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 public class MainClass {
 
-    public static void main(String args[])
+    /*public static void main(String args[])
     {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled (false)
@@ -19,5 +19,5 @@ public class MainClass {
         while (iterator.hasNext()) {
             System.out.println(">>>>>>>>>>>>"+iterator.next());
         }
-    }
+    }*/
 }

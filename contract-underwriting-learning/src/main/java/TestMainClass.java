@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TestMainClass {
-    public static void main(String [] args) throws TwitterException {
+    /*public static void main(String [] args) throws TwitterException {
 
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled (true)
@@ -51,6 +51,5 @@ public class TestMainClass {
             //if (loc!=null) {
             //Double lat = t.getGeoLocation().getLatitude();
             //Double lon = t.getGeoLocation().getLongitude();*/
-            System.out. println(i + " USER: " + user + " wrote: " + msg + "\n");
+           // System.out. println(i + " USER: " + user + " wrote: " + msg + "\n");
         }
-    } }

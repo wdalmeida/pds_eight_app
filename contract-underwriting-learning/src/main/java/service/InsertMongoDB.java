@@ -35,10 +35,10 @@ public class InsertMongoDB {
         table.insert(document);
     }
 
-    public static void main(String[] args){
+   /* public static void main(String[] args){
         InsertMongoDB mongo = new InsertMongoDB();
         mongo.printDB();
         mongo.insertIntoDocument();
-    }
+    }*/
 
 }
