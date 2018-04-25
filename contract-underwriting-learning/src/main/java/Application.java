@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import service.IntegrateTweets;
 import service.IntegrateTwitterData;
 import service.MockProductionTransaction;
 import twitter4j.TwitterException;
@@ -27,16 +28,12 @@ public class Application {
     private void testService () throws IOException, TwitterException {
         // m.scheduleFixedRateTask();
         ArrayList<String> results = IntegrateTwitterData.getTweets("#world");
-        //System.out.println(results);
-        //System.out.println(results.size());
-
+        System.out.println(results+"\n");
+        System.out.println(results.size());
+        //IntegrateTweets.getTweets("#world");
     }
-
 
     public static void main(String[] args){
         SpringApplication.run(Application.class, args);
     }
-
-
-
 }

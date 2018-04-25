@@ -25,20 +25,12 @@ public class InsertMongoDB {
         }
     }
 
-    public void insertIntoDocument(){
+    public void insertIntoDocument(String tweet){
         DB db = mongo.getDB("testdb");
-        DBCollection table = db.getCollection("customer");
+        DBCollection table = db.getCollection("tweets");
         BasicDBObject document = new BasicDBObject();
-        document.put("name", "Ji Na");
-        document.put("age", 25);
+        document.put("tweet", tweet);
         document.put("createdDate", new Date());
         table.insert(document);
     }
-
-   /* public static void main(String[] args){
-        InsertMongoDB mongo = new InsertMongoDB();
-        mongo.printDB();
-        mongo.insertIntoDocument();
-    }*/
-
 }
