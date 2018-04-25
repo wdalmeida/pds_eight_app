@@ -29,25 +29,22 @@ public class IntegrateTwitterData {
         ArrayList<String> tweetList = new ArrayList<String>();
 
             Query query = new Query(topic);
-            query.setCount(50);
+            query.setCount(15);
             QueryResult result;
-
-    /*
-            twitter.search(query)
-                    .getTweets()
-                    .stream()
-                    .map(s -> s.getText())
-                    .forEach(s -> tweetList.add(s));
-            */
 
             do {
                 result = twitter.search(query);
                 List<Status> tweets = result.getTweets();
                 for (Status tweet : tweets) {
                     tweetList.add(tweet.getText());
+                    InsertMongoDB insert = new InsertMongoDB();
+                    insert.insertIntoDocument(tweet.getText());
+                    System.out.println("Inserted into Twitter");
                 }
-            } while ((query = result.nextQuery()) != null);
-
+            }
+            while ((query = result.nextQuery()) != null);
+            /*String user = t.getUser().getScreenName();
+            String msg = t.getText();*/
         return tweetList;
     }
 }
