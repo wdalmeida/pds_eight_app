@@ -1,7 +1,7 @@
 consumer:
  properties:
   bootstrap_servers_config: 10.10.1.12:9092
-  group_id_config: transfersGroup
+  group_id_config: transfersGrp
   auto_offset_reset_config: earliest
   value_deserializer_class_config: org.apache.kafka.common.serialization.StringDeserializer
   key_deserializer_class_config: org.apache.kafka.common.serialization.LongDeserializer
