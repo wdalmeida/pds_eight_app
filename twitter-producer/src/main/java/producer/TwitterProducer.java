@@ -10,6 +10,8 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 @Component
@@ -31,7 +33,9 @@ public class TwitterProducer {
     }
 
     public void sendTwitterMessage(String message) {
-        producer.send(new ProducerRecord<String, String>("tweets", message));
+        Date date = new java.util.Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        producer.send(new ProducerRecord<String, String>("tweets", dateFormat.format(date) + ";" + message));
         logger.info("twitter message : '" + message + "' is submitted");
 
     }
