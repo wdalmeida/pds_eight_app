@@ -27,6 +27,7 @@
         <module>transfer-mock</module>
         <module>transfer-data-manager</module>
         <module>twitter-data-manager</module>
+        <module>bigdata-manager</module>
     </modules>
 
     <properties>
