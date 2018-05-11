@@ -23,8 +23,6 @@ public class AccountDto {
 
     private int balance;
 
-    private String iban;
-
     private List<OperationDto> transactionDtoList;
 
     }

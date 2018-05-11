@@ -23,9 +23,6 @@ public class TransactionEntity {
     @Column(name="wording")
     private String wording;
 
-    @Column(name="description")
-    private String description;
-
     @JoinColumn(name="iban")
     @ManyToOne
     private AccounEntity accountEntity;
