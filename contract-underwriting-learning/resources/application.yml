@@ -8,10 +8,9 @@ kafka:
 
 spring:
  datasource:
-  url: jdbc:postgresql://localhost:5432/postgres
+  url: jdbc:postgresql://localhost:5433/eight
   username: postgres
-  password: Ineegeerei1
+  password: postgres
   driver-class-name: org.postgresql.Driver
  jpa:
   generate-ddl: true
-
