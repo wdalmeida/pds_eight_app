@@ -9,6 +9,7 @@ import fr.enumeration.TransactionTypeCredit;
 import fr.enumeration.TransactionTypeSavingPlus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import fr.repository.ProductionTransactionRepository;
 
@@ -41,9 +42,10 @@ public class MockProductionTransaction {
 
     ArrayList<String> sign = new ArrayList<String>();
 
-    //@Scheduled(fixedRate = 1000)
-    public void scheduleFixedRateTask() throws IOException {
 
+    @Scheduled(fixedRate = 1000/4)
+    public void scheduleFixedRateTask() throws IOException {
+        for (int counter = 0; counter < 100000; counter++){
         String firstNameFile = "contract-underwriting-learning/resources/Prenoms.csv";
         String lastNameFile = "contract-underwriting-learning/resources/Noms.csv";
         String postalCodeFile = "contract-underwriting-learning/resources/laposte_hexasmal.csv";
@@ -139,7 +141,8 @@ public class MockProductionTransaction {
                 sign.add("-");
                 String signString = sign.get(r.nextInt(1) + 0);
                 productionTransactionEntity.setTransaction_sign(signString);
-                String transactionTypeString = ((accountTypeString == "COMPTE_EPARGNE" && signString == "+") ? String.valueOf(TransactionTypeSavingPlus.values()[new Random().nextInt(TransactionTypeSavingPlus.values().length)]) : String.valueOf(TransactionTypeCredit.values()[new Random().nextInt(TransactionTypeCredit.values().length)]));
+                String transactionTypeString = ((accountTypeString == "COMPTE_EPARGNE" && signString == "+") ? String.valueOf(TransactionTypeSavingPlus.values()[new Random().nextInt(TransactionTypeSavingPlus.values().length)]) :
+                        ((accountTypeString == "COMPTE_TITRE" && signString == "+") ? "PLUS VALUS" : String.valueOf(TransactionTypeCredit.values()[new Random().nextInt(TransactionTypeCredit.values().length)])));
                 productionTransactionEntity.setTransaction_type(transactionTypeString);
                 productionTransactionEntity.setTransaction_label(" ");
                 productionTransactionEntity.setId_account_beneficiary(r.nextInt(20000) + 1000);
@@ -154,7 +157,7 @@ public class MockProductionTransaction {
 
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }}
     }
 
     public static int randBetween(int start, int end) {
