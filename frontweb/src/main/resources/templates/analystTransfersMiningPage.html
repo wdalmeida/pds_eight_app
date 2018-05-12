@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="fr" th:replace="fragments/header :: header"></head>
+
+<body>
+<nav th:replace="fragments/analystMenu :: analystMenu"></nav>
+
+    <div class="container text-center">
+        <h1>Analyse des transferts</h1>
+    </div>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-offset-4 col-lg-4">
+                    <!--/*@thymesVar id="transferModel" type=""*/-->
+                    <form action="#" method="post" th:object="${dateFormView}" th:action="@{/analyst/transfersMining}">
+                        <fieldset>
+                            <br/>
+                            <br/>
+                            <div id="transfer">
+                                <div class="form-group">
+                                    <label for="valueDate">Date de valeur</label>
+                                    <input type="date" th:field="*{valueDate}" size="30"/>
+                                    <button name="submit" type="submit" class="btn btn-primary">Valider</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container" th:if="${transfers != null}">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Transferts</h2>
+                <p th:each="transfer : ${transfers}"
+                   th:text="${transfer.transfer}"></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" th:if="${tweets != null}">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Tweets</h2>
+                <p th:each="tweet : ${tweets}"
+                   th:text="${tweet.tweet}"></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
