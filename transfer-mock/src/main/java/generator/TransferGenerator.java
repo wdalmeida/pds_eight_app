@@ -26,11 +26,12 @@ public class TransferGenerator {
 
         Random r = new Random();
         ArrayList list = new ArrayList();
-        Date date = new java.util.Date();
+        Date date;
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         int percent;
         String text;
         while(true) {
+            date = new java.util.Date();
             //amount
             text = String.format(Locale.ROOT, "%.2f", 1 + r.nextFloat() * (700 - 1));
             text = text + "; " + dateFormat.format(date);
