@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="fr" th:replace="fragments/header :: header"></head>
+
+    <body>
+        <nav th:replace="fragments/analystMenu :: analystMenu"></nav>
+
+        <div class="container text-center">
+            <h1>Portail analyste</h1>
+        </div>
+
+        <div class="list-group">
+            <a th:href="@{/analyst/transfersMining}" class="list-group-item">Analyse des virements</a>
+        </div>
+    </body>
+</html>

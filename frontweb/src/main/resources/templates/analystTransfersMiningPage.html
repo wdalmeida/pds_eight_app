@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="fr" th:replace="fragments/header :: header"></head>
+
+<body>
+<nav th:replace="fragments/analystMenu :: analystMenu"></nav>
+
+    <div class="container text-center">
+        <h1>Analyse des transferts</h1>
+    </div>
+
+    <section>
+        <div class="container text-center">
+            <!--/*@thymesVar id="transferModel" type=""*/-->
+            <form action="#" method="post" th:object="${dateFormView}" th:action="@{/analyst/transfersMining}">
+                <fieldset>
+                    <br/>
+                    <br/>
+                    <div id="transfer">
+                        <div class="form-group">
+                            <label for="valueDate">Date de valeur</label>
+                            <input type="date" th:field="*{valueDate}" size="30"/>
+                            <button name="submit" type="submit" class="btn btn-primary">Valider</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </section>
+
+    <div class="container col-md-12">
+        <div class="row">
+            <div class="col-md-offset-1 col-md-4">
+                <table th:if="${transfers != null}" id="transfers" class="display table-striped table-bordered">
+                    <h2>Mouvements bancaires</h2>
+                    <thead>
+                        <tr>
+                            <th>Montant</th>
+                            <th>Date de valeur</th>
+                            <th>Type</th>
+                            <th>IBAN</th>
+                            <th>Solde avant transaction</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <p th:each="transfer : ${transfers}">
+                            <tr>
+                                <td th:each="detail : ${#strings.arraySplit(transfer.transfer, ';')}"
+                                     th:text="${detail}"></td>
+                            </tr>
+                        </p>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-offset-2 col-md-4">
+                <table th:if="${tweets != null}" id='tweets' class="display table-striped table-bordered">
+                    <h2>Tweets</h2>
+                    <thead>
+                    <tr>
+                        <th>Tweet</th>
+                        <th>Date</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <p th:each="tweet : ${tweets}">
+                        <tr>
+                            <td th:each="detail : ${#strings.arraySplit(tweet.tweet, ';')}"
+                                th:text="${detail}"></td>
+                        </tr>
+                    </p>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function () {
+        $('table.display').DataTable({
+            "language": {
+                "sProcessing": "Traitement en cours ...",
+                "sLengthMenu": "Afficher _MENU_ lignes",
+                "sZeroRecords": "Aucun résultat trouvé",
+                "sEmptyTable": "Aucune donnée disponible",
+                "sInfo": "Lignes _START_ à _END_ sur _TOTAL_",
+                "sInfoEmpty": "Aucune ligne affichée",
+                "sInfoFiltered": "(Filtrer un maximum de_MAX_)",
+                "sInfoPostFix": "",
+                "sSearch": "Chercher:",
+                "sUrl": "",
+                "sInfoThousands": ",",
+                "sLoadingRecords": "Chargement...",
+                "oPaginate": {
+                    "sFirst": "Premier", "sLast": "Dernier", "sNext": "Suivant", "sPrevious": "Précédent"
+                },
+                "oAria": {
+                    "sSortAscending": ": Trier par ordre croissant", "sSortDescending": ": Trier par ordre décroissant"
+                }
+            }
+        });
+    });
+</script>
+</html>
