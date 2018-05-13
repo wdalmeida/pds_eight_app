@@ -18,6 +18,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+
 import fr.kafkaServices.producer.Sender;
 
 import static java.lang.String.valueOf;
@@ -37,15 +38,12 @@ public class MockProductionTransaction {
     @Autowired
     private Sender sender;
 
-    @PostConstruct
-    public void check(){}
 
     ArrayList<String> sign = new ArrayList<String>();
 
 
-    //@Scheduled(fixedRate = 1000/4)
+    @Scheduled(fixedRate = 1000 / 4)
     public void scheduleFixedRateTask() throws IOException {
-        for (int counter = 0; counter < 100000; counter++){
         String firstNameFile = "contract-underwriting-learning/resources/Prenoms.csv";
         String lastNameFile = "contract-underwriting-learning/resources/Noms.csv";
         String postalCodeFile = "contract-underwriting-learning/resources/laposte_hexasmal.csv";
@@ -104,60 +102,60 @@ public class MockProductionTransaction {
                 }
                 index++;
             }
-                Random r = new Random();
+            Random r = new Random();
 
-                GregorianCalendar gc = new GregorianCalendar();
-                int birthYear = randBetween(1920, 1960);
-                gc.set(Calendar.YEAR, birthYear);
-                int dayOfYear = randBetween(1, gc.getActualMaximum(Calendar.DAY_OF_YEAR));
-                gc.set(Calendar.DAY_OF_YEAR, dayOfYear);
-                int yearFinal = (gc.get(Calendar.YEAR));
-                int monthFinal = (gc.get(Calendar.MONTH) + 1);
-                int dayFinal = gc.get(Calendar.DAY_OF_MONTH);
+            GregorianCalendar gc = new GregorianCalendar();
+            int birthYear = randBetween(1920, 1960);
+            gc.set(Calendar.YEAR, birthYear);
+            int dayOfYear = randBetween(1, gc.getActualMaximum(Calendar.DAY_OF_YEAR));
+            gc.set(Calendar.DAY_OF_YEAR, dayOfYear);
+            int yearFinal = (gc.get(Calendar.YEAR));
+            int monthFinal = (gc.get(Calendar.MONTH) + 1);
+            int dayFinal = gc.get(Calendar.DAY_OF_MONTH);
 
-                List<ProductionTransactionEntity> productionTransactionEntities = new ArrayList<>();
-                ProductionTransactionEntity productionTransactionEntity = new ProductionTransactionEntity();
-                productionTransactionEntity.setDate(new java.sql.Date(System.currentTimeMillis()));
-                productionTransactionEntity.setId_client(r.nextInt(9999999) + 1000000);
-                productionTransactionEntity.setId_account(r.nextInt(2000000) + 100000);
-                productionTransactionEntity.setClient_first_name(valueOf(listFirstName.get(r.nextInt(11626) + 1)));
-                productionTransactionEntity.setClient_last_name(valueOf(listLastName.get(r.nextInt(399) + 1)));
-                productionTransactionEntity.setClient_birthday(new java.sql.Date(yearFinal, monthFinal, dayFinal));
-                productionTransactionEntity.setClient_adress(r.nextInt(500) + 1 + " rue " +
-                        valueOf(listFirstName.get(r.nextInt(11626) + 1)) + " " +
-                        valueOf(listLastName.get(r.nextInt(399) + 1)) + " , " +
-                        r.nextInt(99999) + 10000);
-                String accountTypeString = String.valueOf(AccountType.values()[new Random().nextInt(AccountType.values().length)]);
-                productionTransactionEntity.setAccount_type(accountTypeString);
-                String accountProductString = ((accountTypeString == "COMPTE_COURANT") ? "TRANSACTION" : String.valueOf(AccountProduct.values()[new Random().nextInt(AccountProduct.values().length)]));
-                productionTransactionEntity.setAccount_product(accountProductString);
-                int account_balance_before_transaction = r.nextInt(10000) + 1;
-                productionTransactionEntity.setAccount_balance_before_transaction(account_balance_before_transaction);
-                int transaction_amount = r.nextInt(100) + 10;
-                productionTransactionEntity.setTransaction_amount(transaction_amount);
-                productionTransactionEntity.setAccount_balance_after_transaction(account_balance_before_transaction
-                        + transaction_amount);
-                sign.add("+");
-                sign.add("-");
-                String signString = sign.get(r.nextInt(1) + 0);
-                productionTransactionEntity.setTransaction_sign(signString);
-                String transactionTypeString = ((accountTypeString == "COMPTE_EPARGNE" && signString == "+") ? String.valueOf(TransactionTypeSavingPlus.values()[new Random().nextInt(TransactionTypeSavingPlus.values().length)]) :
-                        ((accountTypeString == "COMPTE_TITRE" && signString == "+") ? "PLUS VALUS" : String.valueOf(TransactionTypeCredit.values()[new Random().nextInt(TransactionTypeCredit.values().length)])));
-                productionTransactionEntity.setTransaction_type(transactionTypeString);
-                productionTransactionEntity.setTransaction_label(" ");
-                productionTransactionEntity.setId_account_beneficiary(r.nextInt(20000) + 1000);
-                System.out.println(productionTransactionEntity);
+            List<ProductionTransactionEntity> productionTransactionEntities = new ArrayList<>();
+            ProductionTransactionEntity productionTransactionEntity = new ProductionTransactionEntity();
+            productionTransactionEntity.setDate(new java.sql.Date(System.currentTimeMillis()));
+            productionTransactionEntity.setId_client(r.nextInt(9999999) + 1000000);
+            productionTransactionEntity.setId_account(r.nextInt(2000000) + 100000);
+            productionTransactionEntity.setClient_first_name(valueOf(listFirstName.get(r.nextInt(11626) + 1)));
+            productionTransactionEntity.setClient_last_name(valueOf(listLastName.get(r.nextInt(399) + 1)));
+            productionTransactionEntity.setClient_birthday(new java.sql.Date(yearFinal, monthFinal, dayFinal));
+            productionTransactionEntity.setClient_adress(r.nextInt(500) + 1 + " rue " +
+                    valueOf(listFirstName.get(r.nextInt(11626) + 1)) + " " +
+                    valueOf(listLastName.get(r.nextInt(399) + 1)) + " , " +
+                    r.nextInt(99999) + 10000);
+            String accountTypeString = String.valueOf(AccountType.values()[new Random().nextInt(AccountType.values().length)]);
+            productionTransactionEntity.setAccount_type(accountTypeString);
+            String accountProductString = ((accountTypeString == "COMPTE_COURANT") ? "TRANSACTION" : String.valueOf(AccountProduct.values()[new Random().nextInt(AccountProduct.values().length)]));
+            productionTransactionEntity.setAccount_product(accountProductString);
+            int account_balance_before_transaction = r.nextInt(10000) + 1;
+            productionTransactionEntity.setAccount_balance_before_transaction(account_balance_before_transaction);
+            int transaction_amount = r.nextInt(100) + 10;
+            productionTransactionEntity.setTransaction_amount(transaction_amount);
+            productionTransactionEntity.setAccount_balance_after_transaction(account_balance_before_transaction
+                    + transaction_amount);
+            sign.add("+");
+            sign.add("-");
+            String signString = sign.get(r.nextInt(1) + 0);
+            productionTransactionEntity.setTransaction_sign(signString);
+            String transactionTypeString = ((accountTypeString == "COMPTE_EPARGNE" && signString == "+") ? String.valueOf(TransactionTypeSavingPlus.values()[new Random().nextInt(TransactionTypeSavingPlus.values().length)]) :
+                    ((accountTypeString == "COMPTE_TITRE" && signString == "+") ? "PLUS VALUS" : String.valueOf(TransactionTypeCredit.values()[new Random().nextInt(TransactionTypeCredit.values().length)])));
+            productionTransactionEntity.setTransaction_type(transactionTypeString);
+            productionTransactionEntity.setTransaction_label(" ");
+            productionTransactionEntity.setId_account_beneficiary(r.nextInt(20000) + 1000);
+            System.out.println(productionTransactionEntity);
                 /* System.out.println("Not saved" + productionTransactionRepository);
                 productionTransactionRepository.save(productionTransactionEntity);
                 System.out.println("Saved");*/
-                productionTransactionEntities.add(productionTransactionEntity);
-                String xml = xmlMapper.writeValueAsString(productionTransactionEntities);
-                this.sender.send(topicName, xml);
-                System.out.println(productionTransactionEntity);
+            productionTransactionEntities.add(productionTransactionEntity);
+            String xml = xmlMapper.writeValueAsString(productionTransactionEntities);
+            this.sender.send(topicName, xml);
+            System.out.println(productionTransactionEntity);
 
         } catch (Exception e) {
             e.printStackTrace();
-        }}
+        }
     }
 
     public static int randBetween(int start, int end) {

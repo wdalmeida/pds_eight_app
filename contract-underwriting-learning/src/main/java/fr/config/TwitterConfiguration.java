@@ -8,7 +8,7 @@ import twitter4j.conf.ConfigurationBuilder;
 @Configuration
 public class TwitterConfiguration {
 
-    @Bean
+    @Bean()
     public TwitterFactory configureTwitter() {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         String CONSUMER_KEY = "Y1ZidpFdSPwubI9R5aE77pFDo";
