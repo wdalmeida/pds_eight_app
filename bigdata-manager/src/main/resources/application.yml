@@ -1,0 +1,8 @@
+server:
+  port: 8184
+spring :
+  data :
+    mongodb :
+      host : 10.10.1.202
+      port : 27017
+      database : transfers

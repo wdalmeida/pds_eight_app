@@ -20,6 +20,12 @@ public class MainController {
         return new ModelAndView("home");
     }
 
+    @RequestMapping(value="/analyst", method = RequestMethod.GET)
+    public ModelAndView getAnalystHomePage(){
+        logger.info("analyst home page displayed");
+        return new ModelAndView("analystHome");
+    }
+
     @RequestMapping(value="/login", method = RequestMethod.GET)
     public ModelAndView getLoginPage(){
         logger.info("login page displayed");
@@ -28,10 +34,26 @@ public class MainController {
         return mav;
     }
 
+    @RequestMapping(value="/analyst/login", method = RequestMethod.GET)
+    public ModelAndView getAnalystLoginPage(){
+        logger.info("analyst login page displayed");
+        ModelAndView mav = new ModelAndView("analystLoginPage");
+        mav.addObject("loginModel", new LoginModel());
+        return mav;
+    }
+
     @RequestMapping(value="/customerHomePage", method = RequestMethod.POST)
     public ModelAndView displayCustomerHomePage(@ModelAttribute("loginModel") LoginModel loginModel, BindingResult bindingResult){
         logger.info("customer home page displayed");
         ModelAndView mav = new ModelAndView("customerHomePage");
+        mav.addObject("loginModel", new LoginModel());
+        return mav;
+    }
+
+    @RequestMapping(value="analyst/analystHomePage", method = RequestMethod.POST)
+    public ModelAndView displayAnalystHomePage(@ModelAttribute("loginModel") LoginModel loginModel, BindingResult bindingResult){
+        logger.info("analyst home page displayed");
+        ModelAndView mav = new ModelAndView("analystHomePage");
         mav.addObject("loginModel", new LoginModel());
         return mav;
     }
