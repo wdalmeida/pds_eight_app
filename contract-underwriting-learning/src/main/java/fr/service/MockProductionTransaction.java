@@ -43,7 +43,7 @@ public class MockProductionTransaction {
     ArrayList<String> sign = new ArrayList<String>();
 
 
-    @Scheduled(fixedRate = 1000/4)
+    //@Scheduled(fixedRate = 1000/4)
     public void scheduleFixedRateTask() throws IOException {
         for (int counter = 0; counter < 100000; counter++){
         String firstNameFile = "contract-underwriting-learning/resources/Prenoms.csv";

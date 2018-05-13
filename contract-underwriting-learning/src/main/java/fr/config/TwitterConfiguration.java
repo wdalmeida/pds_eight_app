@@ -1,12 +1,15 @@
 package fr.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import twitter4j.TwitterFactory;
 import twitter4j.conf.ConfigurationBuilder;
 
+@Configuration
 public class TwitterConfiguration {
 
     @Bean
-    public static ConfigurationBuilder configureTwitter() {
+    public TwitterFactory configureTwitter() {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         String CONSUMER_KEY = "Y1ZidpFdSPwubI9R5aE77pFDo";
         String CONSUMER_SECRET = "iVTKgL01THoivgX7itdm3pSqCyYPMViHyHc9OXVWdZIzilcWYY";
@@ -17,6 +20,6 @@ public class TwitterConfiguration {
                 .setOAuthConsumerSecret(CONSUMER_SECRET)
                 .setOAuthAccessToken(ACCESS_KEY)
                 .setOAuthAccessTokenSecret(ACCESS_SECRET);
-        return cb;
+        return new TwitterFactory(cb.build());
     }
 }

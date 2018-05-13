@@ -4,29 +4,29 @@ import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.List;
 
+@Component
 public class InsertMongoDB {
-    MongoClient mongo = new MongoClient( "localhost" , 27017 );
-    MongoClient mongoClient = new MongoClient();
-    //DB db = mongoClient.getDB("database name");
-    //boolean auth = db.authenticate("username", "password".toCharArray());
+
+    @Autowired
+    private MongoClient mongoClient;
+
+    @Autowired
+    private DB dataBase;
+
 
     public void printDB(){
-
-        /*DB dbTest = mongo.getDB("test");
-        System.out.println(dbTest);*/
-        List<String> dbs = mongo.getDatabaseNames();
-        for(String db : dbs){
-            System.out.println(db);
-        }
+        mongoClient.getDatabaseNames().stream().forEach(System.out::println);
     }
 
     public void insertIntoDocument(String tweet){
-        DB db = mongo.getDB("testdb");
-        DBCollection table = db.getCollection("tweets");
+
+        DBCollection table = dataBase.getCollection("tweets");
         BasicDBObject document = new BasicDBObject();
         document.put("tweet", tweet);
         document.put("createdDate", new Date());
