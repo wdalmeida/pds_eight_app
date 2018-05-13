@@ -2,15 +2,18 @@ server:
   port: 9500
 
 kafka:
-  bootstrap-servers: 10.10.1.12:9092
+  bootstrap-servers: localhost:9092
   topic:
     transactionQueue: transactionQueue
+mongodb:
+  host: localhost
+  port: 27017
 
 spring:
  datasource:
-  url: jdbc:postgresql://localhost:5433/eight
+  url: jdbc:postgresql://localhost:5432/postgres
   username: postgres
-  password: postgres
+  password: Ineegeerei1
   driver-class-name: org.postgresql.Driver
  jpa:
   generate-ddl: true

@@ -16,7 +16,7 @@ import java.io.IOException;
 
 
 @EnableJpaRepositories("fr.repository")
-@EntityScan("fr/entity")
+@EntityScan("fr.entity")
 @SpringBootApplication
 @EnableScheduling
 @Configuration
@@ -28,11 +28,11 @@ public class Application {
 
     @PostConstruct
     private void testService () throws IOException, TwitterException {
-        m.scheduleFixedRateTask();
-        //ArrayList<String> results = IntegrateTwitterData.getTweets("#world");
+       // m.scheduleFixedRateTask();
+       // ArrayList<String> results = IntegrateTwitterData.getTweets("#world");
         //System.out.println(results+"\n");
         //System.out.println(results.size());
-        //IntegrateTweets.getTweets("#world");
+       // IntegrateTweets.getTweets("#world");
     }
     public static void main(String[] args){
         SpringApplication.run(Application.class, args);
