@@ -50,6 +50,7 @@ public class TransferDataController {
         if (transfersResponseEntity.getStatusCode() == HttpStatus.OK) {
             List<Transfer> transfers = transfersResponseEntity.getBody();
             mav.addObject("transfers",transfers);
+            mav.addObject("transfersSize", transfers.size());
             logger.info("transfers retrieved : " + transfers.toString());
         } else {
             logger.info("no transfers retrieved");
@@ -61,6 +62,7 @@ public class TransferDataController {
         if (tweetsResponseEntity.getStatusCode() == HttpStatus.OK) {
             List<Tweet> tweets = tweetsResponseEntity.getBody();
             mav.addObject("tweets",tweets);
+            mav.addObject("tweetsSize", tweets.size());
             logger.info("tweets retrieved : " + tweets.toString());
         } else {
             logger.info("no tweets retrieved");
