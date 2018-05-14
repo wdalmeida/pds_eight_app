@@ -1,6 +1,5 @@
 package eight.ing3.esipe.fr.dab_approved_transaction.kafka;
 
-import gherkin.deps.com.google.gson.JsonDeserializer;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,12 +8,12 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@EnableKafka
-@Configuration
+
 public class ConsumerConfigKafka {
     @Value("${consumer.properties.bootstrap_servers_config}")
     private String bootstrap_servers_config;

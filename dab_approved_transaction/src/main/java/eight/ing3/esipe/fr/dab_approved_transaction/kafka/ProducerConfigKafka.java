@@ -1,18 +1,16 @@
 package eight.ing3.esipe.fr.dab_approved_transaction.kafka;
 
-import com.fasterxml.jackson.databind.JsonSerializable;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.core.DefaultKafkaProducerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.core.ProducerFactory;
+import org.springframework.kafka.support.serializer.JsonSerializer;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
 public class ProducerConfigKafka {
     @Value("${producer.properties.bootstrap_servers_config}")
     private String bootstrap_servers_config;
@@ -25,10 +23,10 @@ public class ProducerConfigKafka {
                 bootstrap_servers_config);
         configProps.put(
                 ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG,
-                JsonSerializable.class);
+                JsonSerializer.class);
         configProps.put(
                 ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,
-                JsonSerializable.class);
+                JsonSerializer.class);
         return new DefaultKafkaProducerFactory<>(configProps);
     }
 
