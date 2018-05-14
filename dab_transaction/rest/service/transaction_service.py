@@ -1,6 +1,4 @@
 from rest import *
-from message_consumer import receive_waiting_transaction as consumer
-
 
 
 class transaction_service():
@@ -11,7 +9,7 @@ class transaction_service():
         ttrans.read = readToBoolean(read)
         if sendWaiting(trans):
             logging.debug(data["transaction_id"])
-            consumer.readWaiting(data["transaction_id"])
+            readWaiting(data["transaction_id"])
             sendApproved(data["transaction_id"])
         return True
 
