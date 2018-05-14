@@ -2,12 +2,12 @@ from kafka import KafkaConsumer
 import json
 
 
-def read(id):
+def readWaiting(id):
     logging.debug("Start consumer")
-    consumer = KafkaConsumer('test',
-                                    group_id='test',
+    consumer = KafkaConsumer('transactionWaiting',
+                                    group_id='waiting',
                                     bootstrap_servers=['10.10.1.110:9092','10.10.1.111:9092'],
-                                    auto_offset_reset='earliest',
+                                    auto_offset_reset='latest',
                                     enable_auto_commit=True,
                                     consumer_timeout_ms=2000) # 2 seconds
     for message in consumer:
