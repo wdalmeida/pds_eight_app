@@ -9,7 +9,7 @@ from rest import db
 class Customer(base):
     __tablename__ = 'customer'
 
-    id = Column(Integer, primary_key=True)
+    customerid = Column(Integer, primary_key=True)
     firstname = Column(String)
     lastname = Column(String)
 
