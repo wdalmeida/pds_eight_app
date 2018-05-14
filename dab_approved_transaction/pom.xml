@@ -12,6 +12,9 @@
         <groupId>eight.ing3.esipe.fr</groupId>
         <version>1.0.0-SNAPSHOT</version>
     </parent>
+    <properties>
+        <start-class>eight.ing3.esipe.fr.dab_approved_transaction.DabApprovedTransactionApplication</start-class>
+    </properties>
 
     <dependencies>
         <dependency>
@@ -79,7 +82,7 @@
                         <configuration>
                             <classifier>spring-boot</classifier>
                             <mainClass>
-                                eight.ing3.esipe.fr.DabApprovedTransactionApplication
+                                eight.ing3.esipe.fr.dab_approved_transaction.DabApprovedTransactionApplication
                             </mainClass>
                         </configuration>
                     </execution>
