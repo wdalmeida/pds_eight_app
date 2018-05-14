@@ -43,7 +43,7 @@ class read_nfc_tag(threading.Thread):
         line = content[-1]
         if "Card" not in line:
             print(line[line.find("  ") + 2:])
-            self.send_data(line)
+            self.send_data(line[line.find("  ") + 2:])
 
         #mifare = nxppy.Mifare()
         # # Print card UIDs as they are detected

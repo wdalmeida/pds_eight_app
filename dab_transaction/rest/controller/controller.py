@@ -1,11 +1,11 @@
-from flask import Flask,request,jsonify,json
+from flask import Flask,request,jsonify
 from rest import *
 from rest.service.transaction_service import transaction_service as tservice
 from rest.service.authentification_service import authentification as aservice
-from message_producer.send_waiting_transaction import send as kafkaSend
-from message_consumer.receive_waiting_transaction import read as kafkaRead
-import simplejson as json2
-
+from message_producer.send_waiting_transaction import sendWaiting as kafkaSendWaiting
+from message_producer.send_waiting_transaction import sendApproved as kafkaSendApproved
+from message_consumer.receive_waiting_transaction import readWaiting as kafkaRead
+import simplejson as json
 
 
 @app.route('/transaction/waiting/', methods= ['POST'])
@@ -19,16 +19,14 @@ def create_waiting_transaction():
         data = request.get_json()
         logging.debug(request.get_json())
         logging.debug(data)
-        if kafkaSend(data):
-            logging.debug(data["transaction_id"])
-            resp = kafkaRead(data["transaction_id"])
-        #resp = tservice.create_transaction(data,db)
+        resp = service.create_transaction(data)
     else:
         resp = unknown_ressource()
     return jsonify(resp)
 
+
 @app.route('/auth/card/', methods= ['POST'])
-def auth_client_by_smartcard():
+def auth_client_by_cardnumber():
     resp = None
     logging.debug("Controller - Authentification")
     logging.debug(request.data)
@@ -40,7 +38,8 @@ def auth_client_by_smartcard():
         logging.debug(data)
         res = aservice.authentification_card(data.get("card"))
         if res is not None:
-            return json2.dumps(res, use_decimal=True)
+            logging.debug(json.dumps(res, use_decimal=True))
+            return json.dumps(res, use_decimal=True)
         else:
             resp = unknown_ressource()
     else:

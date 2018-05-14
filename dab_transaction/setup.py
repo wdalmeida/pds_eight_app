@@ -11,6 +11,7 @@ setup(name='dab-transaction-service',
           'flask',
           'sqlalchemy',
           'psycopg2',
-          'kafka'
+          'kafka',
+          'simplejson'
       ],
       zip_safe=False)

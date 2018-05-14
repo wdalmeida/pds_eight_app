@@ -5,6 +5,9 @@ DEBUG = True
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
+SESSION_TYPE = 'memcached'
+SECRET_KEY = 'ESIPE'
+
 # Application threads. A common general assumption is
 # using 2 per available processor cores - to handle
 # incoming requests using one and performing background
