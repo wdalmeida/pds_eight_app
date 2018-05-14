@@ -10,7 +10,6 @@ import simplejson as json
 
 @app.route('/transaction/waiting/', methods= ['POST'])
 def create_waiting_transaction():
-    resp = None
     logging.debug("Controller - Home")
     logging.debug(request.data)
     logging.debug(request.get_json(force=True))
@@ -19,7 +18,7 @@ def create_waiting_transaction():
         data = request.get_json()
         logging.debug(request.get_json())
         logging.debug(data)
-        resp = service.create_transaction(data)
+        resp = tservice.create_transaction(data)
     else:
         resp = unknown_ressource()
     return jsonify(resp)
@@ -27,7 +26,6 @@ def create_waiting_transaction():
 
 @app.route('/auth/card/', methods= ['POST'])
 def auth_client_by_cardnumber():
-    resp = None
     logging.debug("Controller - Authentification")
     logging.debug(request.data)
     logging.debug(request.get_json(force=True))
