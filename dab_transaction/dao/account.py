@@ -12,12 +12,11 @@ from .card import Card
 class Account(base):
     __tablename__ = 'account'
 
-    idaccount = Column(Integer, primary_key=True)
-    iban = Column(String)
+    iban = Column(Integer, primary_key=True)
     type = Column(String)
     balance = Column(Numeric)
     cardnumber = Column(Integer, ForeignKey('card.cardnumber'))
-    customerid = Column(Integer, ForeignKey('customer.id'))
+    customerid = Column(Integer, ForeignKey('customer.customerid'))
     customer = relationship(Customer)
     card = relationship(Card)
 
@@ -25,5 +24,5 @@ class Account(base):
     def get_account_by_card(cardnumber):
         Session = sessionmaker(db)
         session = Session()
-        account = session.query(Account.idaccount,Account.balance).filter_by(cardnumber=cardnumber).first()
+        account = session.query(Account.iban,Account.balance).filter_by(cardnumber=cardnumber).first()
         return account

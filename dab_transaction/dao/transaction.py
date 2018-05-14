@@ -14,11 +14,11 @@ class Transaction(base):
 
     transactionid = Column(Integer, primary_key=True)
     amount = Column(Numeric)
-    date = Column(Date)
+    valuedate = Column(Date)
     read = Column(Boolean)
     wording = Column(String)
     description = Column(String)
-    idaccount = Column(Integer, ForeignKey('account.idaccount'))
+    iban = Column(Integer, ForeignKey('account.iban'))
     account = relationship(Account)
 
     def __init__(self, data):
