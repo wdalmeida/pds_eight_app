@@ -9,6 +9,7 @@ setup(name='DAB-IHM',
       packages=find_packages(),
       install_requires=[
           'flask',
-          'flask-socketio'
+          'flask-socketio',
+          'requests'
       ],
       zip_safe=False)

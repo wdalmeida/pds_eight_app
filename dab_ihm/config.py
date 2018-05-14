@@ -14,9 +14,14 @@ THREADS_PER_PAGE = 2
 # Enable protection agains *Cross-site Request Forgery (CSRF)*
 CSRF_ENABLED     = True
 
-#Rest server
-TRANSACTION_SERVER = "127.0.0.1"
-TRANSACTION_SERVER_PORT = 5001
+#NFC READER
+NFC_READER_IP = "127.0.0.1"
+NFC_READER_PORT= 5001
+
+#TRANSACTION SERVER
+TRANSACTION_SERVER = "http://rss.eight.inside.esiag.info:8080/"
+
+
 
 #LOG
 LOG_CONF="log.conf"

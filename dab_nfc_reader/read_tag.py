@@ -2,6 +2,7 @@ import socket
 import threading
 import time
 import nxppy
+import subprocess
 
 
 class read_nfc_tag(threading.Thread):
@@ -32,18 +33,30 @@ class read_nfc_tag(threading.Thread):
             print ("No socket")
 
     def detect_tag(self):
-        mifare = nxppy.Mifare()
-        # Print card UIDs as they are detected
-        while True:
-            try:
-                uid = mifare.select()
-                self.send_data(uid)
-                print(uid)
-            except nxppy.SelectError:
-                # SelectError is raised if no card is in the field.
-                pass
+        subprocess.Popen("timeout --preserve-status -k 2s 10s stdbuf -oL explorenfc-cardemulation>>log.txt", shell=True,
+                         stdout=subprocess.PIPE).stdout.read()
+        filename = "log.txt"
 
-            time.sleep(1)
+        with open(filename) as f:
+            content = f.readlines()
+
+        line = content[-1]
+        if "Card" not in line:
+            print(line[line.find("  ") + 2:])
+            self.send_data(line)
+
+        #mifare = nxppy.Mifare()
+        # # Print card UIDs as they are detected
+        # while True:
+        #     try:
+        #         uid = mifare.select()
+        #         self.send_data(uid)
+        #         print(uid)
+        #     except nxppy.SelectError:
+        #         # SelectError is raised if no card is in the field.
+        #         pass
+        #
+        #     time.sleep(1)
 
     def send_data(self,uid):
         connect= self.connect_to_ihm()

@@ -17,5 +17,7 @@ base = declarative_base()
 logging.config.fileConfig(app.config['LOG_CONF'])
 logger = logging.getLogger(app.config['LOG_ENV'])
 
-
+from dao import customer
+from dao import account
+from dao import transaction
 import rest.controller.controller

@@ -1,21 +1,25 @@
-from sqlalchemy import Column, String, Numeric, Date, Boolean
+from sqlalchemy import Column, String, Numeric, Date, Boolean, ForeignKey
 from sqlalchemy.types import Integer
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker,relationship
 from rest import *
 from rest import base
 from rest import db
 from flask import json
+from rest import *
+from .account import Account
 
 
 class Transaction(base):
     __tablename__ = 'transaction'
 
-    transaction_id = Column(Integer, primary_key=True)
+    transactionid = Column(Integer, primary_key=True)
     amount = Column(Numeric)
     date = Column(Date)
-    red = Column(Boolean)
+    read = Column(Boolean)
     wording = Column(String)
     description = Column(String)
+    idaccount = Column(Integer, ForeignKey('account.idaccount'))
+    account = relationship(Account)
 
     def __init__(self, data):
         self.__dict__.update(json.loads(data))

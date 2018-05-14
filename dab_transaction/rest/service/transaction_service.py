@@ -1,5 +1,3 @@
-from rest.dao import customer
-from rest.dao import transaction
 from rest import *
 from message_producer import send_waiting_transaction as kafka
 
@@ -13,7 +11,7 @@ class transaction_service():
             t.red = False
         elif t.red == '1':
             t.red = True
-        #t.add_transaction(data)
+        t.add_transaction(data)
         kafka.send(t)
         return "ok"
 

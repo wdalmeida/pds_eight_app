@@ -10,16 +10,17 @@ class Customer(base):
     __tablename__ = 'customer'
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
+    firstname = Column(String)
+    lastname = Column(String)
 
-    def get_customers(self):
+    def get_customers(self,id):
         Session = sessionmaker(db)
         session = Session()
         customers = session.query(Customer)
         for customer in customers:
-            print(customer.id)
-            print(customer.name)
-            print("\n")
+            logging.debug(customer.id)
+            logging.debug(customer.firstname)
+            logging.debug("\n")
 
     def add_customers(self):
         Session = sessionmaker(db)

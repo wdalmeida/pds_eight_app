@@ -24,5 +24,5 @@ DB_PASSWORD= 5001
 
 #LOG
 LOG_CONF="log.conf"
-LOG_FILE="dab-ihm.log"
+LOG_FILE="dab-transaction.log"
 LOG_ENV="dev"

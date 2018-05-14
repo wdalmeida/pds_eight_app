@@ -11,7 +11,7 @@ app = Flask(__name__)
 app.config.from_object("config")
 
 #Websocket
-socketio=SocketIO(app, ping_timeout=1, logger=False, async_mode='threading')
+socketio=SocketIO(app, ping_timeout=1, ping_interval=1, logger=False, async_mode='threading')
 
 #Logger
 logging.config.fileConfig(app.config['LOG_CONF'])
