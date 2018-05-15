@@ -1,6 +1,6 @@
 from flask import Flask,request,jsonify
 from rest import *
-from rest.service.transaction_service import transaction_service as tservice
+from rest.service.transaction_service import create_transaction as tservice
 from rest.service.authentification_service import authentification as aservice
 from message_producer.send_waiting_transaction import sendWaiting as kafkaSendWaiting
 from message_producer.send_waiting_transaction import sendApproved as kafkaSendApproved
@@ -17,7 +17,7 @@ def create_waiting_transaction():
     if request.json and request.headers['Content-Type'] == 'application/json':
         data = request.get_json()
         logging.debug(data)
-        resp = tservice.create_transaction(data)
+        resp = tservice(data)
     else:
         resp = unknown_ressource()
     return jsonify(resp)
