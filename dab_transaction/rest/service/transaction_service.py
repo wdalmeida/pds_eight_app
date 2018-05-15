@@ -11,7 +11,7 @@ def readToBoolean(read):
 
 def create_transaction(data):
     trans = transaction.Transaction(data)
-    trans.read = readToBoolean(read)
+    trans.read = readToBoolean(trans.read)
     if sendWaiting(trans):
         logging.debug(data["transaction_id"])
         readWaiting(data["transaction_id"])
