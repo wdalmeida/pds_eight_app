@@ -16,7 +16,7 @@ def create_waiting_transaction():
 
     if request.json and request.headers['Content-Type'] == 'application/json':
         data = request.get_json()
-        logging.debug(request.get_json())
+        logging.debug(request.json())
         logging.debug(data)
         resp = tservice.create_transaction(data)
     else:
