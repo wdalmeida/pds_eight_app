@@ -5,7 +5,6 @@ from rest import *
 from rest import base
 from rest import db
 from flask import json
-from rest import *
 from .account import Account
 
 

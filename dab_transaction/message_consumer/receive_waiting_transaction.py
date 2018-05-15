@@ -2,6 +2,7 @@ from kafka import KafkaConsumer
 import json
 from rest import *
 from dao.transaction import Transaction
+
 def readWaiting(id):
     logging.debug("Start consumer")
     consumer = KafkaConsumer('transactionWaiting',
