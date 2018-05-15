@@ -22,7 +22,7 @@ class Transaction(base):
     account = relationship(Account)
 
     def __init__(self, data):
-        self.__dict__.update(json.loads(data))
+        self.__dict__.update(json.loads(data.decode('utf-8')))
 
     def add_transaction(self):
         Session = sessionmaker(db)
