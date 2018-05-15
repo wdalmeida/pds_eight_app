@@ -10,12 +10,18 @@ def readToBoolean(read):
 
 
 def create_transaction(data):
-    #trans = transaction.Transaction(data)
-    data.read = readToBoolean(data.get('read'))
-    if sendWaiting(data):
-        logging.debug(data["transaction_id"])
-        readWaiting(data["transaction_id"])
-        sendApproved(data["transaction_id"])
-    return True
+    # trans = transaction.Transaction(data)
+    logging.debug(type(data))
+    logging.debug(data.get('read'))
+    data['read'] = readToBoolean(data.get('read'))
+    offset = sendWaiting(data)
+    if offset is not False:
+        logging.debug(offset)
+        readWaiting(offset)
+        sendApproved(data)
+    return {
+            'status': 200,
+            'message': 'Message sent: ' + data }
+
 
 

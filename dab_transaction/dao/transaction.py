@@ -21,9 +21,11 @@ class Transaction(base):
     account = relationship(Account)
 
     def __init__(self, data):
+        logging.debug("Creation transaction object")
         self.__dict__.update(data)
 
     def add_transaction(self):
+        logging.debug("Add transaction into the database")
         Session = sessionmaker(db)
         session = Session()
         session.add(self)

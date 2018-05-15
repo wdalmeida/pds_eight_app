@@ -23,6 +23,4 @@ def readWaiting(id):
         if message.offset == id:
             t= Transaction(trans)
             t.add_transaction()
-            return  {
-            'status': 200,
-            'message': 'Message sent: ' + json_data }
+            return True
