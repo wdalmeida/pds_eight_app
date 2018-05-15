@@ -22,5 +22,5 @@ def readWaiting(id):
         logging.debug("end of for")
         if message.offset == id:
             t= Transaction(trans)
-            t.add_transaction()
+            Transaction.add_transaction(t)
             return True

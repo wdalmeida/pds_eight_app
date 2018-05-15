@@ -21,7 +21,7 @@ def create_transaction(data):
         sendApproved(data)
     return {
             'status': 200,
-            'message': 'Message sent: ' + data }
+            'message': 'Transaction sent: ' }
 
 
 
