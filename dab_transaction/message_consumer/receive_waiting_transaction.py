@@ -21,6 +21,7 @@ def readWaiting(id):
         trans=json.loads(json_data)
         logging.debug("end of for")
         if message.offset == id:
+            logging.error("TRANSACTION EN COURS D'ENREGISTREMENT")
             t= Transaction(trans)
             Transaction.add_transaction(t)
             return True
