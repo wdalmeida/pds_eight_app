@@ -10,9 +10,9 @@ def readToBoolean(read):
 
 
 def create_transaction(data):
-    trans = transaction.Transaction(data)
-    trans.read = readToBoolean(trans.read)
-    if sendWaiting(trans):
+    #trans = transaction.Transaction(data)
+    data.read = readToBoolean(data.read)
+    if sendWaiting(data):
         logging.debug(data["transaction_id"])
         readWaiting(data["transaction_id"])
         sendApproved(data["transaction_id"])

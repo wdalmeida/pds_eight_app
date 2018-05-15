@@ -1,7 +1,7 @@
 from kafka import KafkaConsumer
 import json
 from rest import *
-
+from dao.transaction import Transaction
 def readWaiting(id):
     logging.debug("Start consumer")
     consumer = KafkaConsumer('transactionWaiting',
@@ -19,7 +19,9 @@ def readWaiting(id):
         logging.debug(json_data)
         trans=json.loads(json_data)
         logging.debug("end of for")
-        if trans['transaction_id'] == id:
+        if message.offset == id:
+            t= Transaction(trans)
+            t.add_transaction()
             return  {
             'status': 200,
             'message': 'Message sent: ' + json_data }

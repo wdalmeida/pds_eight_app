@@ -14,7 +14,7 @@ def sendWaiting(transaction):
         record_metadata = future.get(timeout=10)
         logging.debug(record_metadata.topic)
         logging.debug(record_metadata.offset)
-        res = True
+        res = record_metadata.offset
     except KafkaError:
         logging.debug("error")
         pass
