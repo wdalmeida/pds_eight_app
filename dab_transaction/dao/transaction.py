@@ -18,11 +18,11 @@ class Transaction(base):
     read = Column(Boolean)
     wording = Column(String)
     description = Column(String)
-    iban = Column(Integer, ForeignKey('account.iban'))
+    iban = Column(String, ForeignKey('account.iban'))
     account = relationship(Account)
 
     def __init__(self, data):
-        self.__dict__.update(json.loads(data.decode('utf-8')))
+        self.__dict__.update(json.loads(data))
 
     def add_transaction(self):
         Session = sessionmaker(db)

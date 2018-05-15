@@ -12,10 +12,10 @@ from .card import Card
 class Account(base):
     __tablename__ = 'account'
 
-    iban = Column(Integer, primary_key=True)
-    type = Column(String)
+    iban = Column(String, primary_key=True)
+    idaccounttype = Column(Integer)
     balance = Column(Numeric)
-    cardnumber = Column(Integer, ForeignKey('card.cardnumber'))
+    cardnumber = Column(String, ForeignKey('card.cardnumber'))
     customerid = Column(Integer, ForeignKey('customer.customerid'))
     customer = relationship(Customer)
     card = relationship(Card)

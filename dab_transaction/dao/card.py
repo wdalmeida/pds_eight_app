@@ -9,7 +9,7 @@ from rest import db
 class Card(base):
     __tablename__ = 'card'
 
-    cardnumber = Column(Integer, primary_key=True)
+    cardnumber = Column(String, primary_key=True)
     pin = Column(String)
     crypto = Column(String)
     date = Column(Date)
