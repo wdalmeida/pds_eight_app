@@ -1,7 +1,7 @@
 import json
 from kafka import KafkaProducer
 from kafka.errors import KafkaError
-from ..rest import *
+from rest import *
 
 
 def sendWaiting(transaction):

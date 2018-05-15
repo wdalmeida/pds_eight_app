@@ -1,6 +1,6 @@
 from kafka import KafkaConsumer
 import json
-from ..rest import *
+from rest import *
 
 def readWaiting(id):
     logging.debug("Start consumer")
