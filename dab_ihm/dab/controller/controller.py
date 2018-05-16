@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for,session
+from flask import Flask, render_template, request, redirect, url_for,session,json
 from .. import *
 from ..service.home_service import home_service
 from ..service.withdraw_service import withdraw_service
 import requests
+import datetime
 
 
 @app.route('/', methods=['GET'])
@@ -13,26 +14,31 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/withdraw/', methods=['GET'])
-def form_withdraw():
+@app.route('/withdraw/<iban>', methods=['GET'])
+def form_withdraw(iban):
     logging.debug("Controller - Form withdraw")
-    return render_template('withdraw.html')
+    logging.debug(iban)
+    return render_template('withdraw.html', iban=iban)
 
 
 @app.route("/withdraw/", methods=['POST'])
 def withdraw():
     logging.debug("Controller - withdraw")
     amount = withdraw_service.amount_withdraw(request.form)
+    iban = withdraw_service.get_iban(request.form)
     if not amount == None:
         logging.debug("Controller - customer withdraw %s", amount)
-        r = requests.post(app.config['TRANSACTION_SERVER'] + "transaction/waiting/", data={
+        logging.debug("Controller - customer withdraw %s", iban)
+
+        r = requests.post(app.config['TRANSACTION_SERVER'] + "transaction/waiting/", data=json.dumps({
             "amount": amount,
-            "valuedate": "2018/03/31",
+            "valuedate": datetime.date.today(),
             "read": "0",
             "wording": "DAB",
             "description": "RETRAIT DAB ESIPE-CRETEIL",
-            "iban": ""
-        }, headers={'Content-type': 'application/json'})
+            "iban": iban,
+            "status": "waiting"
+        }), headers={'Content-type': 'application/json'})
         return 'WITHDRAW {} # {}'.format(amount, r)
     else:
         logging.debug("Operation cancel")

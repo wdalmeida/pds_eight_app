@@ -19,6 +19,7 @@ class Transaction(base):
     description = Column(String)
     iban = Column(String, ForeignKey('account.iban'))
     account = relationship(Account)
+    status = Column(String)
 
     def __init__(self, data):
         logging.debug("Creation transaction object")

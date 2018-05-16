@@ -23,30 +23,31 @@
 <body class="text-center">
 <div class="container-fluid">
     <form class="form-horizontal" method="post" action="/withdraw/">
+        <input id="iban" name="iban" type="hidden" value="{{ iban }}"/>
             <!-- Form Name -->
             <legend>Montant du retrait</legend>
             <!-- Button -->
             <div class="row">
                 <div class="col-md-4 col-5" >
-                    <h1><input id="button1" name="submit" type="submit" class=" input-sm input-lg btn btn-block btn-primary" value="20 euros"/></h1>
+                    <h1><input id="button1" name="submit" type="submit" class=" input-sm input-lg btn btn-block btn-primary" value="20"/></h1>
                 </div>
                 <div class="offset-md-4 col-md-4 offset-2 col-5">
-                    <input type="submit" id="button4" name="submit" class="btn btn-block btn-primary" value="80 euros"/>
+                    <input type="submit" id="button4" name="submit" class="btn btn-block btn-primary" value="80"/>
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-md-4 col-5" >
-                    <input type="submit" id="button2" name="submit" class="btn btn-block btn-primary" value="40 euros"/>
+                    <input type="submit" id="button2" name="submit" class="btn btn-block btn-primary" value="40"/>
                 </div>
                 <div class="offset-md-4 col-md-4 offset-2 col-5">
-                    <input type="submit" id="button5" name="submit" class="btn btn-block btn-primary" value="100 euros"/>
+                    <input type="submit" id="button5" name="submit" class="btn btn-block btn-primary" value="100"/>
                 </div>
             </div>
             <br>
             <div class="row">
                 <div class="col-md-4 col-5" >
-                    <input type="submit" id="button3" name="submit" class="btn btn-block btn-primary" value="100 euros"/>
+                    <input type="submit" id="button3" name="submit" class="btn btn-block btn-primary" value="100"/>
                 </div>
                 <div class="offset-md-4 col-md-4 offset-2 col-5">
                     <input type="submit" id="button6" name="submit" class="btn btn-block btn-primary" value="Saisir montant"/>

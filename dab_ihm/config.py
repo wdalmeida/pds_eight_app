@@ -5,7 +5,7 @@ DEBUG = True
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
-SESSION_TYPE = 'memcached'
+#SESSION_TYPE = 'FileSystemSessionInterface'
 SECRET_KEY = 'ESIPE'
 
 # Application threads. A common general assumption is
