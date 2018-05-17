@@ -8,7 +8,7 @@ def readWaiting(id):
     consumer = KafkaConsumer('transactionWaiting',
                                     group_id='waiting',
                                     bootstrap_servers=['10.10.1.110:9092','10.10.1.111:9092'],
-                                    auto_offset_reset='latest',
+                                    auto_offset_reset='earliest',
                                     enable_auto_commit=True,
                                     consumer_timeout_ms=2000) # 2 seconds
     for message in consumer:
