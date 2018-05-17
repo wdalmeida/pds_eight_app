@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Cover Template for Bootstrap</title>
+
+    <!-- Websocket -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.slim.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/function.js') }}"></script>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{url_for('static',filename='bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{url_for('static',filename='css/cover.css')}}" rel="stylesheet">
+</head>
+
+<body class="text-center">
+<div class="container-fluid">
+    <form class="form-horizontal" method="post" action="/withdraw/">
+        <input id="iban" name="iban" type="hidden" value="{{ iban }}"/>
+            <!-- Form Name -->
+            <legend>Montant du retrait</legend>
+            <!-- Button -->
+            <div class="row">
+                <div class="col-md-4 col-5" >
+                    <h1><input id="button1" name="submit" type="submit" class=" input-sm input-lg btn btn-block btn-primary" value="20"/></h1>
+                </div>
+                <div class="offset-md-4 col-md-4 offset-2 col-5">
+                    <input type="submit" id="button4" name="submit" class="btn btn-block btn-primary" value="80"/>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4 col-5" >
+                    <input type="submit" id="button2" name="submit" class="btn btn-block btn-primary" value="40"/>
+                </div>
+                <div class="offset-md-4 col-md-4 offset-2 col-5">
+                    <input type="submit" id="button5" name="submit" class="btn btn-block btn-primary" value="100"/>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-4 col-5" >
+                    <input type="submit" id="button3" name="submit" class="btn btn-block btn-primary" value="100"/>
+                </div>
+                <div class="offset-md-4 col-md-4 offset-2 col-5">
+                    <input type="submit" id="button6" name="submit" class="btn btn-block btn-primary" value="Saisir montant"/>
+                </div>
+            </div>
+            <br>
+         <div class="row">
+                <div class="offset-md-4 col-md-4 offset-4 col-4">
+                    <input type="submit" id="cancel" name="cancel" class="btn btn-lg btn-danger" value="Annuler"/>
+                </div>
+            </div>
+    </form>
+</div>
+<script src="{{url_for('static',filename='bootstrap/js/popper.min.js')}}"></script>
+<script src="{{url_for('static',filename='bootstrap/js/bootstrap.min.js')}}"></script>
+</body>
+</html>

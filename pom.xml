@@ -42,6 +42,7 @@
         <rome.version>1.8.0</rome.version>
         <cucumber.version>1.2.5</cucumber.version>
         <powermock.version>1.7.3</powermock.version>
+        <spring-kafka.version>1.2.2.RELEASE</spring-kafka.version>
     </properties>
 
     <dependencyManagement>
@@ -195,7 +196,12 @@
                 <artifactId>lombok-maven-plugin</artifactId>
                 <version>${lombok.version}</version>
             </dependency>
-
+            <!-- spring-kafka -->
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${spring-kafka.version}</version>
+            </dependency>
 
 
             <!-- TEST -->
