@@ -15,7 +15,7 @@ THREADS_PER_PAGE = 2
 CSRF_ENABLED     = True
 
 #DBserver
-DB_SERVER = "postgresql://postgres:50USme229@localhost:5432/pds_test"
+DB_SERVER = "postgresql://postgres:postgres@10.10.1.5:5432/dab"
 DB_SERVER_PORT = 5001
 DB_NAME= 5001
 DB_USER = 5001
