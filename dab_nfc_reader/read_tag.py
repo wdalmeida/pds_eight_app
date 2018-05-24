@@ -33,17 +33,18 @@ class read_nfc_tag(threading.Thread):
             print ("No socket")
 
     def detect_tag(self):
-        subprocess.Popen("timeout --preserve-status -k 2s 10s stdbuf -oL explorenfc-cardemulation>>log.txt", shell=True,
-                         stdout=subprocess.PIPE).stdout.read()
-        filename = "log.txt"
+        while True:
+            subprocess.Popen("timeout --preserve-status -k 2s 2s stdbuf -oL explorenfc-cardemulation>>log.txt", shell=True,
+                             stdout=subprocess.PIPE).stdout.read()
+            filename = "log.txt"
 
-        with open(filename) as f:
-            content = f.readlines()
+            with open(filename) as f:
+                content = f.readlines()
 
-        line = content[-1]
-        if "Card" not in line:
-            print(line[line.find("  ") + 2:])
-            self.send_data(line[line.find("  ") + 2:])
+            line = content[-1]
+            if "Card" not in line:
+                print(line[line.find("  ") + 2:])
+                self.send_data(line[line.find("  ") + 2:])
 
         #mifare = nxppy.Mifare()
         # # Print card UIDs as they are detected

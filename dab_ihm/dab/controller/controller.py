@@ -39,7 +39,7 @@ def withdraw():
             "iban": iban,
             "status": "waiting"
         }), headers={'Content-type': 'application/json'})
-        return 'WITHDRAW {} # {}'.format(amount, r)
+        return render_template('confirm.html')
     else:
         logging.debug("Operation cancel")
         return redirect(url_for("index"))
